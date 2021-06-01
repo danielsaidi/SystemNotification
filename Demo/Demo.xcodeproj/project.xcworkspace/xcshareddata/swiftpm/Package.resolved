@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SystemNotification",
+        "repositoryURL": "https://github.com/danielsaidi/SystemNotification.git",
+        "state": {
+          "branch": "master",
+          "revision": "abce7e9d6ccb51d973967ae18a5a6bc82a031bbc",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

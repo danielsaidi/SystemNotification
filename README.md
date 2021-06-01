@@ -40,7 +40,7 @@ pod SystemNotification
 ```
 
 
-## How does it work
+## Getting started
 
 `SystemNotification` contains a `SystemNotification` view, that can be created with an `isActive` binding, an optional `configuration` and a custom `view`.
 
@@ -63,7 +63,7 @@ let notification = SystemNotification(
 
 You can use any view you like in the notification, but if you want to use the standard `SystemNotificationMessage`, you can just use this shorthand:
 
-```
+```swift
 let notification = SystemNotification(
     icon: Image?,
     title: String,
@@ -91,10 +91,23 @@ List(items) { item
 
 The notification will be added above the view and docked outside of to the selected edge. When the `isActive` binding is set to true, it will slide in using the selected animation.
 
+You can also use a `SystemNotificationContext` to easily present multiple notifications with a single `systemNotification` modifier:
+
+```swift
+let context = SystemNotificationContext()
+context.present(notification1)
+context.present(notification2)
+
+// To use it, provide it instead of an `isActive` binding:
+List(items) { item
+   HStack { item.name }
+}.systemNotification(context: context)
+```
+
 
 ## SystemNotification.Configuration
 
-A `SystemNotification` can be configured with a `SystemNotification.Configuration` instance that specifies:
+A `SystemNotification` can be configured with a `SystemNotification.Configuration` that specifies:
 
 * `animation`
 * `backgroundColor`
@@ -104,7 +117,9 @@ A `SystemNotification` can be configured with a `SystemNotification.Configuratio
 * `duration`
 * `shadowRadius`
 
-You can set custom values to these properties to control how the notification looks and behaves. The default values makes the notification behave like the native one.
+You can customize these properties to control how the notification looks and behaves. 
+
+The default configuration makes the notification look and behave like the native one.
 
 
 ## SystemNotificationMessage.Configuration
@@ -112,11 +127,16 @@ You can set custom values to these properties to control how the notification lo
 A `SystemNotificationMessage` view can be configured with a `SystemNotificationMessage.Configuration` instance that specifies:
 
 * `iconColor`
+* `iconFont`
 * `padding`
 * `textColor`
+* `textFont`
 * `titleColor`
+* `titleFont`
 
-You can set custom values to these properties to control how the notification looks and behaves. The default values makes the view behave like the native one.
+You can customize these properties to control how the notification message looks. 
+
+The default configuration makes the message look like the native one.
 
 
 ## Demo app

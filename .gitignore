@@ -1,0 +1,11 @@
+# SPM defaults
+.DS_Store
+/.build
+/Packages
+xcuserdata/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/README.md
+fastlane/test_output

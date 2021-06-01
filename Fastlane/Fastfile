@@ -1,0 +1,40 @@
+fastlane_version "2.129.0"
+
+default_platform :ios
+
+platform :ios do
+
+  
+  # Lint =======================
+  
+  desc "Run SwiftLint"
+  lane :lint do
+    swiftlint(strict: true)
+  end
+
+
+  # Version ================
+
+  desc "Create a new version"
+  lane :version do |options|
+    ensure_git_status_clean
+    ensure_git_branch(branch: 'master')
+    
+    lint
+
+    bump_type = options[:type]
+    if bump_type == nil or bump_type.empty?
+      bump_type = "patch"
+    end
+    
+    version = version_bump_podspec(path: "SystemNotification.podspec", bump_type: bump_type)
+  
+    git_commit(path: "*", message: "Bump to #{version}")
+  
+    add_git_tag(tag: version)
+    push_git_tags()
+    push_to_git_remote()
+    pod_push()
+  end
+  
+end

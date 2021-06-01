@@ -102,8 +102,8 @@ private extension SystemNotification {
     
     @ViewBuilder
     var background: some View {
-        if let bg = configuration.backgroundColor {
-            bg
+        if let color = configuration.backgroundColor {
+            color
         } else {
             fallbackBackgroundColor.opacity(0.8)
         }

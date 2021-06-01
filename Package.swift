@@ -10,7 +10,7 @@ let package = Package(
     products: [
         .library(
             name: "SystemNotification",
-            targets: ["SystemNotification"]),
+            targets: ["SystemNotification"])
     ],
     dependencies: [],
     targets: [
@@ -19,6 +19,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "SystemNotificationTests",
-            dependencies: ["SystemNotification"]),
+            dependencies: ["SystemNotification"])
     ]
 )

@@ -65,6 +65,7 @@ public struct SystemNotification<Content: View>: View {
                 color: configuration.shadowColor,
                 radius: configuration.shadowRadius,
                 y: configuration.shadowOffset)
+            .padding(.horizontal)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
             .onChange(of: isActive) { _ in resetTimer() }
@@ -147,15 +148,35 @@ struct SystemNotification_Previews: PreviewProvider {
         
         @State private var isActive = false
         
+        @StateObject private var context = SystemNotificationContext()
+        
+        /**
+         Enable/disable to toggle between the two methods.
+         */
+        func showNotification() {
+            //showStaticNotification()
+            showContextNotification()
+        }
+        
+        func showContextNotification() {
+            context.present(configuration: .standard) {
+                SystemNotificationMessage(
+                    title: "Context",
+                    text: "This makes it easy to present multiple notifications with the same context.")
+            }
+        }
+        
+        func showStaticNotification() {
+            isActive = true
+        }
+        
         var body: some View {
             NavigationView {
                 ZStack {
                     List {
                         ForEach(0...100, id: \.self) {
                             Text("Item #\($0) - tap to show notification")
-                                .onTapGesture {
-                                    isActive.toggle()
-                                }
+                                .onTapGesture(perform: showNotification)
                         }
                     }
                     
@@ -218,6 +239,7 @@ struct SystemNotification_Previews: PreviewProvider {
                     text: "Off",
                     isActive: $isActive)
             }
+            .systemNotification(context: context)
         }
     }
     

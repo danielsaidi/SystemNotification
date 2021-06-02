@@ -29,14 +29,18 @@ import SwiftUI
  context.present(myCustomView)
  ```
  */
-public class SystemNotificationContext {
+public class SystemNotificationContext: ObservableObject {
     
-    public init() {}
+    public init() {
+        content = { SystemNotification(isActive: .constant(false)) { _ in
+            AnyView(EmptyView())
+        }}
+    }
     
     @Published public var isActive = false
     
-    @Published public internal(set) var content: (() -> AnyView)? {
-        didSet { isActive = content != nil }
+    @Published public internal(set) var content: (() -> SystemNotification<AnyView>) {
+        didSet { isActive = true }
     }
     
     public var isActiveBinding: Binding<Bool> {
@@ -49,7 +53,20 @@ public class SystemNotificationContext {
         isActive = false
     }
     
-    public func present<Content: View>(_ notification: @autoclosure @escaping () -> SystemNotification<Content>) {
-        self.content = { AnyView(notification()) }
+    /**
+     Present a view as content within a `SystemNotification`
+     */
+    public func present<Content: View>(
+        configuration: SystemNotificationConfiguration = .standard,
+        @ViewBuilder _ content: @escaping () -> Content) {
+        withAnimation {
+            self.content = {
+                SystemNotification(
+                    isActive: self.isActiveBinding,
+                    configuration: configuration,
+                    content: { _ in AnyView(content()) })
+            }
+            self.isActive = true
+        }
     }
 }

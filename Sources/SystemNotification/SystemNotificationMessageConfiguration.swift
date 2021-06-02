@@ -18,7 +18,7 @@ extension SystemNotificationMessage {
         
         public init(
             iconColor: Color = .primary.opacity(0.6),
-            iconFont: Font = Font.footnote,
+            iconFont: Font = Font.title3,
             padding: CGSize = .init(width: 8, height: 15),
             textColor: Color = .primary.opacity(0.6),
             textFont: Font = Font.footnote,

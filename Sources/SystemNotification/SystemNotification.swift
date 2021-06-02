@@ -150,7 +150,7 @@ struct SystemNotification_Previews: PreviewProvider {
                 configuration: SystemNotification.Configuration(
                     edge: .top)) { _ in
                 SystemNotificationMessage(
-                    icon: Image(systemName: "bell.slash"),
+                    icon: Image(systemName: "bell.slash.fill"),
                     title: "Silent mode",
                     text: "On",
                     configuration: SystemNotificationMessage.Configuration(

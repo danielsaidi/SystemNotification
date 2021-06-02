@@ -10,6 +10,10 @@ This release improves platform supports, adds convenience utils and tweaks desig
 * The library now supports macOS, tvOS and watchOS as well.
 * `SystemNotification.Configuration` has new shadow properties.
 
+### 💡 Behavior changes
+
+* The configuration types are no longed nested, to avoid generic limitations.
+
 ### 🎨 Design changes
 
 * `SystemNotification.Configuration` has removed the background opacity modifier.

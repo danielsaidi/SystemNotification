@@ -30,14 +30,14 @@ public struct SystemNotificationMessage: View {
         icon: Image = Image(""),
         title: String,
         text: String,
-        configuration: Configuration = Configuration()) {
+        configuration: SystemNotificationMessageConfiguration = .standard) {
         self.icon = icon
         self.title = title
         self.text = text
         self.configuration = configuration
     }
     
-    public let configuration: Configuration
+    public let configuration: SystemNotificationMessageConfiguration
     
     private let icon: Image?
     private let title: String
@@ -87,7 +87,7 @@ struct SystemNotificationMessage_Previews: PreviewProvider {
                 icon: Image(systemName: "bell.slash"),
                 title: "Silent mode",
                 text: "On",
-                configuration: SystemNotificationMessage.Configuration(
+                configuration: SystemNotificationMessageConfiguration(
                     iconColor: .red
                 )
             )
@@ -95,7 +95,7 @@ struct SystemNotificationMessage_Previews: PreviewProvider {
                 icon: Image(systemName: "exclamationmark.triangle"),
                 title: "Warning",
                 text: "This is a long message to demonstrate multiline messages.",
-                configuration: SystemNotificationMessage.Configuration(
+                configuration: SystemNotificationMessageConfiguration(
                     iconColor: .orange,
                     iconFont: .headline,
                     textColor: .orange,

@@ -11,9 +11,7 @@ import SwiftUI
 public extension View {
     
     /**
-     Attach a system notification to the view. This adds the
-     view to a `ZStack` and places it below the notification,
-     using an alignment to fit the notification edge.
+     Attach a system notification to the view.
      */
     func systemNotification<Content: View>(
         @ViewBuilder _ notification: @escaping () -> SystemNotification<Content>) -> some View {

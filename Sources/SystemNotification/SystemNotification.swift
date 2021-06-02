@@ -35,7 +35,7 @@ public struct SystemNotification<Content: View>: View {
     ///   - content: The view to present within the notification badge.
     public init(
         isActive: Binding<Bool>,
-        configuration: Configuration = Configuration(),
+        configuration: SystemNotificationConfiguration = .standard,
         @ViewBuilder content: @escaping ContentBuilder) {
         _isActive = isActive
         self.configuration = configuration
@@ -44,7 +44,7 @@ public struct SystemNotification<Content: View>: View {
     
     public typealias ContentBuilder = (_ isActive: Bool) -> Content
     
-    public let configuration: Configuration
+    public let configuration: SystemNotificationConfiguration
     
     private let content: ContentBuilder
     
@@ -89,7 +89,7 @@ public extension SystemNotification where Content == SystemNotificationMessage {
         title: String,
         text: String,
         isActive: Binding<Bool>,
-        configuration: Configuration = Configuration()) {
+        configuration: SystemNotificationConfiguration = .standard) {
         self.init(
             isActive: isActive,
             configuration: configuration) { _ in
@@ -162,27 +162,27 @@ struct SystemNotification_Previews: PreviewProvider {
                     VStack(spacing: 20) {
                         SystemNotification(
                             isActive: .constant(true),
-                            configuration: SystemNotification.Configuration(
+                            configuration: .init(
                                 edge: .top)) { _ in
                             SystemNotificationMessage(
                                 icon: Image(systemName: "bell.slash.fill"),
                                 title: "Silent mode",
                                 text: "On",
-                                configuration: SystemNotificationMessage.Configuration(
+                                configuration: .init(
                                     iconColor: .red
                                 )
                             )
                         }
                         SystemNotification(
                             isActive: .constant(true),
-                            configuration: SystemNotification.Configuration(
+                            configuration: .init(
                                 backgroundColor: .orange,
                                 edge: .bottom)) { _ in
                             SystemNotificationMessage(
                                 icon: Image(systemName: "exclamationmark.triangle"),
                                 title: "Warning",
                                 text: "This is a long message to demonstrate multiline messages.",
-                                configuration: SystemNotificationMessage.Configuration(
+                                configuration: .init(
                                     iconColor: .white,
                                     iconFont: .headline,
                                     textColor: .white,
@@ -193,7 +193,7 @@ struct SystemNotification_Previews: PreviewProvider {
                         }
                         SystemNotification(
                             isActive: .constant(true),
-                            configuration: SystemNotification.Configuration(
+                            configuration: .init(
                                 backgroundColor: .blue)) { _ in
                             HStack {
                                 Spacer()

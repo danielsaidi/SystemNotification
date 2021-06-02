@@ -59,7 +59,7 @@ public struct SystemNotification<Content: View>: View {
         content(isActive)
             .background(background)
             .frame(minWidth: configuration.minWidth)
-            .cornerRadius(configuration.cornerRadius ?? fallbackCornerRadius)
+            .cornerRadius(cornerRadius)
             .bindSize(to: $contentSize)
             .shadow(
                 color: configuration.shadowColor,
@@ -67,7 +67,7 @@ public struct SystemNotification<Content: View>: View {
                 y: configuration.shadowOffset)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
-            .onChange(of: isActive, perform: { _ in resetTimer() })
+            .onChange(of: isActive) { _ in resetTimer() }
     }
 }
 
@@ -112,12 +112,12 @@ private extension SystemNotification {
         }
     }
     
-    var fallbackBackgroundColor: Color {
-        colorScheme == .light ? Color.primary : .secondary
+    var cornerRadius: CGFloat {
+        configuration.cornerRadius ?? contentSize.height / 2
     }
     
-    var fallbackCornerRadius: CGFloat {
-        contentSize.height / 2
+    var fallbackBackgroundColor: Color {
+        colorScheme == .light ? Color.primary : .secondary
     }
     
     var verticalOffset: CGFloat {
@@ -152,11 +152,7 @@ struct SystemNotification_Previews: PreviewProvider {
                 ZStack {
                     List {
                         ForEach(0...100, id: \.self) {
-                            Text("This is item #\($0), used to demo the blending")
-                                .foregroundColor(.yellow)
-                                .background(Color.blue)
-                                .padding()
-                                .background(Color.red)
+                            Text("Item #\($0) - tap to show notification")
                                 .onTapGesture {
                                     isActive.toggle()
                                 }
@@ -200,22 +196,26 @@ struct SystemNotification_Previews: PreviewProvider {
                             configuration: SystemNotification.Configuration(
                                 backgroundColor: .blue)) { _ in
                             HStack {
-                                Color.yellow
+                                Spacer()
                                 Text("Custom view")
+                                    .padding()
+                                    .background(Color.yellow)
+                                    .cornerRadius(20)
                                     .foregroundColor(.white)
-                                Color.yellow
-                            }.frame(height: 30)
+                                    .padding(10)
+                                Spacer()
+                            }
                         }
                     }
                 }
                 .navigationTitle("Test")
-                .navigationBarTitleDisplayMode(.inline)
+                .withNavigationBarStyle()
             }
             .systemNotification {
                 SystemNotification(
-                    //icon: nil,//Image(systemName: "bell.slash.fill"),
-                    title: "Test",
-                    text: "Testar lite till",
+                    icon: Image(systemName: "bell.fill"),
+                    title: "Silent mode",
+                    text: "Off",
                     isActive: $isActive)
             }
         }
@@ -223,5 +223,16 @@ struct SystemNotification_Previews: PreviewProvider {
     
     static var previews: some View {
         Content()
+    }
+}
+
+private extension View {
+    
+    func withNavigationBarStyle() -> some View {
+        #if os(iOS)
+        self.navigationBarTitleDisplayMode(.inline)
+        #else
+        self
+        #endif
     }
 }

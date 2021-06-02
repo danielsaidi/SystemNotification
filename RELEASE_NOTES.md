@@ -7,12 +7,18 @@ This release improves platform supports, adds convenience utils and tweaks desig
 
 ### ✨ New features
 
-* The library now supports macOS, tvOS and watchOS as well. 
+* The library now supports macOS, tvOS and watchOS as well.
+* `SystemNotification.Configuration` has new shadow properties.
 
 ### 🎨 Design changes
 
-* `SystemNotification.Configuration` has removed the background opacity modifier. 
+* `SystemNotification.Configuration` has removed the background opacity modifier.
+* `SystemNotification.Configuration` has now applies a more subtle standard shadow.
 * `SystemNotificationMessage.Configuration` now uses `title3` as standard icon font.
+
+### 🐛 Bug fixes
+
+* The corner radius now works even when no image is provided. 
 
 
 ## 0.1.0

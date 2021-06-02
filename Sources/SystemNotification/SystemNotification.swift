@@ -58,10 +58,13 @@ public struct SystemNotification<Content: View>: View {
     public var body: some View {
         content(isActive)
             .background(background)
-            .bindSize(to: $contentSize)
             .frame(minWidth: configuration.minWidth)
             .cornerRadius(configuration.cornerRadius ?? fallbackCornerRadius)
-            .shadow(radius: configuration.shadowRadius)
+            .bindSize(to: $contentSize)
+            .shadow(
+                color: configuration.shadowColor,
+                radius: configuration.shadowRadius,
+                y: configuration.shadowOffset)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
             .onChange(of: isActive, perform: { _ in resetTimer() })
@@ -82,7 +85,7 @@ public extension SystemNotification where Content == SystemNotificationMessage {
     ///   - isActive: A binding that controls the active state of the notification.
     ///   - configuration: The notification configuration to use.
     init(
-        icon: Image?,
+        icon: Image = Image(""),
         title: String,
         text: String,
         isActive: Binding<Bool>,
@@ -140,61 +143,85 @@ private extension SystemNotification {
 
 struct SystemNotification_Previews: PreviewProvider {
     
-    static var previews: some View {
-        ZStack {
-            List {
-                ForEach(0...100, id: \.self) {
-                    Text("This is item #\($0), used to demo the blending")
-                        .foregroundColor(.yellow)
-                        .background(Color.blue)
-                        .padding()
-                        .background(Color.red)
+    struct Content: View {
+        
+        @State private var isActive = false
+        
+        var body: some View {
+            NavigationView {
+                ZStack {
+                    List {
+                        ForEach(0...100, id: \.self) {
+                            Text("This is item #\($0), used to demo the blending")
+                                .foregroundColor(.yellow)
+                                .background(Color.blue)
+                                .padding()
+                                .background(Color.red)
+                                .onTapGesture {
+                                    isActive.toggle()
+                                }
+                        }
+                    }
+                    
+                    VStack(spacing: 20) {
+                        SystemNotification(
+                            isActive: .constant(true),
+                            configuration: SystemNotification.Configuration(
+                                edge: .top)) { _ in
+                            SystemNotificationMessage(
+                                icon: Image(systemName: "bell.slash.fill"),
+                                title: "Silent mode",
+                                text: "On",
+                                configuration: SystemNotificationMessage.Configuration(
+                                    iconColor: .red
+                                )
+                            )
+                        }
+                        SystemNotification(
+                            isActive: .constant(true),
+                            configuration: SystemNotification.Configuration(
+                                backgroundColor: .orange,
+                                edge: .bottom)) { _ in
+                            SystemNotificationMessage(
+                                icon: Image(systemName: "exclamationmark.triangle"),
+                                title: "Warning",
+                                text: "This is a long message to demonstrate multiline messages.",
+                                configuration: SystemNotificationMessage.Configuration(
+                                    iconColor: .white,
+                                    iconFont: .headline,
+                                    textColor: .white,
+                                    titleColor: .white,
+                                    titleFont: .headline
+                                )
+                            )
+                        }
+                        SystemNotification(
+                            isActive: .constant(true),
+                            configuration: SystemNotification.Configuration(
+                                backgroundColor: .blue)) { _ in
+                            HStack {
+                                Color.yellow
+                                Text("Custom view")
+                                    .foregroundColor(.white)
+                                Color.yellow
+                            }.frame(height: 30)
+                        }
+                    }
                 }
+                .navigationTitle("Test")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            VStack(spacing: 20) {
+            .systemNotification {
                 SystemNotification(
-                    isActive: .constant(true),
-                    configuration: SystemNotification.Configuration(
-                        edge: .top)) { _ in
-                    SystemNotificationMessage(
-                        icon: Image(systemName: "bell.slash.fill"),
-                        title: "Silent mode",
-                        text: "On",
-                        configuration: SystemNotificationMessage.Configuration(
-                            iconColor: .red
-                        )
-                    )
-                }
-                SystemNotification(
-                    isActive: .constant(true),
-                    configuration: SystemNotification.Configuration(
-                        backgroundColor: .orange,
-                        edge: .bottom)) { _ in
-                    SystemNotificationMessage(
-                        icon: Image(systemName: "exclamationmark.triangle"),
-                        title: "Warning",
-                        text: "This is a long message to demonstrate multiline messages.",
-                        configuration: SystemNotificationMessage.Configuration(
-                            iconColor: .white,
-                            iconFont: .headline,
-                            textColor: .white,
-                            titleColor: .white,
-                            titleFont: .headline
-                        )
-                    )
-                }
-                SystemNotification(
-                    isActive: .constant(true),
-                    configuration: SystemNotification.Configuration(
-                        backgroundColor: .blue)) { _ in
-                    HStack {
-                        Color.yellow
-                        Text("Custom view")
-                            .foregroundColor(.white)
-                        Color.yellow
-                    }.frame(height: 30)
-                }
+                    //icon: nil,//Image(systemName: "bell.slash.fill"),
+                    title: "Test",
+                    text: "Testar lite till",
+                    isActive: $isActive)
             }
         }
+    }
+    
+    static var previews: some View {
+        Content()
     }
 }

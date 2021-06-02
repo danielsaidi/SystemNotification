@@ -27,7 +27,7 @@ public struct SystemNotificationMessage: View {
     ///   - text: The plain message text.
     ///   - configuration: The message configuration to use.
     public init(
-        icon: Image?,
+        icon: Image = Image(""),
         title: String,
         text: String,
         configuration: Configuration = Configuration()) {

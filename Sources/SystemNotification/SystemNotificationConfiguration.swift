@@ -25,6 +25,8 @@ extension SystemNotification {
         ///   - duration: The number of seconds the notification should be presented.
         ///   - edge: The edge from which to slide in the notification.
         ///   - minWidth: The min width of the notification.
+        ///   - shadowColor: The shadow color to apply to the notification.
+        ///   - shadowOffset: The vertical offset of the notification shadow.
         ///   - shadowRadius: The shadow radius to apply to the notification.
         public init(
             animation: Animation = .spring(),
@@ -33,13 +35,17 @@ extension SystemNotification {
             duration: TimeInterval = 3,
             edge: Edge = .top,
             minWidth: CGFloat = 120,
-            shadowRadius: CGFloat = 5) {
+            shadowColor: Color = .black.opacity(0.1),
+            shadowOffset: CGFloat = 5,
+            shadowRadius: CGFloat = 7.5) {
             self.animation = animation
             self.backgroundColor = backgroundColor
             self.cornerRadius = cornerRadius
             self.duration = duration
             self.edge = edge
             self.minWidth = minWidth
+            self.shadowColor = shadowColor
+            self.shadowOffset = shadowOffset
             self.shadowRadius = shadowRadius
         }
         
@@ -72,6 +78,16 @@ extension SystemNotification {
          The min width of the notification.
          */
         public let duration: TimeInterval
+        
+        /**
+         The shadow color to apply to the notification.
+         */
+        public let shadowColor: Color
+        
+        /**
+         The vertical offset of the notification shadow.
+         */
+        public let shadowOffset: CGFloat
         
         /**
          The shadow radius to apply to the notification.

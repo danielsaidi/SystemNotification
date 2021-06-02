@@ -8,7 +8,6 @@ This release improves platform supports, adds convenience utils and tweaks desig
 ### ✨ New features
 
 * The library now supports macOS, tvOS and watchOS as well. 
-* `SystemNotification.Configuration` has a new `useFrostEffectWhereApplicable` property that applies a frost effect on supported platforms.
 
 ### 🎨 Design changes
 

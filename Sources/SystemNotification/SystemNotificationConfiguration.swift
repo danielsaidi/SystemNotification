@@ -26,7 +26,6 @@ extension SystemNotification {
         ///   - edge: The edge from which to slide in the notification.
         ///   - minWidth: The min width of the notification.
         ///   - shadowRadius: The shadow radius to apply to the notification.
-        ///   - useFrostEffectWhereApplicable: Whether or not to apply a frost effect to the notification, if applicable.
         public init(
             animation: Animation = .spring(),
             backgroundColor: Color? = nil,
@@ -34,8 +33,7 @@ extension SystemNotification {
             duration: TimeInterval = 3,
             edge: Edge = .top,
             minWidth: CGFloat = 120,
-            shadowRadius: CGFloat = 5,
-            useFrostEffectWhereApplicable: Bool = true) {
+            shadowRadius: CGFloat = 5) {
             self.animation = animation
             self.backgroundColor = backgroundColor
             self.cornerRadius = cornerRadius
@@ -43,7 +41,6 @@ extension SystemNotification {
             self.edge = edge
             self.minWidth = minWidth
             self.shadowRadius = shadowRadius
-            self.useFrostEffectWhereApplicable = useFrostEffectWhereApplicable
         }
         
         /**
@@ -80,11 +77,6 @@ extension SystemNotification {
          The shadow radius to apply to the notification.
          */
         public let shadowRadius: CGFloat
-        
-        /**
-         Whether or not to apply a frost effect to the notification, if applicable.
-         */
-        public let useFrostEffectWhereApplicable: Bool
     }
     
 }

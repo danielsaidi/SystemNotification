@@ -102,19 +102,6 @@ private extension SystemNotification {
     
     @ViewBuilder
     var background: some View {
-        #if os(iOS) || os(tvOS)
-        if configuration.useFrostEffectWhereApplicable {
-            backgroundView.blur(.regular)
-        } else {
-            backgroundView
-        }
-        #else
-        backgroundView
-        #endif
-    }
-    
-    @ViewBuilder
-    var backgroundView: some View {
         if let color = configuration.backgroundColor {
             color
         } else {

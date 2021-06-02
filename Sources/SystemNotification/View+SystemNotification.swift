@@ -21,11 +21,4 @@ public extension View {
             notif
         }
     }
-    
-    /**
-     Attach a system notification to the view.
-     */
-    func systemNotification(context: SystemNotificationContext) -> some View {
-        systemNotification(context.content)
-    }
 }

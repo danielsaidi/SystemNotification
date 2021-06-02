@@ -148,22 +148,12 @@ struct SystemNotification_Previews: PreviewProvider {
         
         @State private var isActive = false
         
-        @StateObject private var context = SystemNotificationContext()
         
         /**
          Enable/disable to toggle between the two methods.
          */
         func showNotification() {
-            //showStaticNotification()
-            showContextNotification()
-        }
-        
-        func showContextNotification() {
-            context.present(configuration: .standard) {
-                SystemNotificationMessage(
-                    title: "Context",
-                    text: "This makes it easy to present multiple notifications with the same context.")
-            }
+            showStaticNotification()
         }
         
         func showStaticNotification() {
@@ -239,7 +229,6 @@ struct SystemNotification_Previews: PreviewProvider {
                     text: "Off",
                     isActive: $isActive)
             }
-            .systemNotification(context: context)
         }
     }
     

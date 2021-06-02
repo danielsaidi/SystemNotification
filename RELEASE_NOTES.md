@@ -3,11 +3,17 @@
 
 ## 0.2.0
 
-This release adds some convenience utils and tweaks some design. 
+This release improves platform supports, adds convenience utils and tweaks design. 
+
+### ✨ New features
+
+* The library now supports macOS, tvOS and watchOS as well. 
+* `SystemNotification.Configuration` has a new `useFrostEffectWhereApplicable` property that applies a frost effect on supported platforms.
 
 ### 🎨 Design changes
 
-* `SystemNotificationMessage` now uses `title3` as standard icon font.
+* `SystemNotification.Configuration` has removed the background opacity modifier. 
+* `SystemNotificationMessage.Configuration` now uses `title3` as standard icon font.
 
 
 ## 0.1.0

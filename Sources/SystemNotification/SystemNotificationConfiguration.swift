@@ -23,7 +23,8 @@ extension SystemNotification {
             duration: TimeInterval = 3,
             edge: Edge = .top,
             minWidth: CGFloat = 120,
-            shadowRadius: CGFloat = 5) {
+            shadowRadius: CGFloat = 5,
+            useFrostEffectWhereApplicable: Bool = true) {
             self.animation = animation
             self.backgroundColor = backgroundColor
             self.cornerRadius = cornerRadius
@@ -31,6 +32,7 @@ extension SystemNotification {
             self.edge = edge
             self.minWidth = minWidth
             self.shadowRadius = shadowRadius
+            self.useFrostEffectWhereApplicable = useFrostEffectWhereApplicable
         }
         
         public let animation: Animation
@@ -40,5 +42,6 @@ extension SystemNotification {
         public let minWidth: CGFloat
         public let duration: TimeInterval
         public let shadowRadius: CGFloat
+        public let useFrostEffectWhereApplicable: Bool
     }
 }

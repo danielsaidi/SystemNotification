@@ -19,13 +19,13 @@ extension SystemNotification {
         /// Create a notification configuration.
         ///
         /// - Parameters:
-        ///   - animation: The animation to apply when sliding in the notification, by default `.spring`.
-        ///   - backgroundColor: A custom background color to apply to the notification, by default `nil`.
-        ///   - cornerRadius: A custom corner radius to apply to the notification, by default `nil`.
-        ///   - duration: The number of seconds the notification should be presented, by default `3`.
-        ///   - edge: The edge from which to slide in the notification, by default `.top`.
-        ///   - minWidth: The min width of the notification, by default `120`.
-        ///   - shadowRadius: The shadow radius to apply to the notification, by default `5`.
+        ///   - animation: The animation to apply when sliding in the notification.
+        ///   - backgroundColor: A custom background color to apply to the notification.
+        ///   - cornerRadius: A custom corner radius to apply to the notification.
+        ///   - duration: The number of seconds the notification should be presented.
+        ///   - edge: The edge from which to slide in the notification.
+        ///   - minWidth: The min width of the notification.
+        ///   - shadowRadius: The shadow radius to apply to the notification.
         ///   - useFrostEffectWhereApplicable: Whether or not to apply a frost effect to the notification, if applicable.
         public init(
             animation: Animation = .spring(),

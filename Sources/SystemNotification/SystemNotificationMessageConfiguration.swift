@@ -16,6 +16,17 @@ extension SystemNotificationMessage {
      */
     public struct Configuration {
         
+        
+        /// Create a notification message configuration.
+        ///
+        /// - Parameters:
+        ///   - iconColor: The color to apply to the icon.
+        ///   - iconFont: The font to apply to the icon.
+        ///   - padding: The padding to add to the content.
+        ///   - textColor: The color to apply to the text.
+        ///   - textFont: The font to apply to the text.
+        ///   - titleColor: The color to apply to the title.
+        ///   - titleFont: The font to apply to the title.
         public init(
             iconColor: Color = .primary.opacity(0.6),
             iconFont: Font = Font.title3,
@@ -33,12 +44,39 @@ extension SystemNotificationMessage {
             self.titleFont = titleFont
         }
         
+        /**
+         The color to apply to the icon.
+         */
         public let iconColor: Color
+        
+        /**
+         The font to apply to the icon.
+         */
         public let iconFont: Font
+        
+        /**
+         The padding to add to the content.
+         */
         public let padding: CGSize
+        
+        /**
+         The color to apply to the text.
+         */
         public let textColor: Color
+        
+        /**
+         The font to apply to the text.
+         */
         public let textFont: Font
+        
+        /**
+         The color to apply to the title.
+         */
         public let titleColor: Color
+        
+        /**
+         The font to apply to the title.
+         */
         public let titleFont: Font
     }
 }

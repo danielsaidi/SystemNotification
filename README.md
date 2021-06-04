@@ -49,19 +49,27 @@ For instance:
 ```swift
 let notification = SystemNotification(
     isActive: $isNotificationActive,
-    configuration: SystemNotification.Configuration(edge: .bottom)) { _ in
+    configuration: .init(edge: .bottom)) { _ in
         SystemNotificationMessage(
             icon: Image(systemName: "exclamationmark.triangle"), 
             title: "Alert", 
             text: "Something happened!",
-            configuration: SystemNotificationMessage.Configuration(
-                iconColor: .red
-            )
+            configuration: .init(iconColor: .red)
         )
     }
 ```
 
-You can use any view you like in the notification, but if you want to use the standard `SystemNotificationMessage`, you can just use this shorthand:
+You can use any view you like in the notification:
+
+```swift
+let notification = SystemNotification(
+    isActive: $isNotificationActive,
+    configuration: .init(edge: .bottom)) { _ in
+        Color.red.frame(height: 150)
+    }
+```
+
+If you want to use a standard `SystemNotificationMessage`, you can use this shorthand:
 
 ```swift
 let notification = SystemNotification(
@@ -69,19 +77,10 @@ let notification = SystemNotification(
     title: String,
     text: String,
     isActive: $isNotificationActive,
-    configuration: SystemNotification.Configuration(edge: .bottom)) { isActive in
-        SystemNotificationMessage(
-            icon: Image(systemName: "exclamationmark.triangle"), 
-            title: "Alert", 
-            text: "Something happened!",
-            configuration: SystemNotificationMessage.Configuration(
-                iconColor: .red
-            )
-        )
-    }
+    configuration: SystemNotification.Configuration(edge: .bottom))
 ```
 
-Once you have a notification, you can add it to any view, using the `systemNotification` modifier: 
+You can add any notification to any view, using the `systemNotification` modifier: 
 
 ```swift
 List(items) { item
@@ -89,25 +88,42 @@ List(items) { item
 }.systemNotification(notification)
 ```
 
-The notification will be added above the view and docked outside of to the selected edge. When the `isActive` binding is set to true, it will slide in using the selected animation.
+You can now present the notification by setting `isNotificationActive` to true.
 
-You can also use a `SystemNotificationContext` to easily present multiple notifications with a single `systemNotification` modifier:
+
+### SystemNotificationContext
+
+While the above examples show how easy it is to add a notification to a view, you may want to present many different notifications.
+
+Instead of having to use a state and a modifier per notification, you can use a `SystemNotificationContext` to present multiple notifications with a single modifier.
+
+Just create a `@StateObject` in your presenting view, then use the context-specific modifier:
 
 ```swift
-let context = SystemNotificationContext()
-context.present(notification1)
-context.present(notification2)
+@StateObject private var context = SystemNotificationContext()
 
-// To use it, provide it instead of an `isActive` binding:
 List(items) { item
    HStack { item.name }
 }.systemNotification(context: context)
 ```
 
+You can now present notifications buy using the `present` functions of the context. You can present any view and use any configuration:
 
-## SystemNotification.Configuration
+```swift
+context.present(
+    content: notification,
+    configuration: .init(backgroundColor: .red))
+```
 
-A `SystemNotification` can be configured with a `SystemNotification.Configuration` that specifies:
+I really recomment the context approach for more complex use-cases.
+
+
+## Configurations
+
+
+### SystemNotification
+
+A `SystemNotification` can be configured with a configuration that specifies:
 
 * `animation`
 * `backgroundColor`
@@ -116,15 +132,17 @@ A `SystemNotification` can be configured with a `SystemNotification.Configuratio
 * `minWidth`
 * `duration`
 * `shadowRadius`
+* `shadowOffset`
+* `shadowRadius`
 
 You can customize these properties to control how the notification looks and behaves. 
 
 The default configuration makes the notification look and behave like the native one.
 
 
-## SystemNotificationMessage.Configuration
+### SystemNotificationMessage
 
-A `SystemNotificationMessage` view can be configured with a `SystemNotificationMessage.Configuration` instance that specifies:
+A `SystemNotificationMessage` view can be configured with a configuration that specifies:
 
 * `iconColor`
 * `iconFont`

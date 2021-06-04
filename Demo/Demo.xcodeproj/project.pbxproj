@@ -12,6 +12,7 @@
 		A99ABACE2666DB9400525C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99ABACD2666DB9400525C8B /* Assets.xcassets */; };
 		A99ABAD12666DB9400525C8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99ABAD02666DB9400525C8B /* Preview Assets.xcassets */; };
 		A99ABADA2666DC1D00525C8B /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A99ABAD92666DC1D00525C8B /* SystemNotification */; };
+		A99F86FA266AB00500E4EFF7 /* DemoNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A99ABACD2666DB9400525C8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A99ABAD02666DB9400525C8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A99ABAD22666DB9400525C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				A99ABACD2666DB9400525C8B /* Assets.xcassets */,
 				A99ABACB2666DB9000525C8B /* ContentView.swift */,
 				A99ABAC92666DB9000525C8B /* DemoApp.swift */,
+				A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */,
 				A99ABAD22666DB9400525C8B /* Info.plist */,
 				A99ABACF2666DB9400525C8B /* Preview Content */,
 			);
@@ -149,6 +152,7 @@
 			files = (
 				A99ABACC2666DB9000525C8B /* ContentView.swift in Sources */,
 				A99ABACA2666DB9000525C8B /* DemoApp.swift in Sources */,
+				A99F86FA266AB00500E4EFF7 /* DemoNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +347,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/SystemNotification.git";
 			requirement = {
-				branch = master;
+				branch = context;
 				kind = branch;
 			};
 		};

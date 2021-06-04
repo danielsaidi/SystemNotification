@@ -11,64 +11,68 @@ import SystemNotification
 
 struct ContentView: View {
     
-    @State private var isDefaultPresented = false
-    @State private var isStyledPresented = false
-    @State private var isCustomPresented = false
+    @State private var isStaticNotificationActive = false
+    @StateObject private var context = SystemNotificationContext()
     
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("").frame(height: 1)) {
-                    Toggle("Show standard notification", isOn: $isDefaultPresented)
-                    Toggle("Show styled notification", isOn: $isStyledPresented)
-                    Toggle("Show custom notification", isOn: $isCustomPresented)
+                Section(header: Text("Context-based notifications").padding(.top)) {
+                    Button("Show silent mode on", action: showSilentModeOn)
+                    Button("Show silent mode off", action: showSilentModeOff)
+                    Button("Show orange warning", action: showWarning)
+                    Button("Show red error from bottom", action: showError)
+                    Button("Show custom view", action: showCustomView)
+                }
+                Section(header: Text("Static notifications")) {
+                    Button("Show static notification", action: showStaticNotification)
                 }
             }
             .buttonStyle(PlainButtonStyle())
             .navigationTitle("System Notification")
             .listStyle(InsetGroupedListStyle())
         }
+        .systemNotification(context: context)
         .systemNotification {
-            SystemNotification(
-                icon: Image(systemName: "exclamationmark.triangle"),
-                title: "Alert",
-                text: "Something happened!",
-                isActive: $isDefaultPresented)
-        }
-        .systemNotification {
-            SystemNotification(
-                isActive: $isStyledPresented,
-                configuration: SystemNotification.Configuration(
-                    backgroundColor: .orange,
-                    edge: .bottom)) { _ in
-                SystemNotificationMessage(
-                    icon: Image(systemName: "exclamationmark.triangle"),
-                    title: "Warning",
-                    text: "This is a long message to demonstrate multiline messages.",
-                    configuration: SystemNotificationMessage.Configuration(
-                        iconColor: .white,
-                        iconFont: .headline,
-                        textColor: .white,
-                        titleColor: .white,
-                        titleFont: .headline
-                    )
-                )
+            SystemNotification(isActive: $isStaticNotificationActive) { _ in
+                DemoNotification.silentModeOn
             }
         }
-        .systemNotification {
-            SystemNotification(
-                isActive: $isCustomPresented,
-                configuration: SystemNotification.Configuration(
-                    backgroundColor: .blue,
-                    edge: .bottom)) { _ in
-                HStack {
-                    Color.yellow
-                    Text("Custom view")
-                        .foregroundColor(.white)
-                    Color.yellow
-                }.frame(height: 50)
-            }
-        }
+    }
+}
+
+private extension ContentView {
+    
+    func showCustomView() {
+        context.present(
+            content: DemoNotification.custom,
+            configuration: DemoNotification.customConfig)
+    }
+    
+    func showError() {
+        context.present(
+            content: DemoNotification.error,
+            configuration: DemoNotification.errorConfig)
+    }
+    
+    func showSilentModeOff() {
+        context.present(
+            content: DemoNotification.silentModeOff)
+    }
+    
+    func showSilentModeOn() {
+        context.present(
+            content: DemoNotification.silentModeOn)
+    }
+    
+    func showWarning() {
+        context.present(
+            content: DemoNotification.warning,
+            configuration: DemoNotification.warningConfig)
+    }
+    
+    func showStaticNotification() {
+        isStaticNotificationActive = true
     }
 }
 

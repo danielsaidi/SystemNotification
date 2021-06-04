@@ -1,6 +1,21 @@
 # Release notes
 
 
+## 0.3.0
+
+This release has some breaking name changes and makes it easier to present multiple notifications with a single modifier.
+
+### ✨ New features
+
+* `SystemNotificationContext` makes it easy to present multiple notifications with a single modifier.
+
+### 💥 Breaking changes
+
+* `SystemNotification.Configuration` has been renamed to `SystemNotificationConfiguration`
+* `SystemNotificationMessage.Configuration` has been renamed to `SystemNotificationMessageConfiguration`
+
+
+
 ## 0.2.0
 
 This release improves platform supports, adds convenience utils and tweaks design. 

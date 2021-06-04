@@ -73,33 +73,6 @@ public struct SystemNotification<Content: View>: View {
 }
 
 
-// MARK: - Public Extensions
-
-public extension SystemNotification where Content == SystemNotificationMessage {
-    
-    /// Create a notification that uses a standard `SystemNotificationMessage` content view.
-    ///
-    /// - Parameters:
-    ///   - icon: The left-size icon.
-    ///   - title: The bold title text.
-    ///   - text: The plain message text.
-    ///   - isActive: A binding that controls the active state of the notification.
-    ///   - configuration: The notification configuration to use.
-    init(
-        icon: Image = Image(""),
-        title: String,
-        text: String,
-        isActive: Binding<Bool>,
-        configuration: SystemNotificationConfiguration = .standard) {
-        self.init(
-            isActive: isActive,
-            configuration: configuration) { _ in
-            SystemNotificationMessage(icon: icon, title: title, text: text)
-        }
-    }
-}
-
-
 // MARK: - Private Extensions
 
 private extension SystemNotification {
@@ -148,12 +121,35 @@ struct SystemNotification_Previews: PreviewProvider {
         
         @State private var isActive = false
         
+        @StateObject private var context = SystemNotificationContext()
         
-        /**
-         Enable/disable to toggle between the two methods.
-         */
-        func showNotification() {
-            showStaticNotification()
+        
+        func showCustomView() {
+            context.present(
+                content: SystemNotificationPreview.custom,
+                configuration: SystemNotificationPreview.customConfig)
+        }
+        
+        func showError() {
+            context.present(
+                content: SystemNotificationPreview.error,
+                configuration: SystemNotificationPreview.errorConfig)
+        }
+        
+        func showSilentModeOff() {
+            context.present(
+                content: SystemNotificationPreview.silentModeOff)
+        }
+        
+        func showSilentModeOn() {
+            context.present(
+                content: SystemNotificationPreview.silentModeOn)
+        }
+        
+        func showWarning() {
+            context.present(
+                content: SystemNotificationPreview.warning,
+                configuration: SystemNotificationPreview.warningConfig)
         }
         
         func showStaticNotification() {
@@ -162,72 +158,27 @@ struct SystemNotification_Previews: PreviewProvider {
         
         var body: some View {
             NavigationView {
-                ZStack {
-                    List {
-                        ForEach(0...100, id: \.self) {
-                            Text("Item #\($0) - tap to show notification")
-                                .onTapGesture(perform: showNotification)
-                        }
+                List {
+                    Section(header: Text("Context-based notifications").padding(.top)) {
+                        Button("Show silent mode on", action: showSilentModeOn)
+                        Button("Show silent mode off", action: showSilentModeOff)
+                        Button("Show orange warning", action: showWarning)
+                        Button("Show red error from bottom", action: showError)
+                        Button("Show custom view", action: showCustomView)
                     }
-                    
-                    VStack(spacing: 20) {
-                        SystemNotification(
-                            isActive: .constant(true),
-                            configuration: .init(
-                                edge: .top)) { _ in
-                            SystemNotificationMessage(
-                                icon: Image(systemName: "bell.slash.fill"),
-                                title: "Silent mode",
-                                text: "On",
-                                configuration: .init(
-                                    iconColor: .red
-                                )
-                            )
-                        }
-                        SystemNotification(
-                            isActive: .constant(true),
-                            configuration: .init(
-                                backgroundColor: .orange,
-                                edge: .bottom)) { _ in
-                            SystemNotificationMessage(
-                                icon: Image(systemName: "exclamationmark.triangle"),
-                                title: "Warning",
-                                text: "This is a long message to demonstrate multiline messages.",
-                                configuration: .init(
-                                    iconColor: .white,
-                                    iconFont: .headline,
-                                    textColor: .white,
-                                    titleColor: .white,
-                                    titleFont: .headline
-                                )
-                            )
-                        }
-                        SystemNotification(
-                            isActive: .constant(true),
-                            configuration: .init(
-                                backgroundColor: .blue)) { _ in
-                            HStack {
-                                Spacer()
-                                Text("Custom view")
-                                    .padding()
-                                    .background(Color.yellow)
-                                    .cornerRadius(20)
-                                    .foregroundColor(.white)
-                                    .padding(10)
-                                Spacer()
-                            }
-                        }
+                    Section(header: Text("Static notifications")) {
+                        Button("Show static notification", action: showStaticNotification)
                     }
                 }
+                .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Test")
                 .withNavigationBarStyle()
             }
+            .systemNotification(context: context)
             .systemNotification {
-                SystemNotification(
-                    icon: Image(systemName: "bell.fill"),
-                    title: "Silent mode",
-                    text: "Off",
-                    isActive: $isActive)
+                SystemNotification(isActive: $isActive) { _ in
+                    SystemNotificationPreview.silentModeOn
+                }
             }
         }
     }

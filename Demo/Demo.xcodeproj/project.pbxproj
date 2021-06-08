@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A902083F266F5D85005C4718 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A902083E266F5D85005C4718 /* Localizable.strings */; };
 		A99ABACA2666DB9000525C8B /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99ABAC92666DB9000525C8B /* DemoApp.swift */; };
 		A99ABACC2666DB9000525C8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99ABACB2666DB9000525C8B /* ContentView.swift */; };
 		A99ABACE2666DB9400525C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99ABACD2666DB9400525C8B /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A902083E266F5D85005C4718 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		A99ABAC62666DB9000525C8B /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99ABAC92666DB9000525C8B /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A99ABACB2666DB9000525C8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */,
 				A99ABAD22666DB9400525C8B /* Info.plist */,
 				A99ABACF2666DB9400525C8B /* Preview Content */,
+				A902083E266F5D85005C4718 /* Localizable.strings */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A99ABAD12666DB9400525C8B /* Preview Assets.xcassets in Resources */,
+				A902083F266F5D85005C4718 /* Localizable.strings in Resources */,
 				A99ABACE2666DB9400525C8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +351,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielsaidi/SystemNotification.git";
 			requirement = {
-				branch = context;
+				branch = localization;
 				kind = branch;
 			};
 		};

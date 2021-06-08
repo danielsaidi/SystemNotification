@@ -57,7 +57,7 @@ private extension ContentView {
     
     func showSilentModeOff() {
         context.present(
-            content: DemoNotification.silentModeOff)
+            content: DemoNotification.localized)
     }
     
     func showSilentModeOn() {

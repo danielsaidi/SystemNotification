@@ -60,6 +60,13 @@ struct DemoNotification {
         .init(backgroundColor: .red, edge: .bottom)
     }
     
+    static var localized: some View {
+        SystemNotificationMessage(
+            icon: Image(systemName: "globe"),
+            title: "title",
+            text: "text")
+    }
+    
     static var silentModeOff: some View {
         SystemNotificationMessage(
             icon: Image(systemName: "bell.fill"),

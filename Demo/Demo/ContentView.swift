@@ -18,15 +18,15 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section(header: Text("Context-based notifications").padding(.top)) {
-                    Button("Show silent mode on", action: showSilentModeOn)
-                    Button("Show silent mode off", action: showSilentModeOff)
-                    Button("Show localized notification", action: showLocalized)
-                    Button("Show orange warning", action: showWarning)
-                    Button("Show red error from bottom", action: showError)
-                    Button("Show custom view", action: showCustomView)
+                    button(.silentModeOn, "Show silent mode on", showSilentModeOn)
+                    button(.silentModeOff, "Show silent mode off", showSilentModeOff)
+                    button(.globe, "Show localized notification", showLocalized)
+                    button(.warning, "Show orange warning", showWarning)
+                    button(.error, "Show red error from bottom", showError)
+                    button(.flag, "Show custom view", showCustomView)
                 }
                 Section(header: Text("Static notifications")) {
-                    Button("Show static notification", action: showStaticNotification)
+                    button(.static, "Show static notification", showStaticNotification)
                 }
             }
             .buttonStyle(PlainButtonStyle())
@@ -36,7 +36,19 @@ struct ContentView: View {
         .systemNotification(context: context)
         .systemNotification {
             SystemNotification(isActive: $isStaticNotificationActive) { _ in
-                DemoNotification.silentModeOn
+                DemoNotification.static
+            }
+        }
+    }
+}
+
+private extension ContentView {
+    
+    func button(_ icon: Image, _ text: String, _ action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                icon.frame(width: 25)
+                Text(text)
             }
         }
     }
@@ -71,14 +83,14 @@ private extension ContentView {
             content: DemoNotification.silentModeOn)
     }
     
+    func showStaticNotification() {
+        isStaticNotificationActive = true
+    }
+    
     func showWarning() {
         context.present(
             content: DemoNotification.warning,
             configuration: DemoNotification.warningConfig)
-    }
-    
-    func showStaticNotification() {
-        isStaticNotificationActive = true
     }
 }
 

@@ -83,6 +83,13 @@ struct DemoNotification {
         )
     }
     
+    static var `static`: some View {
+        SystemNotificationMessage(
+            icon: .static,
+            title: "Static notification",
+            text: "You can use static notifications as well")
+    }
+    
     static var warning: some View {
         SystemNotificationMessage(
             icon: .warning,

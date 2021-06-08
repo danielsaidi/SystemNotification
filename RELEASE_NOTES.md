@@ -1,6 +1,11 @@
 # Release notes
 
 
+## 0.3.1
+
+Thanks to Christian Mitteldorf, system notifications now use localized string keys, which makes it super simple to create localized notifications.
+
+
 ## 0.3.0
 
 This release has some breaking name changes and makes it easier to present multiple notifications with a single modifier.

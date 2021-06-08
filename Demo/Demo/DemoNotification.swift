@@ -44,7 +44,7 @@ struct DemoNotification {
     
     static var error: some View {
         SystemNotificationMessage(
-            icon: Image(systemName: "exclamationmark.triangle"),
+            icon: .error,
             title: "Error",
             text: "This is an error message that comes in from the bottom.",
             configuration: .init(
@@ -62,21 +62,21 @@ struct DemoNotification {
     
     static var localized: some View {
         SystemNotificationMessage(
-            icon: Image(systemName: "globe"),
+            icon: .globe,
             title: "title",
             text: "text")
     }
     
     static var silentModeOff: some View {
         SystemNotificationMessage(
-            icon: Image(systemName: "bell.fill"),
+            icon: .silentModeOff,
             title: "Silent mode",
             text: "Off")
     }
     
     static var silentModeOn: some View {
         SystemNotificationMessage(
-            icon: Image(systemName: "bell.slash.fill"),
+            icon: .silentModeOn,
             title: "Silent mode",
             text: "On",
             configuration: .init(iconColor: .red)
@@ -85,7 +85,7 @@ struct DemoNotification {
     
     static var warning: some View {
         SystemNotificationMessage(
-            icon: Image(systemName: "exclamationmark.triangle"),
+            icon: .warning,
             title: "Warning",
             text: "This is a long message to demonstrate multiline messages, which should center aligned and support many lines of text.",
             configuration: .init(

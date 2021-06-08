@@ -20,6 +20,7 @@ struct ContentView: View {
                 Section(header: Text("Context-based notifications").padding(.top)) {
                     Button("Show silent mode on", action: showSilentModeOn)
                     Button("Show silent mode off", action: showSilentModeOff)
+                    Button("Show localized notification", action: showLocalized)
                     Button("Show orange warning", action: showWarning)
                     Button("Show red error from bottom", action: showError)
                     Button("Show custom view", action: showCustomView)
@@ -55,9 +56,14 @@ private extension ContentView {
             configuration: DemoNotification.errorConfig)
     }
     
-    func showSilentModeOff() {
+    func showLocalized() {
         context.present(
             content: DemoNotification.localized)
+    }
+    
+    func showSilentModeOff() {
+        context.present(
+            content: DemoNotification.silentModeOff)
     }
     
     func showSilentModeOn() {

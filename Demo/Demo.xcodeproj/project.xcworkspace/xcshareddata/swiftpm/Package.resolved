@@ -5,8 +5,8 @@
         "package": "SystemNotification",
         "repositoryURL": "https://github.com/danielsaidi/SystemNotification.git",
         "state": {
-          "branch": "localization",
-          "revision": "2351bfd90bd2507cd227c0d46f391908679c8d04",
+          "branch": "master",
+          "revision": "ed653a9f5955fcf9676c4d6f27792c665029a119",
           "version": null
         }
       }

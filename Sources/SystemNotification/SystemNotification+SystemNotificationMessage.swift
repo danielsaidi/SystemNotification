@@ -20,8 +20,8 @@ public extension SystemNotification where Content == SystemNotificationMessage {
     ///   - configuration: The notification configuration to use.
     init(
         icon: Image = Image(""),
-        title: String,
-        text: String,
+        title: LocalizedStringKey,
+        text: LocalizedStringKey,
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard) {
         self.init(

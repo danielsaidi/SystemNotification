@@ -28,8 +28,8 @@ public struct SystemNotificationMessage: View {
     ///   - configuration: The message configuration to use.
     public init(
         icon: Image? = nil,
-        title: String,
-        text: String,
+        title: LocalizedStringKey,
+        text: LocalizedStringKey,
         configuration: SystemNotificationMessageConfiguration = .standard) {
         self.icon = icon
         self.title = title
@@ -40,8 +40,8 @@ public struct SystemNotificationMessage: View {
     public let configuration: SystemNotificationMessageConfiguration
     
     private let icon: Image?
-    private let title: String
-    private let text: String
+    private let title: LocalizedStringKey
+    private let text: LocalizedStringKey
     
     public var body: some View {
         HStack(spacing: 20) {

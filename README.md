@@ -74,8 +74,8 @@ If you want to use a standard `SystemNotificationMessage`, you can use this shor
 ```swift
 let notification = SystemNotification(
     icon: Image?,
-    title: String,
-    text: String,
+    title: LocalizedStringKey,
+    text: LocalizedStringKey,
     isActive: $isNotificationActive,
     configuration: SystemNotification.Configuration(edge: .bottom))
 ```

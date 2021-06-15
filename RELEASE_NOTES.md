@@ -1,6 +1,11 @@
 # Release notes
 
 
+## 0.3.2
+
+This version fixes a preview bug that caused the library not to build for macOS. 
+
+
 ## 0.3.1
 
 Thanks to Christian Mitteldorf, system notifications now use localized string keys, which makes it super simple to create localized notifications.

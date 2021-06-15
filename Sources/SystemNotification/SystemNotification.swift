@@ -170,8 +170,8 @@ struct SystemNotification_Previews: PreviewProvider {
                         Button("Show static notification", action: showStaticNotification)
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
                 .navigationTitle("Test")
+                .withListStyle()
                 .withNavigationBarStyle()
             }
             .systemNotification(context: context)
@@ -189,6 +189,14 @@ struct SystemNotification_Previews: PreviewProvider {
 }
 
 private extension View {
+    
+    func withListStyle() -> some View {
+        #if os(iOS)
+        self.listStyle(InsetGroupedListStyle())
+        #else
+        self
+        #endif
+    }
     
     func withNavigationBarStyle() -> some View {
         #if os(iOS)

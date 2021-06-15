@@ -3,7 +3,7 @@
 <p align="center">
     <img src ="Resources/Logo.png" width=600 /><br />
     <img src="https://img.shields.io/github/v/release/danielsaidi/SystemNotification?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/cocoapods/p/DSSystemNotification.svg?style=flat" alt="Platform" />
+    <img src="https://img.shields.io/cocoapods/p/SystemNotification.svg?style=flat" alt="Platform" />
     <img src="https://img.shields.io/badge/Swift-5.3-orange.svg" alt="Swift 5.3" />
     <img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" />
     <a href="https://twitter.com/danielsaidi">

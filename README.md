@@ -127,6 +127,18 @@ You can use any view as well as any configuration.
 I highly recommend the context approach for more complex use-cases.
 
 
+## Important things to consider
+
+Since this library is based on system notifications being attached to a view, you have to think about how to handle navigation views, sheets and full screen modals.
+
+Here are some common things to consider:
+
+* When you are using a `NavigationView` attach the notification to the navigation view and pass the context an `isActive` down the view hierarchy.
+* When you present a modal, you must create a new notification and attach it to the root view.
+
+Have a look at the demo, which covers the various cases.
+
+
 ## Configurations
 
 

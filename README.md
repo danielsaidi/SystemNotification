@@ -42,34 +42,31 @@ pod SystemNotification
 
 ## Getting started
 
-`SystemNotification` contains a `SystemNotification` view, that can be created with an `isActive` binding, an optional `configuration` and a custom `view`.
+`SystemNotification` contains a `SystemNotification` view, that can be created with an `isActive` binding, an optional `configuration` and any content view.
 
-For instance:
+For instance, this notification will present a plain `Text`:
 
 ```swift
 let notification = SystemNotification(
-    isActive: $isNotificationActive,
-    configuration: .init(edge: .bottom)) { _ in
+    isActive: $isNotificationActive) { _ in
+        Text("Something happened!")
+    }
+```
+
+If you want your message to look like a native system notification, you can use a `SystemNotificationMessage`:
+
+```swift
+let notification = SystemNotification(
+    isActive: $isNotificationActive) { _ in
         SystemNotificationMessage(
             icon: Image(systemName: "exclamationmark.triangle"), 
             title: "Alert", 
             text: "Something happened!",
-            configuration: .init(iconColor: .red)
-        )
+            configuration: .init(iconColor: .red))
     }
 ```
 
-You can use any view you like in the notification:
-
-```swift
-let notification = SystemNotification(
-    isActive: $isNotificationActive,
-    configuration: .init(edge: .bottom)) { _ in
-        Color.red.frame(height: 150)
-    }
-```
-
-If you want to use a standard `SystemNotificationMessage`, you can use this shorthand:
+For standard messages, you can use this shorthand as well:
 
 ```swift
 let notification = SystemNotification(
@@ -80,7 +77,17 @@ let notification = SystemNotification(
     configuration: SystemNotification.Configuration(edge: .bottom))
 ```
 
-You can add any notification to any view, using the `systemNotification` modifier: 
+You can use any view you like in the notification, for instance a red color presented from the bottom:
+
+```swift
+let notification = SystemNotification(
+    isActive: $isNotificationActive,
+    configuration: .init(edge: .bottom)) { _ in
+        Color.red.frame(height: 150)
+    }
+```
+
+Once you have a notification, you can attach it to any view, using the `systemNotification` modifier: 
 
 ```swift
 List(items) { item
@@ -88,26 +95,26 @@ List(items) { item
 }.systemNotification(notification)
 ```
 
-You can now present the notification by setting `isNotificationActive` to true.
+You can now present the notification by setting `isNotificationActive` to `true`.
 
 
 ### SystemNotificationContext
 
-While the above examples show how easy it is to add a notification to a view, you may want to present many different notifications.
+While the above examples show how easy it is to add a notification to a view, it just supports a single view.
 
-Instead of having to use a state and a modifier per notification, you can use a `SystemNotificationContext` to present multiple notifications with a single modifier.
+Instead of having a state and a modifier per notification, you can use a `SystemNotificationContext` to present many different notifications with a single modifier.
 
-Just create a `@StateObject` in your presenting view, then use the context-specific modifier:
+Just create a `@StateObject` in your presenting view, then use the context-specific view modifier:
 
 ```swift
 @StateObject private var context = SystemNotificationContext()
 
 List(items) { item
    HStack { item.name }
-}.systemNotification(context: context)
+}.systemNotification(context)
 ```
 
-You can now present notifications buy using the `present` functions of the context. You can present any view and use any configuration:
+You can now present notifications buy using the context's various `present` function:
 
 ```swift
 context.present(
@@ -115,7 +122,9 @@ context.present(
     configuration: .init(backgroundColor: .red))
 ```
 
-I really recomment the context approach for more complex use-cases.
+You can use any view as well as any configuration.
+
+I highly recommend the context approach for more complex use-cases.
 
 
 ## Configurations

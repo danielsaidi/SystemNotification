@@ -133,10 +133,17 @@ Since this library is based on system notifications being attached to a view, yo
 
 Here are some common things to consider:
 
-* When you are using a `NavigationView` attach the notification to the navigation view and pass the context an `isActive` down the view hierarchy.
-* When you present a modal, you must create a new notification and attach it to the root view.
+* When using a `TabView`, it's best to attach a separate notification to each root view.
+* When using a `NavigationView`, attach the notification to the navigation view and pass the context/state down the view hierarchy.
+* When you present a modal sheet or cover, create a new notification and attach it to the root view.
 
-Have a look at the demo, which covers the various cases.
+For global notifications, you should register all contexts/states so that they can be referred.
+
+For instance, if something happens in the app, all tab views should show the notification. Iterate over all created contexts and show the notification in all that exist.
+
+However, a sheet should take over the global responsibility. Make this the active one and switch back to the previous ones as the sheet is dismissed.
+
+Have a look at the demo, which covers many of these cases.
 
 
 ## Configurations

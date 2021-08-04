@@ -11,7 +11,23 @@ import SwiftUI
 struct DemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                ContentView().tabItem(1)
+                ContentView().tabItem(2)
+                ContentView().tabItem(3)
+                ContentView().tabItem(4)
+            }
+        }
+    }
+}
+
+private extension View {
+    
+    func tabItem(_ index: Int) -> some View {
+        self.tabItem {
+            Label(
+                "Page \(index)",
+                systemImage: "0\(index).square")
         }
     }
 }

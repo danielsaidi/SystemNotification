@@ -11,8 +11,19 @@ import SystemNotification
 
 struct ContentView: View {
     
-    @State private var isStaticNotificationActive = false
+    init(isModal: Bool = false) {
+        self.isModal = isModal
+    }
+    
+    private let isModal: Bool
+    
+    @State private var isModalCoverActive = false
+    @State private var isModalSheetActive = false
+    @State private var isNotificationActive = false
+    
     @StateObject private var context = SystemNotificationContext()
+    
+    @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
         NavigationView {
@@ -28,14 +39,27 @@ struct ContentView: View {
                 Section(header: Text("Static notifications")) {
                     button(.static, "Show static notification", showStaticNotification)
                 }
+                Section(header: Text("Modal screens")) {
+                    button(.sheet, "Show sheet", showModalSheet)
+                    button(.cover, "Show full screen cover", showModalCover)
+                    if isModal {
+                        button(.dismiss, "Dismiss", dismiss)
+                    }
+                }
             }
             .buttonStyle(PlainButtonStyle())
             .navigationTitle("System Notification")
             .listStyle(InsetGroupedListStyle())
         }
-        .systemNotification(context: context)
-        .systemNotification {
-            SystemNotification(isActive: $isStaticNotificationActive) { _ in
+        .sheet(isPresented: $isModalSheetActive) {
+            ContentView(isModal: true)
+        }
+        .fullScreenCover(isPresented: $isModalCoverActive) {
+            ContentView(isModal: true)
+        }
+        .systemNotification(context)    // This is convenient
+        .systemNotification {           // This is super easy
+            SystemNotification(isActive: $isNotificationActive) { _ in
                 DemoNotification.static
             }
         }
@@ -56,6 +80,10 @@ private extension ContentView {
 
 private extension ContentView {
     
+    func dismiss() {
+        presentationMode.wrappedValue.dismiss()
+    }
+
     func showCustomView() {
         context.present(
             content: DemoNotification.custom,
@@ -73,6 +101,14 @@ private extension ContentView {
             content: DemoNotification.localized)
     }
     
+    func showModalCover() {
+        isModalCoverActive = true
+    }
+    
+    func showModalSheet() {
+        isModalSheetActive = true
+    }
+    
     func showSilentModeOff() {
         context.present(
             content: DemoNotification.silentModeOff)
@@ -84,7 +120,7 @@ private extension ContentView {
     }
     
     func showStaticNotification() {
-        isStaticNotificationActive = true
+        isNotificationActive = true
     }
     
     func showWarning() {

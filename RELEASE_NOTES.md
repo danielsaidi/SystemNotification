@@ -11,6 +11,10 @@
 
 * systemNotification(context:) is deprecated - use the new function that don't require the `context` parameter name.
 
+### 🐛 Bug fixes
+
+* This version fixes a duration bug.
+
 
 
 ## 0.3.2

@@ -105,7 +105,8 @@ private extension SystemNotification {
     func resetTimer() {
         let date = Date()
         lastChanged = date
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        let deadline = DispatchTime.now() + configuration.duration
+        DispatchQueue.main.asyncAfter(deadline: deadline) {
             guard lastChanged == date else { return }
             self.isActive = false
         }

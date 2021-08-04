@@ -13,7 +13,8 @@
 
 ### 🐛 Bug fixes
 
-* This version fixes a duration bug.
+* This version fixes a bug, where the configuration duration wasn't applied.
+* This version fixes a bug, where the default dark mode background was transparent.
 
 
 

@@ -82,7 +82,7 @@ private extension SystemNotification {
         if let color = configuration.backgroundColor {
             color
         } else {
-            fallbackBackgroundColor.colorInvert()
+            fallbackBackgroundColor
         }
     }
     
@@ -90,8 +90,17 @@ private extension SystemNotification {
         configuration.cornerRadius ?? contentSize.height / 2
     }
     
-    var fallbackBackgroundColor: Color {
-        colorScheme == .light ? Color.primary : .secondary
+    @ViewBuilder
+    var fallbackBackgroundColor: some View {
+        if colorScheme == .light {
+            Color.primary.colorInvert()
+        } else {
+            #if canImport(UIKit)
+            Color(UIColor.secondarySystemBackground)
+            #else
+            Color.secondary.colorInvert()
+            #endif
+        }
     }
     
     var verticalOffset: CGFloat {
@@ -186,6 +195,7 @@ struct SystemNotification_Previews: PreviewProvider {
     
     static var previews: some View {
         Content()
+            .colorScheme(.dark)
     }
 }
 

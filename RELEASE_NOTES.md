@@ -5,11 +5,11 @@
 
 ### ✨ New features
 
-* The view modifier that attaches a notification context, no longer requires the `context` parameter name.
+* The context-based view modifier no longer requires a `context` parameter name.
 
 ### 🗑 Deprecated
 
-* systemNotification(context:) is deprecated - use the new function that don't require the `context` parameter name.
+* systemNotification(context:) is deprecated.
 
 ### 🐛 Bug fixes
 

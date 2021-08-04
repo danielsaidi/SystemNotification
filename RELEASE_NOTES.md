@@ -1,14 +1,32 @@
 # Release notes
 
 
+## 0.4
+
+### ✨ New features
+
+* The view modifier that attaches a notification context, no longer requires the `context` parameter name.
+
+### 🗑 Deprecated
+
+* systemNotification(context:) is deprecated - use the new function that don't require the `context` parameter name.
+
+
+
 ## 0.3.2
 
-This version fixes a preview bug that caused the library not to build for macOS. 
+### 🐛 Bug fixes
+
+* This version fixes a preview bug that caused the library not to build for macOS. 
+
 
 
 ## 0.3.1
 
-Thanks to Christian Mitteldorf, system notifications now use localized string keys, which makes it super simple to create localized notifications.
+### ✨ New features
+
+* Thanks to Christian Mitteldorf, system notifications now use localized string keys, which makes it super simple to create localized notifications.
+
 
 
 ## 0.3.0
@@ -48,6 +66,7 @@ This release improves platform supports, adds convenience utils and tweaks desig
 ### 🐛 Bug fixes
 
 * The corner radius now works even when no image is provided. 
+
 
 
 ## 0.1.0

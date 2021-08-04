@@ -33,7 +33,8 @@ public extension View {
      no need to have a specific state and modifier for every
      notification you want to present.
      */
-    func systemNotification(context: SystemNotificationContext) -> some View {
+    func systemNotification(
+        _ context: SystemNotificationContext) -> some View {
         ZStack(alignment: context.configuration.edge.alignment) {
             self
             SystemNotification(
@@ -41,5 +42,14 @@ public extension View {
                 configuration: context.configuration,
                 content: { _ in context.content })
         }
+    }
+}
+
+public extension View {
+    
+    @available(*, deprecated, message: "You can omit the context parameter name")
+    func systemNotification(
+        context: SystemNotificationContext) -> some View {
+        self.systemNotification(context)
     }
 }

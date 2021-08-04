@@ -174,7 +174,7 @@ struct SystemNotification_Previews: PreviewProvider {
                 .withListStyle()
                 .withNavigationBarStyle()
             }
-            .systemNotification(context: context)
+            .systemNotification(context)
             .systemNotification {
                 SystemNotification(isActive: $isActive) { _ in
                     SystemNotificationPreview.silentModeOn

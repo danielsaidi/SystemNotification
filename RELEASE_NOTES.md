@@ -3,6 +3,8 @@
 
 ## 0.4.1
 
+This relase makes it possible to use plain `String` values when creating `SystemNotification` and  `SystemNotificationMessage`.
+
 ### ✨ New features
 
 * `SystemNotification+Message` has more convenience initializers.

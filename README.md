@@ -14,7 +14,7 @@
 
 ## About SystemNotification
 
-`SystemNotification` is lets you mimic the native iOS system notification (that is presented when e.g. toggling silent mode on and off) in your `SwiftUI` apps.
+`SystemNotification` is a `SwiftUI` library that lets you mimic the native iOS system notification, that for instance is presented when toggling silent mode on and off.
 
 The result can look like this...or completely different:
 
@@ -53,7 +53,7 @@ let notification = SystemNotification(
     }
 ```
 
-`SystemNotificationMessage` is a view that looks like a native system notification:
+You can use the `SystemNotificationMessage` to get a notification that looks like a native system notification:
 
 ```swift
 let notification = SystemNotification(
@@ -66,18 +66,18 @@ let notification = SystemNotification(
     }
 ```
 
-For standard notification messages, you can use this shorthand:
+For a standard `SystemNotificationMessage`, you can also use this shorthand:
 
 ```swift
 let notification = SystemNotification(
     icon: Image?,
-    title: LocalizedStringKey,
-    text: LocalizedStringKey,
+    title: String,
+    text: String,
     isActive: $isNotificationActive,
     configuration: SystemNotification.Configuration(edge: .bottom))
 ```
 
-You can use any view, for instance a red color presented from the bottom:
+You can use any views and custom configurations, for instance a red color presented from the bottom:
 
 ```swift
 let notification = SystemNotification(
@@ -100,7 +100,7 @@ You can now present the notification by setting `isNotificationActive` to `true`
 
 ### SystemNotificationContext
 
-While the above examples are easy, they just support a single view or additional state to switch between views.
+Instead of using the above approach, it's much easier and more flexible to use a context. 
 
 A `SystemNotificationContext` can be used to present many different notifications with a single modifier.
 
@@ -156,10 +156,10 @@ A `SystemNotification` can be configured with a configuration that specifies:
 * `animation`
 * `backgroundColor`
 * `cornerRadius`
+* `duration`
 * `edge`
 * `minWidth`
-* `duration`
-* `shadowRadius`
+* `shadowColor`
 * `shadowOffset`
 * `shadowRadius`
 
@@ -201,6 +201,11 @@ Feel free to reach out if you have questions or if you want to contribute in any
 * Web site: [danielsaidi.com][Website]
 
 
+## Sponsors my work Clients
+
+You can support my work by becoming a [GitHub Sponsors][Sponsors].
+
+
 ## License
 
 SystemNotification is available under the MIT license. See LICENSE file for more info.
@@ -209,3 +214,4 @@ SystemNotification is available under the MIT license. See LICENSE file for more
 [Email]: mailto:daniel.saidi@gmail.com
 [Twitter]: http://www.twitter.com/danielsaidi
 [Website]: http://www.danielsaidi.com
+[Sponsors]: https://github.com/sponsors/danielsaidi

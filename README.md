@@ -194,16 +194,16 @@ Just open the `Demo` project and run the app.
 
 ## Contact me
 
-Feel free to reach out if you have questions or if you want to contribute in any way:
+Feel free to reach out if you have questions or if you want to contribute to this project in any way:
 
 * E-mail: [daniel.saidi@gmail.com][Email]
 * Twitter: [@danielsaidi][Twitter]
 * Web site: [danielsaidi.com][Website]
 
 
-## Sponsors my work Clients
+## Sponsor my work
 
-You can support my work by becoming a [GitHub Sponsors][Sponsors].
+You can support my work by becoming a [GitHub Sponsor][Sponsors].
 
 
 ## License

@@ -29,7 +29,7 @@ public struct SystemNotificationMessage: View {
      */
     public init(
         icon: Image? = nil,
-        title: LocalizedStringKey,
+        title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
         configuration: SystemNotificationMessageConfiguration = .standard) {
         self.icon = icon
@@ -49,11 +49,15 @@ public struct SystemNotificationMessage: View {
      */
     public init(
         icon: Image? = nil,
-        title: String,
+        title: String? = nil,
         text: String,
         configuration: SystemNotificationMessageConfiguration = .standard) {
         self.icon = icon
-        self.title = LocalizedStringKey(title)
+        if let title = title {
+            self.title = LocalizedStringKey(title)
+        } else {
+            self.title = nil
+        }
         self.text = LocalizedStringKey(text)
         self.configuration = configuration
     }
@@ -61,7 +65,7 @@ public struct SystemNotificationMessage: View {
     public let configuration: SystemNotificationMessageConfiguration
     
     private let icon: Image?
-    private let title: LocalizedStringKey
+    private let title: LocalizedStringKey?
     private let text: LocalizedStringKey
     
     public var body: some View {
@@ -79,9 +83,11 @@ private extension SystemNotificationMessage {
     
     var textContent: some View {
         VStack(spacing: 5) {
-            Text(title)
-                .font(configuration.titleFont)
-                .foregroundColor(configuration.titleColor)
+            if let title = title {
+                Text(title)
+                    .font(configuration.titleFont)
+                    .foregroundColor(configuration.titleColor)
+            }
             Text(text)
                 .font(configuration.textFont)
                 .foregroundColor(configuration.textColor)

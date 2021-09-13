@@ -15,15 +15,15 @@ public extension SystemNotification where Content == SystemNotificationMessage {
      `SystemNotificationMessage`.
      
      - Parameters:
-      - icon: The left-size icon.
-      - title: The bold title text.
+      - icon: The left-size icon, if any.
+      - title: The bold title text, if any.
       - text: The plain message text.
       - isActive: A binding that controls the active state of the notification.
       - configuration: The notification configuration to use.
      */
     init(
-        icon: Image = Image(""),
-        title: LocalizedStringKey,
+        icon: Image? = nil,
+        title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard) {
@@ -38,15 +38,15 @@ public extension SystemNotification where Content == SystemNotificationMessage {
      `SystemNotificationMessage`.
      
      - Parameters:
-      - icon: The left-size icon.
-      - title: The bold title text.
+      - icon: The left-size icon, if any.
+      - title: The bold title text, if any.
       - text: The plain message text.
       - isActive: A binding that controls the active state of the notification.
       - configuration: The notification configuration to use.
      */
     init(
-        icon: Image = Image(""),
-        title: String,
+        icon: Image? = nil,
+        title: String? = nil,
         text: String,
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard) {

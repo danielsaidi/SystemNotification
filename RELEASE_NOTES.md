@@ -1,14 +1,14 @@
 # Release notes
 
 
+## 0.4.2
+
+This relase makes it possible to provide a `nil` title to `SystemNotificationMessage`.
+
+
 ## 0.4.1
 
 This relase makes it possible to use plain `String` values when creating `SystemNotification` and  `SystemNotificationMessage`.
-
-### ✨ New features
-
-* `SystemNotification+Message` has more convenience initializers.
-* `SystemNotificationMessage` has a new convenience initializer.
 
 
 ## 0.4

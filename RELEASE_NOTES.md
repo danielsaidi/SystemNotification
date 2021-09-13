@@ -5,7 +5,8 @@
 
 ### ✨ New features
 
-The 
+* `SystemNotification+Message` has more convenience initializers.
+* `SystemNotificationMessage` has a new convenience initializer.
 
 
 ## 0.4

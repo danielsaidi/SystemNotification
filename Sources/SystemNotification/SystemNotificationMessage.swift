@@ -14,18 +14,19 @@ import SwiftUI
  
  When you create a standard message, you can provide it with
  an optional image as well as a title and text. You can also
- provide a custom `configuration`, to customize the style of
- the message.
+ provide a custom notification message `configuration`.
  */
 public struct SystemNotificationMessage: View {
     
-    /// Create a standard system notification message.
-    ///
-    /// - Parameters:
-    ///   - icon: The optional, left icon.
-    ///   - title: The bold title text.
-    ///   - text: The plain message text.
-    ///   - configuration: The message configuration to use.
+    /**
+     Create a standard system notification message.
+     
+     - Parameters:
+      - icon: The optional, left icon.
+      - title: The bold title text.
+      - text: The plain message text.
+      - configuration: The message configuration to use.
+     */
     public init(
         icon: Image? = nil,
         title: LocalizedStringKey,
@@ -34,6 +35,26 @@ public struct SystemNotificationMessage: View {
         self.icon = icon
         self.title = title
         self.text = text
+        self.configuration = configuration
+    }
+    
+    /**
+     Create a standard system notification message.
+     
+     - Parameters:
+      - icon: The optional, left icon.
+      - title: The bold title text.
+      - text: The plain message text.
+      - configuration: The message configuration to use.
+     */
+    public init(
+        icon: Image? = nil,
+        title: String,
+        text: String,
+        configuration: SystemNotificationMessageConfiguration = .standard) {
+        self.icon = icon
+        self.title = LocalizedStringKey(title)
+        self.text = LocalizedStringKey(text)
         self.configuration = configuration
     }
     

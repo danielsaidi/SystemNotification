@@ -10,14 +10,17 @@ import SwiftUI
 
 public extension SystemNotification where Content == SystemNotificationMessage {
     
-    /// Create a system notification that presents a standard `SystemNotificationMessage`.
-    ///
-    /// - Parameters:
-    ///   - icon: The left-size icon.
-    ///   - title: The bold title text.
-    ///   - text: The plain message text.
-    ///   - isActive: A binding that controls the active state of the notification.
-    ///   - configuration: The notification configuration to use.
+    /**
+     Create a system notification that presents a standard
+     `SystemNotificationMessage`.
+     
+     - Parameters:
+      - icon: The left-size icon.
+      - title: The bold title text.
+      - text: The plain message text.
+      - isActive: A binding that controls the active state of the notification.
+      - configuration: The notification configuration to use.
+     */
     init(
         icon: Image = Image(""),
         title: LocalizedStringKey,
@@ -25,9 +28,51 @@ public extension SystemNotification where Content == SystemNotificationMessage {
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard) {
         self.init(
+            message: SystemNotificationMessage(icon: icon, title: title, text: text),
+            isActive: isActive,
+            configuration: configuration)
+    }
+    
+    /**
+     Create a system notification that presents a standard
+     `SystemNotificationMessage`.
+     
+     - Parameters:
+      - icon: The left-size icon.
+      - title: The bold title text.
+      - text: The plain message text.
+      - isActive: A binding that controls the active state of the notification.
+      - configuration: The notification configuration to use.
+     */
+    init(
+        icon: Image = Image(""),
+        title: String,
+        text: String,
+        isActive: Binding<Bool>,
+        configuration: SystemNotificationConfiguration = .standard) {
+        self.init(
+            message: SystemNotificationMessage(icon: icon, title: title, text: text),
+            isActive: isActive,
+            configuration: configuration)
+    }
+    
+    /**
+     Create a system notification that presents a standard
+     `SystemNotificationMessage`.
+     
+     - Parameters:
+      - message: The message to display.
+      - isActive: A binding that controls the active state of the notification.
+      - configuration: The notification configuration to use.
+     */
+    init(
+        message: SystemNotificationMessage,
+        isActive: Binding<Bool>,
+        configuration: SystemNotificationConfiguration = .standard) {
+        self.init(
             isActive: isActive,
             configuration: configuration) { _ in
-            SystemNotificationMessage(icon: icon, title: title, text: text)
+            message
         }
     }
 }

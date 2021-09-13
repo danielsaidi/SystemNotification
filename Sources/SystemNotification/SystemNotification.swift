@@ -12,17 +12,19 @@ import SwiftUI
  This view mimics the native iOS system notification that is
  presented when e.g. silent mode is toggled.
  
- To attach a system notification to a view hiearchy, use the
- `View+SystemNotification` view extension.
- 
  When you create a notification, you must provide it with an
  `isActive` binding, which controls if it's presented or not.
- You can also provide a custom `configuration`, to customize
- the look and behavior of the notification.
+ You can also provide a `configuration` to customize how the
+ notification looks and behaves.
  
- A notification can present any custom view, but also has an
- extra convenience initializer that lets you show a standard
- `SystemNotificationMessage` that mimics the native content.
+ A system notification can present any custom view, but also
+ has a convenience init in `SystemNotification+Message` that
+ lets you show a standard `SystemNotificationMessage`.
+ 
+ Use the `View+SystemNotification` view extensions to attach
+ a system notification to a view using either a notification
+ builder or a context. Make sure to attach it to the topmost
+ view, e.g. a tab view or a navigation view, if any.
  */
 public struct SystemNotification<Content: View>: View {
     

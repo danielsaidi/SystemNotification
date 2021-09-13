@@ -42,7 +42,7 @@ pod SystemNotification
 
 ## Getting started
 
-`SystemNotification` contains a `SystemNotification` view, that can be created with an `isActive` binding, an optional `configuration` and any content view.
+A `SystemNotification` view can be created with an `isActive` binding, an optional `configuration` and any content view.
 
 For instance, this notification will present a plain `Text`:
 
@@ -53,7 +53,7 @@ let notification = SystemNotification(
     }
 ```
 
-If you want your message to look like a native system notification, you can use a `SystemNotificationMessage`:
+`SystemNotificationMessage` is a view that looks like a native system notification:
 
 ```swift
 let notification = SystemNotification(
@@ -66,7 +66,7 @@ let notification = SystemNotification(
     }
 ```
 
-For standard messages, you can use this shorthand as well:
+For standard notification messages, you can use this shorthand:
 
 ```swift
 let notification = SystemNotification(
@@ -77,7 +77,7 @@ let notification = SystemNotification(
     configuration: SystemNotification.Configuration(edge: .bottom))
 ```
 
-You can use any view you like in the notification, for instance a red color presented from the bottom:
+You can use any view, for instance a red color presented from the bottom:
 
 ```swift
 let notification = SystemNotification(
@@ -87,7 +87,7 @@ let notification = SystemNotification(
     }
 ```
 
-Once you have a notification, you can attach it to any view, using the `systemNotification` modifier: 
+Once you have a `SystemNotification`, you can use the `systemNotification` modifier to attach it to any view: 
 
 ```swift
 List(items) { item
@@ -100,11 +100,11 @@ You can now present the notification by setting `isNotificationActive` to `true`
 
 ### SystemNotificationContext
 
-While the above examples show how easy it is to add a notification to a view, it just supports a single view.
+While the above examples are easy, they just support a single view or additional state to switch between views.
 
-Instead of having a state and a modifier per notification, you can use a `SystemNotificationContext` to present many different notifications with a single modifier.
+A `SystemNotificationContext` can be used to present many different notifications with a single modifier.
 
-Just create a `@StateObject` in your presenting view, then use the context-specific view modifier:
+Just create a `@StateObject` in your presenting view, then use the context-specific view modifier to attach the notification to any view:
 
 ```swift
 @StateObject private var context = SystemNotificationContext()
@@ -118,7 +118,7 @@ You can now present notifications buy using the context's various `present` func
 
 ```swift
 context.present(
-    content: notification,
+    content: notificationView,
     configuration: .init(backgroundColor: .red))
 ```
 
@@ -141,7 +141,7 @@ For global notifications, you should register all contexts/states so that they c
 
 For instance, if something happens in the app, all tab views should show the notification. Iterate over all created contexts and show the notification in all that exist.
 
-However, a sheet should take over the global responsibility. Make this the active one and switch back to the previous ones as the sheet is dismissed.
+    However, a sheet should take over the global responsibility. Make this the active one and switch back to the previous ones as the sheet is dismissed.
 
 Have a look at the demo, which covers many of these cases.
 

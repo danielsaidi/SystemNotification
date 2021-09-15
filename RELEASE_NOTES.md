@@ -1,6 +1,14 @@
 # Release notes
 
 
+## 0.4.3
+
+### ✨ New features 
+
+* `SystemNotificationConfiguration` has a new `isSwipeToDismissEnabled` parameter.
+* `SystemNotification` can now be swiped to be dismissed, if `isSwipeToDismissEnabled` is `true`. 
+
+
 ## 0.4.2
 
 This relase makes it possible to provide a `nil` title to `SystemNotificationMessage`.

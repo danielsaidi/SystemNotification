@@ -71,11 +71,12 @@ public struct SystemNotification<Content: View>: View {
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
             .onChange(of: isActive) { _ in resetTimer() }
+            .gesture(swipeGesture)
     }
 }
 
 
-// MARK: - Private Extensions
+// MARK: - Private View Logic
 
 private extension SystemNotification {
     
@@ -92,6 +93,20 @@ private extension SystemNotification {
         configuration.cornerRadius ?? contentSize.height / 2
     }
     
+    var swipeGesture: some Gesture {
+        DragGesture(minimumDistance: 20, coordinateSpace: .global)
+            .onEnded { value in
+                let horizontalTranslation = value.translation.width as CGFloat
+                let verticalTranslation = value.translation.height as CGFloat
+                let isVertical = abs(verticalTranslation) > abs(horizontalTranslation)
+                let isUp = verticalTranslation < 0
+                // let isLeft = horizontalTranslation < 0
+                guard isVertical else { return }            // We only use vertical edges
+                if isUp && configuration.edge == .top { dismiss() }
+                if !isUp && configuration.edge == .bottom { dismiss() }
+            }
+    }
+    
     @ViewBuilder
     var fallbackBackgroundColor: some View {
         if colorScheme == .light {
@@ -104,6 +119,12 @@ private extension SystemNotification {
             #endif
         }
     }
+}
+
+
+// MARK: - Private Logic
+
+private extension SystemNotification {
     
     var verticalOffset: CGFloat {
         if isActive { return 0 }
@@ -113,13 +134,17 @@ private extension SystemNotification {
         }
     }
     
+    func dismiss() {
+        isActive = false
+    }
+    
     func resetTimer() {
         let date = Date()
         lastChanged = date
         let deadline = DispatchTime.now() + configuration.duration
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             guard lastChanged == date else { return }
-            self.isActive = false
+            dismiss()
         }
     }
 }

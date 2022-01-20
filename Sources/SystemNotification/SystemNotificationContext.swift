@@ -28,17 +28,30 @@ public class SystemNotificationContext: ObservableObject {
     @Published public var content = AnyView(EmptyView())
     @Published public var isActive = false
     
+    public typealias Action = () -> Void
+    
+    private var presentationId = UUID()
+    
     public var isActiveBinding: Binding<Bool> {
         .init(get: { self.isActive },
               set: { self.isActive = $0 }
         )
     }
-        
+    
     /**
-     Manually dismiss the current notification, if any.
+     Dismiss the current notification, if any.
      */
     public func dismiss() {
+        dismiss {}
+    }
+        
+    /**
+     Dismiss the current notification, if any.
+     */
+    public func dismiss(completion: @escaping Action) {
+        guard isActive else { return completion() }
         isActive = false
+        perform(completion, after: 0.3)
     }
     
     /**
@@ -47,10 +60,10 @@ public class SystemNotificationContext: ObservableObject {
     public func present<Content: View>(
         content: Content,
         configuration: SystemNotificationConfiguration = .standard) {
-        self.configuration = configuration
-        self.content = AnyView(content)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.isActive = true
+        dismiss {
+            self.presentAfterDismiss(
+                content: content,
+                configuration: configuration)
         }
     }
     
@@ -61,5 +74,34 @@ public class SystemNotificationContext: ObservableObject {
         configuration: SystemNotificationConfiguration = .standard,
         @ViewBuilder _ content: @escaping () -> Content) {
         present(content: content(), configuration: configuration)
+    }
+}
+
+private extension SystemNotificationContext {
+    
+    func perform(_ action: @escaping Action, after seconds: TimeInterval) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: action)
+    }
+    
+    func perform(after seconds: TimeInterval, action: @escaping Action) {
+        perform(action, after: seconds)
+    }
+    
+    func presentAfterDismiss<Content: View>(
+        content: Content,
+        configuration: SystemNotificationConfiguration = .standard) {
+        let id = UUID()
+        self.presentationId = id
+        self.configuration = configuration
+        self.content = AnyView(content)
+        perform(setActive, after: 0.1)
+        perform(after: configuration.duration) {
+            guard id == self.presentationId else { return }
+            self.dismiss()
+        }
+    }
+    
+    func setActive() {
+        isActive = true
     }
 }

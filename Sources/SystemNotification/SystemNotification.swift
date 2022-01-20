@@ -53,7 +53,6 @@ public struct SystemNotification<Content: View>: View {
     @Binding private var isActive: Bool
     
     @State private var contentSize = CGSize.zero
-    @State private var lastChanged = Date()
     
     @Environment(\.colorScheme) private var colorScheme
     
@@ -70,7 +69,6 @@ public struct SystemNotification<Content: View>: View {
             .padding(.horizontal)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
-            .onChange(of: isActive) { _ in resetTimer() }
             .gesture(swipeGesture)
     }
 }
@@ -136,16 +134,6 @@ private extension SystemNotification {
     
     func dismiss() {
         isActive = false
-    }
-    
-    func resetTimer() {
-        let date = Date()
-        lastChanged = date
-        let deadline = DispatchTime.now() + configuration.duration
-        DispatchQueue.main.asyncAfter(deadline: deadline) {
-            guard lastChanged == date else { return }
-            dismiss()
-        }
     }
 }
 

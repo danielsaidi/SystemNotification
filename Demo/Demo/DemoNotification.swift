@@ -86,8 +86,8 @@ struct DemoNotification {
     static var `static`: some View {
         SystemNotificationMessage(
             icon: .static,
-            title: "Static notification",
-            text: "You can use static notifications as well")
+            title: "Non-dismissing notification",
+            text: "You can use custom bindings to not auto-dismiss a notification.\nSwipe up to dismiss this one.")
     }
     
     static var warning: some View {

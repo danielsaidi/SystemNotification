@@ -13,8 +13,8 @@
 		A99ABACC2666DB9000525C8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99ABACB2666DB9000525C8B /* ContentView.swift */; };
 		A99ABACE2666DB9400525C8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99ABACD2666DB9400525C8B /* Assets.xcassets */; };
 		A99ABAD12666DB9400525C8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99ABAD02666DB9400525C8B /* Preview Assets.xcassets */; };
-		A99ABADA2666DC1D00525C8B /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A99ABAD92666DC1D00525C8B /* SystemNotification */; };
 		A99F86FA266AB00500E4EFF7 /* DemoNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */; };
+		A9F3C7BF27996836009C3E78 /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A9F3C7BE27996836009C3E78 /* SystemNotification */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +27,7 @@
 		A99ABAD02666DB9400525C8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A99ABAD22666DB9400525C8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoNotification.swift; sourceTree = "<group>"; };
+		A9F3C7BC27996827009C3E78 /* systemnotification */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = systemnotification; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A99ABADA2666DC1D00525C8B /* SystemNotification in Frameworks */,
+				A9F3C7BF27996836009C3E78 /* SystemNotification in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,8 +45,10 @@
 		A99ABABD2666DB9000525C8B = {
 			isa = PBXGroup;
 			children = (
+				A9F3C7BB27996827009C3E78 /* Packages */,
 				A99ABAC82666DB9000525C8B /* Demo */,
 				A99ABAC72666DB9000525C8B /* Products */,
+				A9F3C7BD27996836009C3E78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,14 +63,12 @@
 		A99ABAC82666DB9000525C8B /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A99ABACD2666DB9400525C8B /* Assets.xcassets */,
+				A99ABACF2666DB9400525C8B /* Preview Content */,
+				A9F3C7C127996DD1009C3E78 /* Resources */,
+				A9F3C7C027996DC3009C3E78 /* Supporting FIles */,
 				A99ABACB2666DB9000525C8B /* ContentView.swift */,
 				A99ABAC92666DB9000525C8B /* DemoApp.swift */,
 				A99F86F9266AB00500E4EFF7 /* DemoNotification.swift */,
-				A9020840266F60D1005C4718 /* Image+Demo.swift */,
-				A99ABAD22666DB9400525C8B /* Info.plist */,
-				A9020844266F618B005C4718 /* Localizable.strings */,
-				A99ABACF2666DB9400525C8B /* Preview Content */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -78,6 +79,39 @@
 				A99ABAD02666DB9400525C8B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A9F3C7BB27996827009C3E78 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				A9F3C7BC27996827009C3E78 /* systemnotification */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		A9F3C7BD27996836009C3E78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9F3C7C027996DC3009C3E78 /* Supporting FIles */ = {
+			isa = PBXGroup;
+			children = (
+				A99ABAD22666DB9400525C8B /* Info.plist */,
+				A9020844266F618B005C4718 /* Localizable.strings */,
+			);
+			name = "Supporting FIles";
+			sourceTree = "<group>";
+		};
+		A9F3C7C127996DD1009C3E78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A99ABACD2666DB9400525C8B /* Assets.xcassets */,
+				A9020840266F60D1005C4718 /* Image+Demo.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,7 +131,7 @@
 			);
 			name = Demo;
 			packageProductDependencies = (
-				A99ABAD92666DC1D00525C8B /* SystemNotification */,
+				A9F3C7BE27996836009C3E78 /* SystemNotification */,
 			);
 			productName = Demo;
 			productReference = A99ABAC62666DB9000525C8B /* Demo.app */;
@@ -128,7 +162,6 @@
 			);
 			mainGroup = A99ABABD2666DB9000525C8B;
 			packageReferences = (
-				A99ABAD82666DC1D00525C8B /* XCRemoteSwiftPackageReference "SystemNotification" */,
 			);
 			productRefGroup = A99ABAC72666DB9000525C8B /* Products */;
 			projectDirPath = "";
@@ -361,21 +394,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		A99ABAD82666DC1D00525C8B /* XCRemoteSwiftPackageReference "SystemNotification" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/danielsaidi/SystemNotification.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		A99ABAD92666DC1D00525C8B /* SystemNotification */ = {
+		A9F3C7BE27996836009C3E78 /* SystemNotification */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A99ABAD82666DC1D00525C8B /* XCRemoteSwiftPackageReference "SystemNotification" */;
 			productName = SystemNotification;
 		};
 /* End XCSwiftPackageProductDependency section */

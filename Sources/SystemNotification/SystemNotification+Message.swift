@@ -11,8 +11,8 @@ import SwiftUI
 public extension SystemNotification where Content == SystemNotificationMessage {
     
     /**
-     Create a system notification that presents a standard
-     `SystemNotificationMessage`.
+     Create a system notification instance that will use the
+     `SystemNotificationMessage` view when presented.
      
      - Parameters:
       - icon: The left-size icon, if any.
@@ -34,8 +34,8 @@ public extension SystemNotification where Content == SystemNotificationMessage {
     }
     
     /**
-     Create a system notification that presents a standard
-     `SystemNotificationMessage`.
+     Create a system notification instance that will use the
+     `SystemNotificationMessage` view when presented.
      
      - Parameters:
       - icon: The left-size icon, if any.
@@ -57,8 +57,8 @@ public extension SystemNotification where Content == SystemNotificationMessage {
     }
     
     /**
-     Create a system notification that presents a standard
-     `SystemNotificationMessage`.
+     Create a system notification instance that will use the
+     `SystemNotificationMessage` view when presented.
      
      - Parameters:
       - message: The message to display.

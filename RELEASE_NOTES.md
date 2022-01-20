@@ -1,6 +1,23 @@
 # Release notes
 
 
+## 0.5
+
+This release greatly improves how notifications are presented and dismissed.
+
+The demo app now uses a local package, which makes it a lot easier to develop the library.
+
+### ✨ New features
+
+* `SystemNotificationContext` has a new completion-based dismiss function.
+
+### 💡 Behavior changes
+
+* Presenting a new notification first dismisses the current notification, if any.
+* The auto-dismiss logic is moved from the system notification to the notification context.   
+
+
+
 ## 0.4.3
 
 ### ✨ New features 

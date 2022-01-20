@@ -36,8 +36,8 @@ struct ContentView: View {
                     button(.error, "Show red error from bottom", showError)
                     button(.flag, "Show custom view", showCustomView)
                 }
-                Section(header: Text("Static notifications")) {
-                    button(.static, "Show static notification", showStaticNotification)
+                Section(header: Text("Non-dismissing notifications")) {
+                    button(.static, "Show non-dismissing notification", showStaticNotification)
                 }
                 Section(header: Text("Modal screens")) {
                     button(.sheet, "Show sheet", showModalSheet)
@@ -48,9 +48,10 @@ struct ContentView: View {
                 }
             }
             .buttonStyle(PlainButtonStyle())
-            .navigationTitle("System Notification")
             .listStyle(InsetGroupedListStyle())
+            .navigationTitle("System Notification")
         }
+        .navigationViewStyle(.stack)
         .sheet(isPresented: $isModalSheetActive) {
             ContentView(isModal: true)
         }

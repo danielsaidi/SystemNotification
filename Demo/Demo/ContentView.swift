@@ -28,7 +28,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Context-based notifications").padding(.top)) {
+                Section(header: Text("Context-based notifications")) {
                     button(.silentModeOn, "Show silent mode on", showSilentModeOn)
                     button(.silentModeOff, "Show silent mode off", showSilentModeOff)
                     button(.globe, "Show localized notification", showLocalized)

@@ -10,11 +10,17 @@ The demo app now uses a local package, which makes it a lot easier to develop th
 ### ✨ New features
 
 * `SystemNotificationContext` has a new completion-based dismiss function.
+* `SystemNotificationMessageConfiguration` has new `iconTextSpacing`, `minWidth` and `titleTextSpacing` properties.
 
 ### 💡 Behavior changes
 
+* `SystemNotificationMessageConfiguration` is adjusted to make a message look more like an iPhone system notification.
 * Presenting a new notification first dismisses the current notification, if any.
 * The auto-dismiss logic is moved from the system notification to the notification context.   
+
+### 🐛 Bug fixes
+
+* This version fixes a bug, where the message configuration padding was incorrectly applied.
 
 
 

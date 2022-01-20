@@ -69,20 +69,21 @@ public struct SystemNotificationMessage: View {
     private let text: LocalizedStringKey
     
     public var body: some View {
-        HStack(spacing: 20) {
+        HStack(spacing: configuration.iconTextSpacing) {
             iconView
             textContent
             iconView.opacity(0.01)
         }
-        .padding(.vertical, configuration.padding.width)
-        .padding(.horizontal, configuration.padding.height)
+        .frame(minWidth: configuration.minWidth)
+        .padding(.vertical, configuration.padding.height)
+        .padding(.horizontal, configuration.padding.width)
     }
 }
 
 private extension SystemNotificationMessage {
     
     var textContent: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: configuration.titleTextSpacing) {
             if let title = title {
                 Text(title)
                     .font(configuration.titleFont)

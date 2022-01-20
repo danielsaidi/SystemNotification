@@ -11,6 +11,7 @@ The demo app now uses a local package, which makes it a lot easier to develop th
 
 * `SystemNotificationContext` has a new completion-based dismiss function.
 * `SystemNotificationMessageConfiguration` has new `iconTextSpacing`, `minWidth` and `titleTextSpacing` properties.
+* `SystemNotificationUIKitOverlay` is a new view that simplifies adding a system notification to a UIKit view.
 
 ### 💡 Behavior changes
 

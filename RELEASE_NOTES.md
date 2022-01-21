@@ -3,9 +3,15 @@
 
 ## 0.5
 
-This release greatly improves how notifications are presented and dismissed.
+This release greatly improves how notifications are presented and dismissed and simplifies usage.
 
 The demo app now uses a local package, which makes it a lot easier to develop the library.
+
+### 📖 Documentation
+
+SystemNotification has a brand new DocC documentation.
+
+Due to the new documentation, the package now requires Swift 5.5.
 
 ### ✨ New features
 
@@ -32,6 +38,7 @@ The demo app now uses a local package, which makes it a lot easier to develop th
 
 * `SystemNotification+Message` has been deprecated.
 * `SystemNotificationConfiguration` `minWidth` is no longer used and has been removed.
+* `View+SystemNotification` has deprecated the `SystemNotification`-based extension.
 
 
 ## 0.4.3

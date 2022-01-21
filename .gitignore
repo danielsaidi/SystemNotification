@@ -1,10 +1,10 @@
-# SPM defaults
 .DS_Store
 /.build
 /Packages
 xcuserdata/
 
-# fastlane
+Docs/
+
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/README.md

@@ -23,7 +23,6 @@ public struct SystemNotificationConfiguration {
     ///   - duration: The number of seconds the notification should be presented.
     ///   - edge: The edge from which to slide in the notification.
     ///   - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification.
-    ///   - minWidth: The min width of the notification.
     ///   - shadowColor: The shadow color to apply to the notification.
     ///   - shadowOffset: The vertical offset of the notification shadow.
     ///   - shadowRadius: The shadow radius to apply to the notification.
@@ -34,7 +33,6 @@ public struct SystemNotificationConfiguration {
         duration: TimeInterval = 3,
         edge: SystemNotificationEdge = .top,
         isSwipeToDismissEnabled: Bool = true,
-        minWidth: CGFloat = 120,
         shadowColor: Color = .black.opacity(0.1),
         shadowOffset: CGFloat = 5,
         shadowRadius: CGFloat = 7.5) {
@@ -44,7 +42,6 @@ public struct SystemNotificationConfiguration {
         self.duration = duration
         self.edge = edge
         self.isSwipeToDismissEnabled = true
-        self.minWidth = minWidth
         self.shadowColor = shadowColor
         self.shadowOffset = shadowOffset
         self.shadowRadius = shadowRadius
@@ -79,11 +76,6 @@ public struct SystemNotificationConfiguration {
      Whether or not a user can swipe to dismiss a notification.
      */
     public let isSwipeToDismissEnabled: Bool
-    
-    /**
-     The edge from which to slide in the notification.
-     */
-    public let minWidth: CGFloat
     
     /**
      The min width of the notification.

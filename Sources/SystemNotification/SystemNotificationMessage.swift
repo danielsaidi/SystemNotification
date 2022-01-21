@@ -74,7 +74,6 @@ public struct SystemNotificationMessage: View {
             textContent
             iconView.opacity(0.01)
         }
-        .frame(minWidth: configuration.minWidth)
         .padding(.vertical, configuration.padding.height)
         .padding(.horizontal, configuration.padding.width)
     }

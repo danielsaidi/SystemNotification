@@ -59,7 +59,6 @@ public struct SystemNotification<Content: View>: View {
     public var body: some View {
         content(isActive)
             .background(background)
-            .frame(minWidth: configuration.minWidth)
             .cornerRadius(cornerRadius)
             .bindSize(to: $contentSize)
             .shadow(

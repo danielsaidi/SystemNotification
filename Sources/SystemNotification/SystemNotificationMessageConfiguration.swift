@@ -21,7 +21,6 @@ public struct SystemNotificationMessageConfiguration {
     ///   - iconColor: The color to apply to the icon.
     ///   - iconFont: The font to apply to the icon.
     ///   - iconTextSpacing: The spacing to apply between the icon and the text.
-    ///   - minWidth: The minimum width of the message view.
     ///   - padding: The padding to add to the content.
     ///   - textColor: The color to apply to the text.
     ///   - textFont: The font to apply to the text.
@@ -32,7 +31,6 @@ public struct SystemNotificationMessageConfiguration {
         iconColor: Color = .primary.opacity(0.6),
         iconFont: Font = Font.title3,
         iconTextSpacing: CGFloat = 20,
-        minWidth: CGFloat = 150,
         padding: CGSize = .init(width: 15, height: 7),
         textColor: Color = .primary.opacity(0.4),
         textFont: Font = Font.footnote.bold(),
@@ -42,7 +40,6 @@ public struct SystemNotificationMessageConfiguration {
         self.iconColor = iconColor
         self.iconFont = iconFont
         self.iconTextSpacing = iconTextSpacing
-        self.minWidth = minWidth
         self.padding = padding
         self.textColor = textColor
         self.textFont = textFont
@@ -70,11 +67,6 @@ public struct SystemNotificationMessageConfiguration {
      The spacing to apply between the icon and the text.
      */
     public let iconTextSpacing: CGFloat
-    
-    /**
-     The minimum width of the message view.
-     */
-    public let minWidth: CGFloat
     
     /**
      The padding to add to the content.

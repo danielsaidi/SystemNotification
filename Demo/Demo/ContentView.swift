@@ -9,6 +9,24 @@
 import SwiftUI
 import SystemNotification
 
+/**
+ This is the main demo app view, which is reused across four
+ demo app tabs.
+ 
+ The view uses a global `SystemNotificationContext` which it
+ receives as an environment object. Presenting notifications
+ with this context means that the `DemoApp` will present the
+ same notification in all four tabs.
+ 
+ The view also has a `isStaticActive` property which it uses
+ to present a view-specific notification.
+ 
+ Note that the context-based approach requires an additional
+ setup for each modal that you present. In the code below, a
+ `systemNotification` modifier is added to each modal. While
+ it works ok, a sheet will reveal any underlying, additional
+ notifications, which may look a bit strange. Future work :)
+ */
 struct ContentView: View {
     
     init(isModal: Bool = false) {
@@ -21,7 +39,7 @@ struct ContentView: View {
     @State private var isSheetActive = false
     @State private var isStaticActive = false
     
-    @StateObject private var context = SystemNotificationContext()
+    @EnvironmentObject private var context: SystemNotificationContext
     
     @Environment(\.presentationMode) private var presentationMode
     
@@ -53,12 +71,11 @@ struct ContentView: View {
         }
         .navigationViewStyle(.stack)
         .sheet(isPresented: $isSheetActive) {
-            ContentView(isModal: true)
+            ContentView(isModal: true).systemNotification(context)
         }
         .fullScreenCover(isPresented: $isCoverActive) {
-            ContentView(isModal: true)
+            ContentView(isModal: true).systemNotification(context)
         }
-        .systemNotification(context)                        // Context-based notifications are versatile
         .systemNotification(isActive: $isStaticActive) {    // View-based notifications are easy to use
             DemoNotification.static
         }

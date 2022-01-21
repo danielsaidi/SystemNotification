@@ -10,6 +10,8 @@ import SystemNotification
 
 @main
 struct DemoApp: App {
+    
+    @StateObject private var context = SystemNotificationContext()
         
     var body: some Scene {
         WindowGroup {
@@ -19,6 +21,8 @@ struct DemoApp: App {
                 ContentView().tabItem(3)
                 ContentView().tabItem(4)
             }
+            .systemNotification(context)    // Context-based notifications are versatile
+            .environmentObject(context)     // You can pass a context as init param or env.object
         }
     }
 }

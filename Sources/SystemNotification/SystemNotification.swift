@@ -199,10 +199,8 @@ struct SystemNotification_Previews: PreviewProvider {
                 .withNavigationBarStyle()
             }
             .systemNotification(context)
-            .systemNotification {
-                SystemNotification(isActive: $isActive) { _ in
-                    SystemNotificationPreview.silentModeOn
-                }
+            .systemNotification(isActive: $isActive) {
+                SystemNotificationPreview.silentModeOn
             }
         }
     }

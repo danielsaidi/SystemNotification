@@ -10,17 +10,7 @@ import SwiftUI
 
 public extension SystemNotification where Content == SystemNotificationMessage {
     
-    /**
-     Create a system notification instance that will use the
-     `SystemNotificationMessage` view when presented.
-     
-     - Parameters:
-      - icon: The left-size icon, if any.
-      - title: The bold title text, if any.
-      - text: The plain message text.
-      - isActive: A binding that controls the active state of the notification.
-      - configuration: The notification configuration to use.
-     */
+    @available(*, deprecated, message: "Use SystemNotificationMessage instead.")
     init(
         icon: Image? = nil,
         title: LocalizedStringKey? = nil,
@@ -33,17 +23,7 @@ public extension SystemNotification where Content == SystemNotificationMessage {
             configuration: configuration)
     }
     
-    /**
-     Create a system notification instance that will use the
-     `SystemNotificationMessage` view when presented.
-     
-     - Parameters:
-      - icon: The left-size icon, if any.
-      - title: The bold title text, if any.
-      - text: The plain message text.
-      - isActive: A binding that controls the active state of the notification.
-      - configuration: The notification configuration to use.
-     */
+    @available(*, deprecated, message: "Use SystemNotificationMessage instead.")
     init(
         icon: Image? = nil,
         title: String? = nil,
@@ -56,15 +36,7 @@ public extension SystemNotification where Content == SystemNotificationMessage {
             configuration: configuration)
     }
     
-    /**
-     Create a system notification instance that will use the
-     `SystemNotificationMessage` view when presented.
-     
-     - Parameters:
-      - message: The message to display.
-      - isActive: A binding that controls the active state of the notification.
-      - configuration: The notification configuration to use.
-     */
+    @available(*, deprecated, message: "Use SystemNotificationMessage instead.")
     init(
         message: SystemNotificationMessage,
         isActive: Binding<Bool>,

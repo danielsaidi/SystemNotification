@@ -11,43 +11,46 @@ import SwiftUI
 public extension View {
     
     /**
-     Attach a specific system notification to the view.
+     Attach a system notification view to the view.
      
-     This will setup the notification in a view hierarchy in
-     which it will be properly presented.
+     View-based system notifications give you control over a
+     single system notification. If you want to present many
+     different notifications, consider using a context-based
+     view modifier instead.
      */
     func systemNotification<Content: View>(
-        @ViewBuilder _ notification: @escaping () -> SystemNotification<Content>) -> some View {
-        let notif = notification()
-        return ZStack(alignment: notif.configuration.edge.alignment) {
+        isActive: Binding<Bool>,
+        configuration: SystemNotificationConfiguration = .standard,
+        content: @escaping () -> Content) -> some View {
+        ZStack(alignment: configuration.edge.alignment) {
             self
-            notif
+            SystemNotification(
+                isActive: isActive,
+                configuration: configuration,
+                content: { _ in content() })
         }
     }
     
     /**
      Attach a system notification context to the view.
      
-     This context can then be used to present many different
-     notifications using the same context. That way, there's
-     no need to have a specific state and modifier for every
-     notification you want to present.
+     Context-based system notifications make it easy to show
+     many different notifications with a single context. You
+     then use this context to control which views to present,
+     which configuration to use etc.
      */
     func systemNotification(
         _ context: SystemNotificationContext) -> some View {
-        ZStack(alignment: context.configuration.edge.alignment) {
-            self
-            SystemNotification(
-                isActive: context.isActiveBinding,
-                configuration: context.configuration,
-                content: { _ in context.content })
-        }
+        self.systemNotification(
+            isActive: context.isActiveBinding,
+            configuration: context.configuration,
+            content: { context.content })
     }
 }
 
 public extension View {
     
-    @available(*, deprecated, message: "You can omit the context parameter name")
+    @available(*, deprecated, renamed: "systemNotification")
     func systemNotification(
         context: SystemNotificationContext) -> some View {
         self.systemNotification(context)

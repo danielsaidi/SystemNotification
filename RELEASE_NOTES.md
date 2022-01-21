@@ -12,6 +12,7 @@ The demo app now uses a local package, which makes it a lot easier to develop th
 * `SystemNotificationContext` has a new completion-based dismiss function.
 * `SystemNotificationMessageConfiguration` has new `iconTextSpacing` and `titleTextSpacing` properties.
 * `SystemNotificationUIKitOverlay` is a new view that simplifies adding a system notification to a UIKit view.
+* `View+SystemNotification` has a new parameter-based extension that replaces the old notification-based one.
 
 ### 💡 Behavior changes
 
@@ -23,10 +24,14 @@ The demo app now uses a local package, which makes it a lot easier to develop th
 
 * This version fixes a bug, where the message configuration padding was incorrectly applied.
 
+### 🗑 Deprecated
+
+* The notification-based `systemNotification(:)` function is deprecated.
+
 ### 💥 Breaking changes
 
+* `SystemNotification+Message` has been deprecated.
 * `SystemNotificationConfiguration` `minWidth` is no longer used and has been removed.
-
 
 
 ## 0.4.3
@@ -55,7 +60,7 @@ This relase makes it possible to use plain `String` values when creating `System
 
 ### 🗑 Deprecated
 
-* systemNotification(context:) is deprecated.
+* `systemNotification(context:)` is replaced with `systemNotification(_ context:)`.
 
 ### 🐛 Bug fixes
 

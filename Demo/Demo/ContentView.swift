@@ -59,10 +59,8 @@ struct ContentView: View {
             ContentView(isModal: true)
         }
         .systemNotification(context)                        // The context-based modifier is versatile
-        .systemNotification {                               // The view-based modifier is easy to use
-            SystemNotification(isActive: $isNotificationActive) { _ in
-                DemoNotification.static
-            }
+        .systemNotification(isActive: $isNotificationActive) {                               // The view-based modifier is easy to use
+            DemoNotification.static
         }
     }
 }

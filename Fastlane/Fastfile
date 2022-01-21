@@ -13,6 +13,22 @@ platform :ios do
   end
 
 
+  # Test =======================
+  
+  desc "Run unit tests"
+  lane :test do
+    sh("swift test")
+  end
+
+
+  # Docs =======================
+  
+  desc "Build documentation"
+  lane :documentation do
+    sh('cd .. && fastlane/build-documentation.sh')
+  end
+
+
   # Version ================
 
   desc "Create a new version"
@@ -21,6 +37,7 @@ platform :ios do
     ensure_git_branch(branch: 'master')
     
     lint
+    test
 
     bump_type = options[:type]
     if bump_type == nil or bump_type.empty?

@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIKit
 import SystemNotification
 
 /**
@@ -47,21 +48,21 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section(header: Text("Context-based notifications")) {
-                    button(.silentModeOn, "Show silent mode on", showSilentModeOn)
-                    button(.silentModeOff, "Show silent mode off", showSilentModeOff)
-                    button(.globe, "Show localized notification", showLocalized)
-                    button(.warning, "Show orange warning", showWarning)
-                    button(.error, "Show red error from bottom", showError)
-                    button(.flag, "Show custom view", showCustomView)
+                    listItem(.silentModeOn, "Show silent mode on", showSilentModeOn)
+                    listItem(.silentModeOff, "Show silent mode off", showSilentModeOff)
+                    listItem(.globe, "Show localized notification", showLocalized)
+                    listItem(.warning, "Show orange warning", showWarning)
+                    listItem(.error, "Show red error from bottom", showError)
+                    listItem(.flag, "Show custom view", showCustomView)
                 }
                 Section(header: Text("Non-dismissing notifications")) {
-                    button(.static, "Show non-dismissing notification", showStaticNotification)
+                    listItem(.static, "Show non-dismissing notification", showStaticNotification)
                 }
                 Section(header: Text("Modal screens")) {
-                    button(.sheet, "Show sheet", showModalSheet)
-                    button(.cover, "Show full screen cover", showModalCover)
+                    listItem(.sheet, "Show sheet", showModalSheet)
+                    listItem(.cover, "Show full screen cover", showModalCover)
                     if isModal {
-                        button(.dismiss, "Dismiss", dismiss)
+                        listItem(.dismiss, "Dismiss", dismiss)
                     }
                 }
             }
@@ -84,11 +85,10 @@ struct ContentView: View {
 
 private extension ContentView {
     
-    func button(_ icon: Image, _ text: String, _ action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            HStack {
-                icon.frame(width: 25)
-                Text(text)
+    func listItem(_ icon: Image, _ text: String, _ action: @escaping () -> Void) -> some View {
+        ListItem {
+            Button(action: action) {
+                Label(text, image: icon)
             }
         }
     }

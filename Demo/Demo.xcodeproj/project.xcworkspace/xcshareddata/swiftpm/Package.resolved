@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "SystemNotification",
-        "repositoryURL": "https://github.com/danielsaidi/SystemNotification.git",
+        "package": "SwiftUIKit",
+        "repositoryURL": "https://github.com/danielsaidi/SwiftUIKit.git",
         "state": {
-          "branch": null,
-          "revision": "c44ae78720e3df37e753c1bdca41e32de2349a6e",
-          "version": "0.4.1"
+          "branch": "master",
+          "revision": "1a517516a6326fee16d51ad4014669e5669aab99",
+          "version": null
         }
       }
     ]

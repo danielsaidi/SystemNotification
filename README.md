@@ -101,7 +101,7 @@ SystemNotification is available under the MIT license. See the [LICENSE][License
 [Website]: http://www.danielsaidi.com
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
-[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/KeyboardKit.doccarchive.zip?raw=true
+[Documentation]: https://github.com/danielsaidi/Documentation/blob/main/Docs/SystemNotification.doccarchive.zip?raw=true
 [License]: https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE
 
 [Getting-Started]: https://github.com/danielsaidi/SystemNotification/blob/master/Readmes/Getting-Started.md

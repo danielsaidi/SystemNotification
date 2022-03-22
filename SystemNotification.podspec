@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SystemNotification'
-  s.version          = '0.5.0'
+  s.version          = '0.5.1'
   s.swift_versions   = ['5.3']
   s.summary          = 'SystemNotification lets you mimic native iOS system notifications in your SwiftUI apps'
 

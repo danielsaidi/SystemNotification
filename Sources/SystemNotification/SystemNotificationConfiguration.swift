@@ -55,45 +55,45 @@ public struct SystemNotificationConfiguration {
     /**
      The animation to apply when sliding in the notification.
      */
-    public let animation: Animation
+    public var animation: Animation
     
     /**
      A custom background color to apply to the notification.
      */
-    public let backgroundColor: Color?
+    public var backgroundColor: Color?
     
     /**
      A custom corner radius to apply to the notification.
      */
-    public let cornerRadius: CGFloat?
+    public var cornerRadius: CGFloat?
     
     /**
      The number of seconds the notification should be presented.
      */
-    public let edge: SystemNotificationEdge
+    public var edge: SystemNotificationEdge
     
     /**
      Whether or not a user can swipe to dismiss a notification.
      */
-    public let isSwipeToDismissEnabled: Bool
+    public var isSwipeToDismissEnabled: Bool
     
     /**
      The min width of the notification.
      */
-    public let duration: TimeInterval
+    public var duration: TimeInterval
     
     /**
      The shadow color to apply to the notification.
      */
-    public let shadowColor: Color
+    public var shadowColor: Color
     
     /**
      The vertical offset of the notification shadow.
      */
-    public let shadowOffset: CGFloat
+    public var shadowOffset: CGFloat
     
     /**
      The shadow radius to apply to the notification.
      */
-    public let shadowRadius: CGFloat
+    public var shadowRadius: CGFloat
 }

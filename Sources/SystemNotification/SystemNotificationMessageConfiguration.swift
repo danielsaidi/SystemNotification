@@ -56,45 +56,45 @@ public struct SystemNotificationMessageConfiguration {
     /**
      The color to apply to the icon.
      */
-    public let iconColor: Color
+    public var iconColor: Color
     
     /**
      The font to apply to the icon.
      */
-    public let iconFont: Font
+    public var iconFont: Font
     
     /**
      The spacing to apply between the icon and the text.
      */
-    public let iconTextSpacing: CGFloat
+    public var iconTextSpacing: CGFloat
     
     /**
      The padding to add to the content.
      */
-    public let padding: CGSize
+    public var padding: CGSize
     
     /**
      The color to apply to the text.
      */
-    public let textColor: Color
+    public var textColor: Color
     
     /**
      The font to apply to the text.
      */
-    public let textFont: Font
+    public var textFont: Font
     
     /**
      The color to apply to the title.
      */
-    public let titleColor: Color
+    public var titleColor: Color
     
     /**
      The font to apply to the title.
      */
-    public let titleFont: Font
+    public var titleFont: Font
     
     /**
      The spacing to apply between the title and the text.
      */
-    public let titleTextSpacing: CGFloat
+    public var titleTextSpacing: CGFloat
 }

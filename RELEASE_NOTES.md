@@ -1,6 +1,12 @@
 # Release notes
 
 
+## 0.5.1
+
+This release makes configuration properties mutable.
+
+
+
 ## 0.5
 
 This release greatly improves how notifications are presented and dismissed and simplifies usage.
@@ -41,6 +47,7 @@ Due to the new documentation, the package now requires Swift 5.5.
 * `View+SystemNotification` has deprecated the `SystemNotification`-based extension.
 
 
+
 ## 0.4.3
 
 ### ✨ New features 
@@ -49,14 +56,17 @@ Due to the new documentation, the package now requires Swift 5.5.
 * `SystemNotification` can now be swiped to be dismissed, if `isSwipeToDismissEnabled` is `true`. 
 
 
+
 ## 0.4.2
 
 This relase makes it possible to provide a `nil` title to `SystemNotificationMessage`.
 
 
+
 ## 0.4.1
 
 This relase makes it possible to use plain `String` values when creating `SystemNotification` and  `SystemNotificationMessage`.
+
 
 
 ## 0.4

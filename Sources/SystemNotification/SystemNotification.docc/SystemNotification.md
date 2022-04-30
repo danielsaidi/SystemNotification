@@ -1,6 +1,6 @@
 # ``SystemNotification``
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for instance is presented when toggling silent mode on and off on your iPhone.
+SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for is presented when toggling silent mode on and off.
 
 
 

@@ -68,7 +68,7 @@ struct ContentView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .listStyle(InsetGroupedListStyle())
-            .navigationTitle("System Notification")
+            .navigationTitle("SystemNotification")
         }
         .navigationViewStyle(.stack)
         .sheet(isPresented: $isSheetActive) {

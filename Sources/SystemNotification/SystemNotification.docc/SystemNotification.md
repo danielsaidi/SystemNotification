@@ -1,21 +1,32 @@
 # ``SystemNotification``
 
-KeyboardKit helps you build custom keyboard extensions for iOS and iPadOS, using SwiftUI.
+SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for instance is presented when toggling silent mode on and off on your iPhone.
+
+
 
 ## Overview
 
 ![SystemNotification logo](Logo.png)
 
+These notifications have a default style, but can be customized to fit your specific needs.
+
+
+
+## Supported Platforms
+
+SystemNotification supports `iOS v14`, `macOS v11`, `tvOS v14` and `watchOS v7`.
+
+
 
 ## Installation
 
-Swift Package Manager
+SystemNotification can be installed with the Swift Package Manager:
 
 ```
 https://github.com/danielsaidi/SystemNotification.git
 ```
 
-CocoaPods
+or with CocoaPods
 
 ```
 pod SystemNotification
@@ -24,9 +35,16 @@ pod SystemNotification
 
 ## About this documentation
 
-This documentation is generated with Xcode's new DocC engine.
+The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
-Note that DocC currently omits extensions, which means that some View-specific extensions are missing. Future versions will aim to improve this.
+Note that DocC currently omits extensions, which means that some extensions are missing. Future versions will aim to improve this.
+
+
+
+## License
+
+SystemNotification is available under the MIT license.
+
 
 
 ## Topics

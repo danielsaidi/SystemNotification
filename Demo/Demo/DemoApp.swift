@@ -33,7 +33,7 @@ private extension View {
         self.tabItem {
             Label(
                 "Page \(index)",
-                systemImage: "0\(index).square")
+                systemImage: "0\(index).circle")
         }
     }
 }

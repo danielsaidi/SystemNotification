@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
   s.name             = 'SystemNotification'
   s.version          = '0.5.1'
-  s.swift_versions   = ['5.3']
+  s.swift_versions   = ['5.6']
   s.summary          = 'SystemNotification lets you mimic native iOS system notifications in your SwiftUI apps'
 
   s.description      = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/danielsaidi/SystemNotification.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/danielsaidi'
 
-  s.swift_version = '5.3'
+  s.swift_version = '5.6'
   s.ios.deployment_target = '14.0'
   
   s.source_files = 'Sources/**/*.swift'

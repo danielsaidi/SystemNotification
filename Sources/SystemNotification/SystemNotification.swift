@@ -68,7 +68,9 @@ public struct SystemNotification<Content: View>: View {
             .padding(.horizontal)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
+            #if os(iOS) || os(macOS) || os(watchOS)
             .gesture(swipeGesture)
+            #endif
     }
 }
 
@@ -90,6 +92,7 @@ private extension SystemNotification {
         configuration.cornerRadius ?? contentSize.height / 2
     }
     
+    #if os(iOS) || os(macOS) || os(watchOS)
     var swipeGesture: some Gesture {
         DragGesture(minimumDistance: 20, coordinateSpace: .global)
             .onEnded { value in
@@ -103,13 +106,14 @@ private extension SystemNotification {
                 if !isUp && configuration.edge == .bottom { dismiss() }
             }
     }
+    #endif
     
     @ViewBuilder
     var fallbackBackgroundColor: some View {
         if colorScheme == .light {
             Color.primary.colorInvert()
         } else {
-            #if canImport(UIKit)
+            #if os(iOS)
             Color(UIColor.secondarySystemBackground)
             #else
             Color.secondary.colorInvert()

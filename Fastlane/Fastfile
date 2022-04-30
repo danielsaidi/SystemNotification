@@ -30,6 +30,7 @@ platform :ios do
     
     lint
     test
+    docc
 
     bump_type = options[:type]
     version = version_bump_podspec(

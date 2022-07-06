@@ -1,6 +1,12 @@
 # Release notes
 
 
+## 0.5.2
+
+This release fixes compile errors on tvOS and watchOS.
+
+
+
 ## 0.5.1
 
 This release makes configuration properties mutable.

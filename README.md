@@ -15,7 +15,7 @@
 
 ## About SystemNotification
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for instance is presented when toggling silent mode on and off on your iPhone. 
+SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification, which for instance is presented when toggling silent mode on and off on your iPhone. 
 
 The result can look like this, or completely different:
 
@@ -23,13 +23,13 @@ The result can look like this, or completely different:
     <img src="Resources/Demo.gif" width=300 />
 </p>
 
-These notifications have a default style, but can be customized to great extent to fit your specific needs.
+System notifications have a standard style, but can be customized to great extent to fit your specific needs.
 
 
 
 ## Supported Platforms
 
-SystemNotification supports `iOS v14`, `macOS v11`, `tvOS v14` and `watchOS v7`.
+SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -47,25 +47,27 @@ or with CocoaPods
 pod SystemNotification
 ```
 
+You can also clone the repository and build the library locally.
+
 
 
 ## Getting started
 
-To get started with SystemNotification, have a look at [this getting started guide][GettingStarted].
+The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] contains more information, code examples etc. and makes it easy to overview the various parts of the library.
+The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
 
-The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`. 
+The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`. 
 
 
 
 ## Demo Application
 
-This project contains a demo app that lets you explore SystemNotification on iOS. To run it, just open and run `Demo/Demo.xcodeproj`.
+This project has a demo app that lets you explore the library on iOS and macOS. To try it out, just open and run `Demo/Demo.xcodeproj`.
 
 
 
@@ -96,5 +98,5 @@ SystemNotification is available under the MIT license. See the [LICENSE][License
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Documentation]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/
-[GettingStarted]: https://github.com/danielsaidi/SystemNotification/blob/master/Readmes/Getting-Started.md
-[License]: https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE
+[Getting-Started]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/getting-started
+[License]: https://github.com/danielsaidi/DeckKit/blob/master/LICENSE

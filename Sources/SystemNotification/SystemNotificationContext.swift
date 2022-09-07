@@ -21,12 +21,17 @@ import SwiftUI
  manage each notification.
  */
 public class SystemNotificationContext: ObservableObject {
-    
+
     public init() {}
     
-    @Published public var configuration = SystemNotificationConfiguration.standard
-    @Published public var content = AnyView(EmptyView())
-    @Published public var isActive = false
+    @Published
+    public var configuration = SystemNotificationConfiguration.standard
+
+    @Published
+    public var content = AnyView(EmptyView())
+
+    @Published
+    public var isActive = false
     
     public typealias Action = () -> Void
     
@@ -59,11 +64,11 @@ public class SystemNotificationContext: ObservableObject {
      */
     public func present<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration = .standard) {
+        configuration: SystemNotificationConfiguration? = nil) {
         dismiss {
             self.presentAfterDismiss(
                 content: content,
-                configuration: configuration)
+                configuration: configuration ?? self.configuration)
         }
     }
     
@@ -71,9 +76,11 @@ public class SystemNotificationContext: ObservableObject {
      Present a `SystemNotificationMessage` as a notification.
      */
     public func present<Content: View>(
-        configuration: SystemNotificationConfiguration = .standard,
+        configuration: SystemNotificationConfiguration? = nil,
         @ViewBuilder _ content: @escaping () -> Content) {
-        present(content: content(), configuration: configuration)
+        present(
+            content: content(),
+            configuration: configuration ?? self.configuration)
     }
 }
 

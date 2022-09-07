@@ -1,6 +1,15 @@
 # Release notes
 
 
+## 0.5.3
+
+### 💡 Behavior changes
+
+* `SystemNotificationContext` present now has an optional configuration.
+* `SystemNotificationContext` now uses its own configuration if none is provided.
+
+
+
 ## 0.5.2
 
 This release fixes compile errors on tvOS and watchOS.

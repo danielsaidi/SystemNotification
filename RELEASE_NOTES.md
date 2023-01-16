@@ -13,6 +13,10 @@ This version splits up `SystemNotificationConfiguration` in a configuration and 
 
 * `SystemNotificationStyle` is a new type that's extracted from `SystemNotificationConfiguration`.
 
+### 💡 Behavior changes
+
+* `SystemNotification` no longer uses async size bindings to apply the corner radius.
+
 ### 🗑 Deprecated
 
 * `SystemNotificationConfiguration` moves all styles to `SystemNotificationStyle`.

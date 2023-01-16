@@ -58,23 +58,19 @@ public struct SystemNotification<Content: View>: View {
     @Binding
     private var isActive: Bool
     
-    @State
-    private var contentSize = CGSize.zero
-    
     @Environment(\.colorScheme)
     private var colorScheme
     
     public var body: some View {
         content(isActive)
             .background(background)
-            .cornerRadius(cornerRadius)
+            .cornerRadius(style.cornerRadius ?? 1_000)
             .shadow(
                 color: style.shadowColor,
                 radius: style.shadowRadius,
                 y: style.shadowOffset)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
-            .bindSize(to: $contentSize)
             #if os(iOS) || os(macOS) || os(watchOS)
             .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
             #endif
@@ -111,10 +107,6 @@ private extension SystemNotification {
         }
     }
     
-    var cornerRadius: CGFloat {
-        style.cornerRadius ?? contentSize.height / 2
-    }
-    
     #if os(iOS) || os(macOS) || os(watchOS)
     var swipeGesture: some Gesture {
         DragGesture(minimumDistance: 20, coordinateSpace: .global)
@@ -139,10 +131,9 @@ private extension SystemNotification {
     
     var verticalOffset: CGFloat {
         if isActive { return 0 }
-        let offset = max(contentSize.height, 250)
         switch style.edge {
-        case .top: return -offset
-        case .bottom: return offset
+        case .top: return -250
+        case .bottom: return 250
         }
     }
     

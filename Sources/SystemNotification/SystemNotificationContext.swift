@@ -29,7 +29,7 @@ import SwiftUI
 public class SystemNotificationContext: ObservableObject {
 
     public init() {}
-    
+
     @Published
     public var configuration = SystemNotificationConfiguration.standard
 
@@ -40,6 +40,9 @@ public class SystemNotificationContext: ObservableObject {
     public var isActive = false
     
     public typealias Action = () -> Void
+
+    @Published
+    private var originalConfiguration: SystemNotificationConfiguration?
     
     private var presentationId = UUID()
     
@@ -62,31 +65,35 @@ public class SystemNotificationContext: ObservableObject {
     public func dismiss(completion: @escaping Action) {
         guard isActive else { return completion() }
         isActive = false
-        perform(completion, after: 0.3)
+        perform(after: 0.3, action: completion)
     }
     
     /**
-     Present a `SystemNotificationMessage` as a notification.
+     Present a system notification.
      */
     public func present<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration? = nil) {
+        configuration: SystemNotificationConfiguration? = nil
+    ) {
         dismiss {
             self.presentAfterDismiss(
                 content: content,
-                configuration: configuration ?? self.configuration)
+                configuration: configuration
+            )
         }
     }
     
     /**
-     Present a `SystemNotificationMessage` as a notification.
+     Present a system notification.
      */
     public func present<Content: View>(
         configuration: SystemNotificationConfiguration? = nil,
-        @ViewBuilder _ content: @escaping () -> Content) {
+        @ViewBuilder _ content: @escaping () -> Content
+    ) {
         present(
             content: content(),
-            configuration: configuration ?? self.configuration)
+            configuration: configuration
+        )
     }
 }
 
@@ -102,14 +109,16 @@ private extension SystemNotificationContext {
     
     func presentAfterDismiss<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration = .standard
+        configuration: SystemNotificationConfiguration?
     ) {
         let id = UUID()
         self.presentationId = id
-        self.configuration = configuration
+        self.configuration = self.originalConfiguration ?? self.configuration
+        self.originalConfiguration = self.configuration
+        self.configuration = configuration ?? self.configuration
         self.content = AnyView(content)
         perform(setActive, after: 0.1)
-        perform(after: configuration.duration) {
+        perform(after: self.configuration.duration) {
             guard id == self.presentationId else { return }
             self.dismiss()
         }

@@ -3,6 +3,16 @@
 
 ## 0.6
 
+### ✨ New features
+
+* `SystemNotificationConfiguration` has a new `padding` parameter.
+* `SystemNotificationConfiguration` has a new `standardBackgroundColor` function.
+* `SystemNotificationConfiguration` has a new `standardPadding` property.
+
+### 💡 Behavior changes
+
+* `SystemNotificationContext` handles custom presentation configurations better.
+
 ### 💥 Breaking changes
 
 * All deprecated code has been removed.

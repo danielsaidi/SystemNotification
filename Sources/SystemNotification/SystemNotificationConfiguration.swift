@@ -88,7 +88,7 @@ public struct SystemNotificationConfiguration {
         #if os(iOS)
         EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         #else
-        EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+        EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         #endif
     }
     

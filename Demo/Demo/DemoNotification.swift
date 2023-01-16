@@ -23,7 +23,7 @@ struct DemoNotification {
         }.frame(height: 150)
     }
     
-    static var customConfig: SystemNotificationConfiguration {
+    static var customStyle: SystemNotificationStyle {
         .init(backgroundColor: .blue)
     }
     
@@ -47,7 +47,7 @@ struct DemoNotification {
             icon: .error,
             title: "Error",
             text: "This is an error message that comes in from the bottom.",
-            configuration: .init(
+            style: .init(
                 iconColor: .white,
                 textColor: .white,
                 titleColor: .white,
@@ -56,7 +56,7 @@ struct DemoNotification {
         )
     }
     
-    static var errorConfig: SystemNotificationConfiguration {
+    static var errorStyle: SystemNotificationStyle {
         .init(backgroundColor: .red, edge: .bottom)
     }
     
@@ -79,7 +79,7 @@ struct DemoNotification {
             icon: .silentModeOn,
             title: "Silent mode",
             text: "On",
-            configuration: .init(iconColor: .red)
+            style: .init(iconColor: .red)
         )
     }
     
@@ -95,7 +95,7 @@ struct DemoNotification {
             icon: .warning,
             title: "Warning",
             text: "This is a long message to demonstrate multiline messages, which should center aligned and support many lines of text.",
-            configuration: .init(
+            style: .init(
                 iconColor: .white,
                 iconFont: .headline,
                 textColor: .white,
@@ -105,7 +105,7 @@ struct DemoNotification {
         )
     }
     
-    static var warningConfig: SystemNotificationConfiguration {
+    static var warningStyle: SystemNotificationStyle {
         .init(backgroundColor: .orange)
     }
 }

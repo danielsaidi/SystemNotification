@@ -31,22 +31,27 @@ public struct SystemNotification<Content: View>: View {
 
      - Parameters:
        - isActive: A binding that controls the active state of the notification.
-       - configuration: The notification configuration to use.
+       - configuration: The notification configuration to use, by default ``SystemNotificationConfiguration/standard``.
+       - style: The notification style to use, by default ``SystemNotificationStyle/standard``.
        - content: The view to present within the notification badge.
      */
     public init(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
+        style: SystemNotificationStyle = .standard,
         @ViewBuilder content: @escaping ContentBuilder
     ) {
         _isActive = isActive
+        self.style = style
         self.configuration = configuration
         self.content = content
     }
     
     public typealias ContentBuilder = (_ isActive: Bool) -> Content
-    
-    public let configuration: SystemNotificationConfiguration
+
+    private let configuration: SystemNotificationConfiguration
+
+    private let style: SystemNotificationStyle
     
     private let content: ContentBuilder
     
@@ -64,16 +69,16 @@ public struct SystemNotification<Content: View>: View {
             .background(background)
             .cornerRadius(cornerRadius)
             .shadow(
-                color: configuration.shadowColor,
-                radius: configuration.shadowRadius,
-                y: configuration.shadowOffset)
+                color: style.shadowColor,
+                radius: style.shadowRadius,
+                y: style.shadowOffset)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
             .bindSize(to: $contentSize)
             #if os(iOS) || os(macOS) || os(watchOS)
             .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
             #endif
-            .padding(configuration.padding)
+            .padding(style.padding)
     }
 }
 
@@ -99,15 +104,15 @@ private extension SystemNotification {
     
     @ViewBuilder
     var background: some View {
-        if let color = configuration.backgroundColor {
+        if let color = style.backgroundColor {
             color
         } else {
-            SystemNotificationConfiguration.standardBackgroundColor(for: colorScheme)
+            SystemNotificationStyle.standardBackgroundColor(for: colorScheme)
         }
     }
     
     var cornerRadius: CGFloat {
-        configuration.cornerRadius ?? contentSize.height / 2
+        style.cornerRadius ?? contentSize.height / 2
     }
     
     #if os(iOS) || os(macOS) || os(watchOS)
@@ -120,8 +125,8 @@ private extension SystemNotification {
                 let isUp = verticalTranslation < 0
                 // let isLeft = horizontalTranslation < 0
                 guard isVertical else { return }            // We only use vertical edges
-                if isUp && configuration.edge == .top { dismiss() }
-                if !isUp && configuration.edge == .bottom { dismiss() }
+                if isUp && style.edge == .top { dismiss() }
+                if !isUp && style.edge == .bottom { dismiss() }
             }
     }
     #endif
@@ -135,7 +140,7 @@ private extension SystemNotification {
     var verticalOffset: CGFloat {
         if isActive { return 0 }
         let offset = max(contentSize.height, 250)
-        switch configuration.edge {
+        switch style.edge {
         case .top: return -offset
         case .bottom: return offset
         }

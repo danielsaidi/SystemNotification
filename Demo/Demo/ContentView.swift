@@ -110,13 +110,13 @@ private extension ContentView {
     func showCustomView() {
         context.present(
             content: DemoNotification.custom,
-            configuration: DemoNotification.customConfig)
+            style: DemoNotification.customStyle)
     }
 
     func showError() {
         context.present(
             content: DemoNotification.error,
-            configuration: DemoNotification.errorConfig)
+            style: DemoNotification.errorStyle)
     }
 
     func showLocalized() {
@@ -149,7 +149,7 @@ private extension ContentView {
     func showWarning() {
         context.present(
             content: DemoNotification.warning,
-            configuration: DemoNotification.warningConfig)
+            style: DemoNotification.warningStyle)
     }
 }
 

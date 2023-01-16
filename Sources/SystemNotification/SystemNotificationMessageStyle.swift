@@ -1,5 +1,5 @@
 //
-//  SystemNotificationMessageConfiguration.swift
+//  SystemNotificationMessageStyle.swift
 //  SystemNotification
 //
 //  Created by Daniel Saidi on 2021-06-01.
@@ -12,7 +12,7 @@ import SwiftUI
  This type can be used to configure the look and behavior of
  a ``SystemNotificationMessage``.
  */
-public struct SystemNotificationMessageConfiguration {
+public struct SystemNotificationMessageStyle {
 
     /**
      Create a system notification message configuration.
@@ -56,7 +56,7 @@ public struct SystemNotificationMessageConfiguration {
      You can apply a custom value to this property to affect
      all system notification within an app.     
      */
-    public static var standard = SystemNotificationMessageConfiguration()
+    public static var standard = SystemNotificationMessageStyle()
     
     /**
      The color to apply to the icon.

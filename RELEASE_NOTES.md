@@ -1,5 +1,24 @@
 # Release notes
 
+Deprecations will most often be removed in the next minor update.
+
+If you have problem upgrading from a few minor versions back, try upgrading step-wise.
+
+
+## 0.7
+
+This version splits up `SystemNotificationConfiguration` in a configuration and style type.
+
+### ✨ New features
+
+* `SystemNotificationStyle` is a new type that's extracted from `SystemNotificationConfiguration`.
+
+### 🗑 Deprecated
+
+* `SystemNotificationConfiguration` moves all styles to `SystemNotificationStyle`.
+* `SystemNotificationMessageConfiguration` is renamed to `SystemNotificationMessageStyle`.
+
+
 
 ## 0.6
 

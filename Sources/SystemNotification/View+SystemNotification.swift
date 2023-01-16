@@ -21,13 +21,15 @@ public extension View {
     func systemNotification<Content: View>(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
+        style: SystemNotificationStyle = .standard,
         content: @escaping () -> Content
     ) -> some View {
-        ZStack(alignment: configuration.edge.alignment) {
+        ZStack(alignment: style.edge.alignment) {
             self
             SystemNotification(
                 isActive: isActive,
                 configuration: configuration,
+                style: style,
                 content: { _ in content() })
         }
     }
@@ -38,7 +40,7 @@ public extension View {
      Context-based system notifications make it easy to show
      many different notifications with a single context. You
      then use this context to control which views to present,
-     which configuration to use etc.
+     which style and configuration to use etc.
      */
     func systemNotification(
         _ context: SystemNotificationContext
@@ -46,6 +48,7 @@ public extension View {
         self.systemNotification(
             isActive: context.isActiveBinding,
             configuration: context.configuration,
+            style: context.style,
             content: { context.content }
         )
     }

@@ -30,6 +30,11 @@ public class SystemNotificationContext: ObservableObject {
 
     public init() {}
 
+    public typealias Action = () -> Void
+
+    private var presentationId = UUID()
+
+
     @Published
     public var configuration = SystemNotificationConfiguration.standard
 
@@ -38,14 +43,18 @@ public class SystemNotificationContext: ObservableObject {
 
     @Published
     public var isActive = false
-    
-    public typealias Action = () -> Void
+
+    @Published
+    public var style = SystemNotificationStyle.standard
+
 
     @Published
     private var originalConfiguration: SystemNotificationConfiguration?
-    
-    private var presentationId = UUID()
-    
+
+    @Published
+    private var originalStyle: SystemNotificationStyle?
+
+
     public var isActiveBinding: Binding<Bool> {
         .init(get: { self.isActive },
               set: { self.isActive = $0 }
@@ -73,12 +82,14 @@ public class SystemNotificationContext: ObservableObject {
      */
     public func present<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration? = nil
+        configuration: SystemNotificationConfiguration? = nil,
+        style: SystemNotificationStyle? = nil
     ) {
         dismiss {
             self.presentAfterDismiss(
                 content: content,
-                configuration: configuration
+                configuration: configuration,
+                style: style
             )
         }
     }
@@ -88,11 +99,13 @@ public class SystemNotificationContext: ObservableObject {
      */
     public func present<Content: View>(
         configuration: SystemNotificationConfiguration? = nil,
+        style: SystemNotificationStyle? = nil,
         @ViewBuilder _ content: @escaping () -> Content
     ) {
         present(
             content: content(),
-            configuration: configuration
+            configuration: configuration,
+            style: style
         )
     }
 }
@@ -109,13 +122,13 @@ private extension SystemNotificationContext {
     
     func presentAfterDismiss<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration?
+        configuration: SystemNotificationConfiguration?,
+        style: SystemNotificationStyle?
     ) {
         let id = UUID()
         self.presentationId = id
-        self.configuration = self.originalConfiguration ?? self.configuration
-        self.originalConfiguration = self.configuration
-        self.configuration = configuration ?? self.configuration
+        updateConfiguration(with: configuration)
+        updateStyle(with: style)
         self.content = AnyView(content)
         perform(setActive, after: 0.1)
         perform(after: self.configuration.duration) {
@@ -126,5 +139,17 @@ private extension SystemNotificationContext {
     
     func setActive() {
         isActive = true
+    }
+
+    func updateConfiguration(with config: SystemNotificationConfiguration?) {
+        self.configuration = self.originalConfiguration ?? self.configuration
+        self.originalConfiguration = self.configuration
+        self.configuration = config ?? self.configuration
+    }
+
+    func updateStyle(with style: SystemNotificationStyle?) {
+        self.style = self.originalStyle ?? self.style
+        self.originalStyle = self.style
+        self.style = style ?? self.style
     }
 }

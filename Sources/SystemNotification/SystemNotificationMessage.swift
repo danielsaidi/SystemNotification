@@ -26,18 +26,18 @@ public struct SystemNotificationMessage: View {
       - icon: The optional, left icon, by default `nil`.
       - title: The bold title text, by default `nil`.
       - text: The plain message text.
-      - configuration: The configuration to use, by default `.standard`.
+      - style: The style to use, by default `.standard`.
      */
     public init(
         icon: Image? = nil,
         title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
-        configuration: SystemNotificationMessageConfiguration = .standard
+        style: SystemNotificationMessageStyle = .standard
     ) {
         self.icon = icon
         self.title = title
         self.text = text
-        self.configuration = configuration
+        self.style = style
     }
     
     /**
@@ -47,13 +47,13 @@ public struct SystemNotificationMessage: View {
        - icon: The optional, left icon, by default `nil`.
        - title: The bold title text, by default `nil`.
        - text: The plain message text.
-       - configuration: The configuration to use, by default `.standard`.
+       - style: The style to use, by default `.standard`.
      */
     public init(
         icon: Image? = nil,
         title: String? = nil,
         text: String,
-        configuration: SystemNotificationMessageConfiguration = .standard
+        style: SystemNotificationMessageStyle = .standard
     ) {
         self.icon = icon
         if let title = title {
@@ -62,38 +62,37 @@ public struct SystemNotificationMessage: View {
             self.title = nil
         }
         self.text = LocalizedStringKey(text)
-        self.configuration = configuration
+        self.style = style
     }
-    
-    public let configuration: SystemNotificationMessageConfiguration
     
     private let icon: Image?
     private let title: LocalizedStringKey?
     private let text: LocalizedStringKey
+    private let style: SystemNotificationMessageStyle
     
     public var body: some View {
-        HStack(spacing: configuration.iconTextSpacing) {
+        HStack(spacing: style.iconTextSpacing) {
             iconView
             textContent
             iconView.opacity(0.01)
         }
-        .padding(.vertical, configuration.padding.height)
-        .padding(.horizontal, configuration.padding.width)
+        .padding(.vertical, style.padding.height)
+        .padding(.horizontal, style.padding.width)
     }
 }
 
 private extension SystemNotificationMessage {
     
     var textContent: some View {
-        VStack(spacing: configuration.titleTextSpacing) {
+        VStack(spacing: style.titleTextSpacing) {
             if let title = title {
                 Text(title)
-                    .font(configuration.titleFont)
-                    .foregroundColor(configuration.titleColor)
+                    .font(style.titleFont)
+                    .foregroundColor(style.titleColor)
             }
             Text(text)
-                .font(configuration.textFont)
-                .foregroundColor(configuration.textColor)
+                .font(style.textFont)
+                .foregroundColor(style.textColor)
         }
         .multilineTextAlignment(.center)
     }
@@ -101,8 +100,8 @@ private extension SystemNotificationMessage {
     @ViewBuilder
     var iconView: some View {
         if let icon = icon {
-            icon.font(configuration.iconFont)
-                .foregroundColor(configuration.iconColor)
+            icon.font(style.iconFont)
+                .foregroundColor(style.iconColor)
         } else {
             EmptyView()
         }
@@ -117,15 +116,13 @@ struct SystemNotificationMessage_Previews: PreviewProvider {
                 icon: Image(systemName: "bell.slash"),
                 title: "Silent mode",
                 text: "On",
-                configuration: SystemNotificationMessageConfiguration(
-                    iconColor: .red
-                )
+                style: .init(iconColor: .red)
             )
             SystemNotificationMessage(
                 icon: Image(systemName: "exclamationmark.triangle"),
                 title: "Warning",
                 text: "This is a long message to demonstrate multiline messages.",
-                configuration: SystemNotificationMessageConfiguration(
+                style: .init(
                     iconColor: .orange,
                     iconFont: .headline,
                     textColor: .orange,

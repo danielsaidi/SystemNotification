@@ -67,13 +67,13 @@ public struct SystemNotification<Content: View>: View {
                 color: configuration.shadowColor,
                 radius: configuration.shadowRadius,
                 y: configuration.shadowOffset)
-            .padding(.horizontal)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
             .bindSize(to: $contentSize)
             #if os(iOS) || os(macOS) || os(watchOS)
             .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
             #endif
+            .padding(configuration.padding)
     }
 }
 
@@ -102,7 +102,7 @@ private extension SystemNotification {
         if let color = configuration.backgroundColor {
             color
         } else {
-            fallbackBackgroundColor
+            SystemNotificationConfiguration.standardBackgroundColor(for: colorScheme)
         }
     }
     
@@ -125,19 +125,6 @@ private extension SystemNotification {
             }
     }
     #endif
-    
-    @ViewBuilder
-    var fallbackBackgroundColor: some View {
-        if colorScheme == .light {
-            Color.primary.colorInvert()
-        } else {
-            #if os(iOS)
-            Color(UIColor.secondarySystemBackground)
-            #else
-            Color.secondary.colorInvert()
-            #endif
-        }
-    }
 }
 
 

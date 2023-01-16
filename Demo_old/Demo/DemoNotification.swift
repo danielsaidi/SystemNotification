@@ -63,8 +63,8 @@ struct DemoNotification {
     static var localized: some View {
         SystemNotificationMessage(
             icon: .globe,
-            title: "notification.title",
-            text: "notification.text")
+            title: "title",
+            text: "text")
     }
     
     static var silentModeOff: some View {

@@ -2,9 +2,9 @@
   Localizable.strings
   Demo
 
-  Created by Daniel Saidi on 2021-06-08.
-  Copyright © 2021 Daniel Saidi. All rights reserved.
+  Created by Daniel Saidi on 2023-01-16.
+  
 */
 
-"title" = "Localization";
-"text" = "This is a localized notification";
+"notification.title" = "Notification title";
+"notification.text" = "Notification text";

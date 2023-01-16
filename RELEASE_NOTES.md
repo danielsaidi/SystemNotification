@@ -5,7 +5,7 @@
 
 ### 💡 Behavior changes
 
-* `SystemNotificationContext` present now has an optional configuration.
+* `SystemNotificationContext` `present` now has an optional configuration.
 * `SystemNotificationContext` now uses its own configuration if none is provided.
 
 

@@ -10,22 +10,24 @@ import SwiftUI
 
 /**
  This type can be used to configure the look and behavior of
- a `SystemNotification` view.
+ a ``SystemNotification`` view.
  */
 public struct SystemNotificationConfiguration {
-    
-    /// Create a notification configuration.
-    ///
-    /// - Parameters:
-    ///   - animation: The animation to apply when sliding in the notification.
-    ///   - backgroundColor: A custom background color to apply to the notification.
-    ///   - cornerRadius: A custom corner radius to apply to the notification.
-    ///   - duration: The number of seconds the notification should be presented.
-    ///   - edge: The edge from which to slide in the notification.
-    ///   - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification.
-    ///   - shadowColor: The shadow color to apply to the notification.
-    ///   - shadowOffset: The vertical offset of the notification shadow.
-    ///   - shadowRadius: The shadow radius to apply to the notification.
+
+    /**
+     Create a system notification configuration.
+
+     - Parameters:
+       - animation: The animation to apply when sliding in the notification, by default `.spring()`.
+       - backgroundColor: A custom background color to apply to the notification, by default `nil`.
+       - cornerRadius: A custom corner radius to apply to the notification, by default `nil`.
+       - duration: The number of seconds the notification should be presented, by default `3`.
+       - edge: The edge from which to slide in the notification, by default `.top`.
+       - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
+       - shadowColor: The shadow color to apply to the notification, by default `.black.opacity(0.1)`.
+       - shadowOffset: The vertical offset of the notification shadow, by default `5`.
+       - shadowRadius: The shadow radius to apply to the notification, by default `7.5`.
+     */
     public init(
         animation: Animation = .spring(),
         backgroundColor: Color? = nil,
@@ -35,7 +37,8 @@ public struct SystemNotificationConfiguration {
         isSwipeToDismissEnabled: Bool = true,
         shadowColor: Color = .black.opacity(0.1),
         shadowOffset: CGFloat = 5,
-        shadowRadius: CGFloat = 7.5) {
+        shadowRadius: CGFloat = 7.5
+    ) {
         self.animation = animation
         self.backgroundColor = backgroundColor
         self.cornerRadius = cornerRadius
@@ -49,8 +52,11 @@ public struct SystemNotificationConfiguration {
     
     /**
      This is a standard notification configuration.
+
+     You can apply a custom value to this property to affect
+     all system notification within an app.
      */
-    public static let standard = SystemNotificationConfiguration()
+    public static var standard = SystemNotificationConfiguration()
     
     /**
      The animation to apply when sliding in the notification.

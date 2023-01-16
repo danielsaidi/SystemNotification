@@ -17,28 +17,28 @@ import SwiftUI
  You can also provide a `configuration` to customize how the
  notification looks and behaves.
  
- A system notification can present any custom view, but also
- has a convenience init in `SystemNotification+Message` that
- lets you show a standard `SystemNotificationMessage`.
+ Although this view can use any view as its content, you can
+ use the ``SystemNotificationMessage`` view to mimic the iOS
+ notification, which has an `icon`, a `title` and a `text`.
  
  Use the `View+SystemNotification` view extensions to attach
- a system notification to a view using either a notification
- builder or a context. Make sure to attach it to the topmost
- view, e.g. a tab view or a navigation view, if any.
+ a system notification to a view.
  */
 public struct SystemNotification<Content: View>: View {
-    
-    
-    /// Create a system notification that uses a custom view.
-    ///
-    /// - Parameters:
-    ///   - isActive: A binding that controls the active state of the notification.
-    ///   - configuration: The notification configuration to use.
-    ///   - content: The view to present within the notification badge.
+
+    /**
+     Create a system notification.
+
+     - Parameters:
+       - isActive: A binding that controls the active state of the notification.
+       - configuration: The notification configuration to use.
+       - content: The view to present within the notification badge.
+     */
     public init(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
-        @ViewBuilder content: @escaping ContentBuilder) {
+        @ViewBuilder content: @escaping ContentBuilder
+    ) {
         _isActive = isActive
         self.configuration = configuration
         self.content = content
@@ -50,11 +50,14 @@ public struct SystemNotification<Content: View>: View {
     
     private let content: ContentBuilder
     
-    @Binding private var isActive: Bool
+    @Binding
+    private var isActive: Bool
     
-    @State private var contentSize = CGSize.zero
+    @State
+    private var contentSize = CGSize.zero
     
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.colorScheme)
+    private var colorScheme
     
     public var body: some View {
         content(isActive)

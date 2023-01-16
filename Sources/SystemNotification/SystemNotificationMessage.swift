@@ -13,8 +13,9 @@ import SwiftUI
  that is presented when e.g. silent mode is toggled.
  
  When you create a standard message, you can provide it with
- an optional image as well as a title and text. You can also
- provide a custom notification message `configuration`.
+ an optional icon, as well as a title and text. You can also
+ provide a custom ``SystemNotificationMessageConfiguration``
+ that defines the style of the message.
  */
 public struct SystemNotificationMessage: View {
     
@@ -22,16 +23,17 @@ public struct SystemNotificationMessage: View {
      Create a standard system notification message.
      
      - Parameters:
-      - icon: The optional, left icon.
-      - title: The bold title text.
+      - icon: The optional, left icon, by default `nil`.
+      - title: The bold title text, by default `nil`.
       - text: The plain message text.
-      - configuration: The message configuration to use.
+      - configuration: The configuration to use, by default `.standard`.
      */
     public init(
         icon: Image? = nil,
         title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
-        configuration: SystemNotificationMessageConfiguration = .standard) {
+        configuration: SystemNotificationMessageConfiguration = .standard
+    ) {
         self.icon = icon
         self.title = title
         self.text = text
@@ -42,16 +44,17 @@ public struct SystemNotificationMessage: View {
      Create a standard system notification message.
      
      - Parameters:
-      - icon: The optional, left icon.
-      - title: The bold title text.
-      - text: The plain message text.
-      - configuration: The message configuration to use.
+       - icon: The optional, left icon, by default `nil`.
+       - title: The bold title text, by default `nil`.
+       - text: The plain message text.
+       - configuration: The configuration to use, by default `.standard`.
      */
     public init(
         icon: Image? = nil,
         title: String? = nil,
         text: String,
-        configuration: SystemNotificationMessageConfiguration = .standard) {
+        configuration: SystemNotificationMessageConfiguration = .standard
+    ) {
         self.icon = icon
         if let title = title {
             self.title = LocalizedStringKey(title)

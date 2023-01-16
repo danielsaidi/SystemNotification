@@ -10,23 +10,24 @@ import SwiftUI
 
 /**
  This type can be used to configure the look and behavior of
- a `SystemNotificationMessage` view.
+ a ``SystemNotificationMessage``.
  */
 public struct SystemNotificationMessageConfiguration {
-    
-    
-    /// Create a notification message configuration.
-    ///
-    /// - Parameters:
-    ///   - iconColor: The color to apply to the icon.
-    ///   - iconFont: The font to apply to the icon.
-    ///   - iconTextSpacing: The spacing to apply between the icon and the text.
-    ///   - padding: The padding to add to the content.
-    ///   - textColor: The color to apply to the text.
-    ///   - textFont: The font to apply to the text.
-    ///   - titleColor: The color to apply to the title.
-    ///   - titleFont: The font to apply to the title.
-    ///   - titleTextSpacing: The spacing to apply between the title and the text.
+
+    /**
+     Create a system notification message configuration.
+
+     - Parameters:
+       - iconColor: The color to apply to the icon.
+       - iconFont: The font to apply to the icon.
+       - iconTextSpacing: The spacing to apply between the icon and the text.
+       - padding: The padding to add to the content.
+       - textColor: The color to apply to the text.
+       - textFont: The font to apply to the text.
+       - titleColor: The color to apply to the title.
+       - titleFont: The font to apply to the title.
+       - titleTextSpacing: The spacing to apply between the title and the text.
+     */
     public init(
         iconColor: Color = .primary.opacity(0.6),
         iconFont: Font = Font.title3,
@@ -36,7 +37,8 @@ public struct SystemNotificationMessageConfiguration {
         textFont: Font = Font.footnote.bold(),
         titleColor: Color = .primary.opacity(0.6),
         titleFont: Font = Font.footnote.bold(),
-        titleTextSpacing: CGFloat = 2) {
+        titleTextSpacing: CGFloat = 2
+    ) {
         self.iconColor = iconColor
         self.iconFont = iconFont
         self.iconTextSpacing = iconTextSpacing
@@ -50,8 +52,11 @@ public struct SystemNotificationMessageConfiguration {
     
     /**
      This is a standard notification message configuration.
+
+     You can apply a custom value to this property to affect
+     all system notification within an app.     
      */
-    public static let standard = SystemNotificationMessageConfiguration()
+    public static var standard = SystemNotificationMessageConfiguration()
     
     /**
      The color to apply to the icon.

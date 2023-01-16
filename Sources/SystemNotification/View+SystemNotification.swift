@@ -21,7 +21,8 @@ public extension View {
     func systemNotification<Content: View>(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
-        content: @escaping () -> Content) -> some View {
+        content: @escaping () -> Content
+    ) -> some View {
         ZStack(alignment: configuration.edge.alignment) {
             self
             SystemNotification(
@@ -40,11 +41,13 @@ public extension View {
      which configuration to use etc.
      */
     func systemNotification(
-        _ context: SystemNotificationContext) -> some View {
+        _ context: SystemNotificationContext
+    ) -> some View {
         self.systemNotification(
             isActive: context.isActiveBinding,
             configuration: context.configuration,
-            content: { context.content })
+            content: { context.content }
+        )
     }
 }
 
@@ -52,7 +55,8 @@ public extension View {
     
     @available(*, deprecated, renamed: "systemNotification")
     func systemNotification(
-        context: SystemNotificationContext) -> some View {
+        context: SystemNotificationContext
+    ) -> some View {
         self.systemNotification(context)
     }
 }

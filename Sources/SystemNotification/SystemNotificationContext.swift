@@ -12,13 +12,19 @@ import SwiftUI
  This context can be used to present system notifications in
  easier and more flexible ways.
  
- To use this class, create a `@StateObject` instance in your
- presenting view, then bind the context to the view with the
- context-specific `systemNotification` modifier. You can now
- call the context's `present` functions to present different
- notifications with different configurations with the single
- modifier, instead of having separate states and bindings to
- manage each notification.
+ To use this class, create a context instance and bind it to
+ a view with the context-based `systemNotification` modifier.
+ You can now call the context `present` functions to present
+ different notifications with different configurations using
+ that single modifier, instead of having separate states and
+ bindings to manage each notification.
+
+ You can either create the context as a `@StateObject` value
+ in the root view or as shared state elsewhere, for instance
+ to be able to use the state within other services. When you
+ use the latter approach, remember to observe this value for
+ the view hierarchy to update. You can then for instance use
+ `@ObservedObject` or `@EnvironmentObject`.
  */
 public class SystemNotificationContext: ObservableObject {
 
@@ -96,7 +102,8 @@ private extension SystemNotificationContext {
     
     func presentAfterDismiss<Content: View>(
         content: Content,
-        configuration: SystemNotificationConfiguration = .standard) {
+        configuration: SystemNotificationConfiguration = .standard
+    ) {
         let id = UUID()
         self.presentationId = id
         self.configuration = configuration

@@ -63,7 +63,6 @@ public struct SystemNotification<Content: View>: View {
         content(isActive)
             .background(background)
             .cornerRadius(cornerRadius)
-            .bindSize(to: $contentSize)
             .shadow(
                 color: configuration.shadowColor,
                 radius: configuration.shadowRadius,
@@ -71,14 +70,30 @@ public struct SystemNotification<Content: View>: View {
             .padding(.horizontal)
             .animation(.spring())
             .offset(x: 0, y: verticalOffset)
+            .bindSize(to: $contentSize)
             #if os(iOS) || os(macOS) || os(watchOS)
-            .gesture(swipeGesture)
+            .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
             #endif
     }
 }
 
 
 // MARK: - Private View Logic
+
+private extension View {
+
+    @ViewBuilder
+    func gesture<GestureType: Gesture>(
+        _ gesture: GestureType,
+        if condition: Bool
+    ) -> some View {
+        if condition {
+            self.gesture(gesture)
+        } else {
+            self
+        }
+    }
+}
 
 private extension SystemNotification {
     
@@ -132,9 +147,10 @@ private extension SystemNotification {
     
     var verticalOffset: CGFloat {
         if isActive { return 0 }
+        let offset = max(contentSize.height, 250)
         switch configuration.edge {
-        case .top: return -200
-        case .bottom: return 200
+        case .top: return -offset
+        case .bottom: return offset
         }
     }
     

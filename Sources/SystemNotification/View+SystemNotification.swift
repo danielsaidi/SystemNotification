@@ -50,13 +50,3 @@ public extension View {
         )
     }
 }
-
-public extension View {
-    
-    @available(*, deprecated, renamed: "systemNotification")
-    func systemNotification(
-        context: SystemNotificationContext
-    ) -> some View {
-        self.systemNotification(context)
-    }
-}

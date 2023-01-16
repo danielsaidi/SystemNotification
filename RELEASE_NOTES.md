@@ -1,6 +1,14 @@
 # Release notes
 
 
+## 0.6
+
+### 💥 Breaking changes
+
+* All deprecated code has been removed.
+
+
+
 ## 0.5.3
 
 ### 💡 Behavior changes

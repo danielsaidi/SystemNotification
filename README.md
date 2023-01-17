@@ -20,7 +20,7 @@ SystemNotification is a `SwiftUI` library that lets you mimic the native iOS sys
 The result can look like this, or completely different:
 
 <p align="center">
-    <img src="Resources/Demo.gif" width=300 />
+    <img src="Resources/Demo.gif" width=350 />
 </p>
 
 These system notifications have a standard style, but can be customized to fit your specific needs.

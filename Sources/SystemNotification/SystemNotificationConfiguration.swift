@@ -9,8 +9,8 @@
 import SwiftUI
 
 /**
- This type can be used to configure the look and behavior of
- a ``SystemNotification`` view.
+ This configuration can be used to configure the behavior of
+ a ``SystemNotification``.
  */
 public struct SystemNotificationConfiguration {
 

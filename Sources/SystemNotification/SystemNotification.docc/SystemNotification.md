@@ -55,3 +55,13 @@ SystemNotification is available under the MIT license.
 ### Articles
 
 - <doc:Getting-Started>
+
+### Types
+
+- ``SystemNotification/SystemNotification``
+- ``SystemNotificationConfiguration``
+- ``SystemNotificationContext``
+- ``SystemNotificationEdge``
+- ``SystemNotificationMessage``
+- ``SystemNotificationMessageStyle``
+- ``SystemNotificationStyle`` 

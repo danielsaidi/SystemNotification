@@ -9,13 +9,17 @@
 import SwiftUI
 
 /**
- This type can be used to configure the look and behavior of
- a ``SystemNotificationMessage``.
+ This style can be used to customize the style and feel of a
+ ``SystemNotificationMessage`` view.
+
+ You can use the ``standard`` style if you want to apply the
+ standard library style and overwrite it with a custom style
+ to change the standard style. 
  */
 public struct SystemNotificationMessageStyle {
 
     /**
-     Create a system notification message configuration.
+     Create a system notification message style.
 
      - Parameters:
        - iconColor: The color to apply to the icon.

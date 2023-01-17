@@ -9,8 +9,11 @@ If you have problem upgrading from a few minor versions back, try upgrading step
 
 This version splits up `SystemNotificationConfiguration` in a configuration and style type.
 
+Due to changes in the `SystemNotificationMessage` capabilities, the `LocalizedStringKey` support has been deprecated.
+
 ### ✨ New features
 
+* `SystemNotificationMessage` now supports a custom icon view.
 * `SystemNotificationStyle` is a new type that's extracted from `SystemNotificationConfiguration`.
 
 ### 💡 Behavior changes
@@ -20,6 +23,7 @@ This version splits up `SystemNotificationConfiguration` in a configuration and 
 ### 🗑 Deprecated
 
 * `SystemNotificationConfiguration` moves all styles to `SystemNotificationStyle`.
+* `SystemNotificationMessage` has deprecated its `LocalizedString` initializer.
 * `SystemNotificationMessageConfiguration` is renamed to `SystemNotificationMessageStyle`.
 
 

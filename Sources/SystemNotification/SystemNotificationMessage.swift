@@ -130,46 +130,53 @@ private extension SystemNotificationMessage {
 }
 
 struct SystemNotificationMessage_Previews: PreviewProvider {
+
+    struct Preview: View {
+
+        var body: some View {
+            VStack {
+                Group {
+                    SystemNotificationMessage(
+                        icon: Image(systemName: "bell.slash.fill"),
+                        title: "Silent mode",
+                        text: "On",
+                        style: .init(iconColor: .red)
+                    )
+
+                    SystemNotificationMessage(
+                        icon: Color.red.frame(width: 20, height: 20),
+                        text: "Custom icon view, no title",
+                        style: .init(iconColor: .red)
+                    )
+
+                    SystemNotificationMessage(
+                        title: "No icon",
+                        text: "On",
+                        style: .init(iconColor: .red)
+                    )
+
+                    SystemNotificationMessage(
+                        icon: Image(systemName: "exclamationmark.triangle"),
+                        title: "Warning",
+                        text: "This is a long message to demonstrate multiline messages.",
+                        style: .init(
+                            iconColor: .orange,
+                            iconFont: .headline,
+                            textColor: .orange,
+                            titleColor: .orange,
+                            titleFont: .headline
+                        )
+                    )
+                }
+                .background(Color.white)
+                .cornerRadius(5)
+                .padding()
+
+            }.background(Color.gray)
+        }
+    }
     
     static var previews: some View {
-        VStack {
-            Group {
-                SystemNotificationMessage(
-                    icon: Image(systemName: "bell.slash.fill"),
-                    title: "Silent mode",
-                    text: "On",
-                    style: .init(iconColor: .red)
-                )
-
-                SystemNotificationMessage(
-                    icon: Color.red.frame(width: 20, height: 20),
-                    text: "Custom icon view, no title",
-                    style: .init(iconColor: .red)
-                )
-
-                SystemNotificationMessage(
-                    title: "No icon",
-                    text: "On",
-                    style: .init(iconColor: .red)
-                )
-
-                SystemNotificationMessage(
-                    icon: Image(systemName: "exclamationmark.triangle"),
-                    title: "Warning",
-                    text: "This is a long message to demonstrate multiline messages.",
-                    style: .init(
-                        iconColor: .orange,
-                        iconFont: .headline,
-                        textColor: .orange,
-                        titleColor: .orange,
-                        titleFont: .headline
-                    )
-                )
-            }
-            .background(Color.white)
-            .cornerRadius(5)
-            .padding()
-
-        }.background(Color.gray)
+        Preview()
     }
 }

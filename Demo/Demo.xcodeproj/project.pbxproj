@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A954CAF7297553B8008C1E41 /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A954CAF6297553B8008C1E41 /* SystemNotification */; };
+		A954CAF9297689A4008C1E41 /* SilentModeBell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A954CAF8297689A4008C1E41 /* SilentModeBell.swift */; };
 		A95F1E562975412D00383605 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F1E552975412D00383605 /* DemoApp.swift */; };
 		A95F1E582975412D00383605 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F1E572975412D00383605 /* ContentView.swift */; };
 		A95F1E5A2975412E00383605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95F1E592975412E00383605 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		A954CAF52975533E008C1E41 /* systemnotification */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = systemnotification; path = ..; sourceTree = "<group>"; };
+		A954CAF8297689A4008C1E41 /* SilentModeBell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SilentModeBell.swift; sourceTree = "<group>"; };
 		A95F1E522975412D00383605 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95F1E552975412D00383605 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A95F1E572975412D00383605 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				A95F1E572975412D00383605 /* ContentView.swift */,
 				A95F1E552975412D00383605 /* DemoApp.swift */,
 				A95F1E6A29754AFE00383605 /* DemoNotification.swift */,
+				A954CAF8297689A4008C1E41 /* SilentModeBell.swift */,
 				A95F1E5C2975412E00383605 /* Preview Content */,
 			);
 			path = Demo;
@@ -193,6 +196,7 @@
 				A95F1E582975412D00383605 /* ContentView.swift in Sources */,
 				A95F1E562975412D00383605 /* DemoApp.swift in Sources */,
 				A95F1E6E29754B2A00383605 /* Image+Demo.swift in Sources */,
+				A954CAF9297689A4008C1E41 /* SilentModeBell.swift in Sources */,
 				A95F1E6B29754AFE00383605 /* DemoNotification.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

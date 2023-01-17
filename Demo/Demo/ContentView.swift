@@ -11,15 +11,14 @@ import SystemNotification
 
 /**
  This is the main demo app view, which is reused across four
- demo app tabs.
+ demo app tabs on iOS.
 
- The view uses a global `SystemNotificationContext` which it
- receives as an environment object. Presenting notifications
- with this context means that the `DemoApp` will present the
- same notification in all four tabs.
-
- The view also has a `isStaticActive` property which it uses
- to present a view-specific notification.
+ The ``DemoApp`` struct creates a `SystemNotificationContext`
+ that it injects as an environment object and applies to the
+ view hierarchy, using a `systemNotification` modifier. This
+ context can be used to present an app-wide notification. We
+ also use a state-based `systemNotification` in this view to
+ present nofitications based on `isNotificationActive`.
 
  Note that the context-based approach requires an additional
  setup for each modal that you present. In the code below, a
@@ -39,10 +38,13 @@ struct ContentView: View {
     private var isCoverActive = false
 
     @State
-    private var isSheetActive = false
+    private var isNotificationActive = false
 
     @State
-    private var isStaticActive = false
+    private var isSilentModeOn = false
+
+    @State
+    private var isSheetActive = false
 
     @EnvironmentObject
     private var context: SystemNotificationContext
@@ -52,19 +54,20 @@ struct ContentView: View {
     var body: some View {
         List {
             Section(header: Text("Context-based notifications")) {
-                listItem(.silentModeOn, "Show silent mode on", showSilentModeOn)
-                listItem(.silentModeOff, "Show silent mode off", showSilentModeOff)
-                listItem(.globe, "Show localized notification", showLocalized)
-                listItem(.warning, "Show orange warning", showWarning)
-                listItem(.error, "Show red error from bottom", showError)
-                listItem(.flag, "Show custom view", showCustomView)
+                Toggle(isOn: $isSilentModeOn) {
+                    label(.silentModeOff, "Silent mode")
+                }
+                listItem(.globe, "Show localized notification", presentLocalized)
+                listItem(.warning, "Show orange warning", presentWarning)
+                listItem(.error, "Show red error from bottom", presentError)
+                listItem(.flag, "Show custom view", presentCustomView)
             }
             Section(header: Text("Non-dismissing notifications")) {
-                listItem(.static, "Show non-dismissing notification", showStaticNotification)
+                listItem(.static, "Show non-dismissing notification", presentStaticNotification)
             }
             Section(header: Text("Modal screens")) {
-                listItem(.sheet, "Show sheet", showModalSheet)
-                listItem(.cover, "Show full screen cover", showModalCover)
+                listItem(.sheet, "Show sheet", presentModalSheet)
+                listItem(.cover, "Show full screen cover", presentModalCover)
                 if isModal {
                     listItem(.dismiss, "Dismiss", dismiss)
                 }
@@ -80,23 +83,34 @@ struct ContentView: View {
             ContentView(isModal: true).systemNotification(context)
         }
         #endif
-        .systemNotification(isActive: $isStaticActive) {    // View-based notifications are easy to use
+        .systemNotification(isActive: $isNotificationActive) {
             DemoNotification.static
+        }
+        .onChange(of: isSilentModeOn) {
+            if $0 {
+                presentSilentModeOn()
+            } else {
+                presentSilentModeOff()
+            }
         }
     }
 }
 
 private extension ContentView {
 
+    func label(_ icon: Image, _ text: String) -> some View {
+        Label {
+            Text(text)
+        } icon: {
+            icon
+        }
+    }
+
     func listItem(_ icon: Image, _ text: String, _ action: @escaping () -> Void) -> some View {
         Button(action: action) {
-            Label {
-                Text(text)
-            } icon: {
-                icon
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .contentShape(Rectangle())
+            label(icon, text)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
         }
     }
 }
@@ -107,49 +121,55 @@ private extension ContentView {
         presentationMode.wrappedValue.dismiss()
     }
 
-    func showCustomView() {
+    func presentCustomView() {
         context.present(
             content: DemoNotification.custom,
-            style: DemoNotification.customStyle)
+            style: DemoNotification.customStyle
+        )
     }
 
-    func showError() {
+    func presentError() {
         context.present(
             content: DemoNotification.error,
-            style: DemoNotification.errorStyle)
+            style: DemoNotification.errorStyle
+        )
     }
 
-    func showLocalized() {
+    func presentLocalized() {
         context.present(
-            content: DemoNotification.localized)
+            content: DemoNotification.localized
+        )
     }
 
-    func showModalCover() {
+    func presentModalCover() {
         isCoverActive = true
     }
 
-    func showModalSheet() {
+    func presentModalSheet() {
         isSheetActive = true
     }
 
-    func showSilentModeOff() {
+    func presentSilentModeOff() {
         context.present(
-            content: DemoNotification.silentModeOff)
+            content: DemoNotification.silentModeOff
+        )
     }
 
-    func showSilentModeOn() {
+    func presentSilentModeOn() {
         context.present(
-            content: DemoNotification.silentModeOn)
+            content: DemoNotification.silentModeOn
+        )
     }
 
-    func showStaticNotification() {
-        isStaticActive = true
+    func presentStaticNotification() {
+        isNotificationActive = true
     }
 
-    func showWarning() {
+    func presentWarning() {
         context.present(
             content: DemoNotification.warning,
-            style: DemoNotification.warningStyle)
+            style: DemoNotification.warningStyle
+        )
     }
 }
 

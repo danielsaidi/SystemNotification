@@ -69,18 +69,19 @@ struct DemoNotification {
     
     static var silentModeOff: some View {
         SystemNotificationMessage(
-            icon: .silentModeOff,
+            icon: SilentModeBell(isSilentModeOn: false),
             title: "Silent mode",
-            text: "Off")
+            text: "Off"
+        ).id("off")
     }
     
     static var silentModeOn: some View {
         SystemNotificationMessage(
-            icon: .silentModeOn,
+            icon: SilentModeBell(isSilentModeOn: true),
             title: "Silent mode",
             text: "On",
             style: .init(iconColor: .red)
-        )
+        ).id("on")
     }
     
     static var `static`: some View {

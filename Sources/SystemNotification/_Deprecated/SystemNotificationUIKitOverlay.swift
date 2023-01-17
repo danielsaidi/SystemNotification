@@ -13,6 +13,7 @@ import SwiftUI
  This view can be used to create an overlay that can then be
  added to any UIKit view, using `addAsOverlay(to:)`.
  */
+@available(*, deprecated, message: "UIKit integrations have been deprecated and will be removed in 0.8")
 public struct SystemNotificationUIKitOverlay: View {
     
     public init(context: SystemNotificationContext) {
@@ -29,6 +30,7 @@ public struct SystemNotificationUIKitOverlay: View {
     }
 }
 
+@available(*, deprecated, message: "UIKit integrations have been deprecated and will be removed in 0.8")
 public extension SystemNotificationUIKitOverlay {
     
     /**

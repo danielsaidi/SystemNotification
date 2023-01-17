@@ -11,6 +11,8 @@ This version splits up `SystemNotificationConfiguration` in a configuration and 
 
 Due to changes in the `SystemNotificationMessage` capabilities, the `LocalizedStringKey` support has been deprecated.
 
+Also, since SystemNotification aims to be a pure SwiftUI project, the `SystemNotificationUIKitOverlay` has been deprecated. Please let me know if you really need it, and I'll re-add it to the library.
+
 ### ✨ New features
 
 * `SystemNotificationMessage` now supports a custom icon view.

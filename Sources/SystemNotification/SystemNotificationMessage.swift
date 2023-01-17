@@ -100,7 +100,6 @@ public struct SystemNotificationMessage<IconView: View>: View {
 
 private extension SystemNotificationMessage {
 
-    /// TODO: Remove this when converting title to string
     static func title(for title: String?) -> LocalizedStringKey? {
         if let title = title {
             return LocalizedStringKey(title)

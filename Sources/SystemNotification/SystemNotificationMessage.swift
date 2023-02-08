@@ -12,10 +12,9 @@ import SwiftUI
  This view mimics the content of the native iOS notification
  that is presented when e.g. silent mode is toggled.
  
- When you create a standard message, you can provide it with
- an optional icon, as well as a title and text. You can also
- provide a custom ``SystemNotificationMessageConfiguration``
- that defines the style of the message.
+ You can provide this message with an optional icon, a title
+ and a text. You can also provide this message with a custom
+ ``SystemNotificationMessageStyle`` to define its style.
  */
 public struct SystemNotificationMessage<IconView: View>: View {
     

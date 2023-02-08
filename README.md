@@ -1,35 +1,29 @@
 <p align="center">
-    <img src ="Resources/Logo.png" alt="SystemNotification Logo" title="SystemNotification" width=600 />
+    <img src ="Resources/Logo_GitHub.png" alt="SystemNotification Logo" title="SystemNotification" width=600 />
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/cocoapods/p/SystemNotification.svg?style=flat" alt="Platform" />
+    <img src="https://img.shields.io/github/v/release/danielsaidi/SystemNotification?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/Swift-5.6-orange.svg" alt="Swift 5.6" />
+    <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" />
-    <a href="https://twitter.com/danielsaidi">
-        <img src="https://img.shields.io/badge/contact-@danielsaidi-blue.svg?style=flat" alt="Twitter: @danielsaidi" />
-    </a>
+    <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fdanielsaidi" alt="Twitter: @danielsaidi" title="Twitter: @danielsaidi" />
+    <img src="https://img.shields.io/mastodon/follow/000253346?label=mastodon&style=social" alt="Mastodon: @danielsaidi@mastodon.social" title="Mastodon: @danielsaidi@mastodon.social" />
 </p>
 
 
 
 ## About SystemNotification
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
+SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
 
-SystemNotification supports extensive styling, custom views and can be used on all major Apple platforms. The result can look like this, or completely different:
+The result can look like this, or completely different:
 
 <p align="center">
     <img src="Resources/Demo.gif" width=350 />
 </p>
 
-These notifications have a standard style that aims to mimic the iOS system notification look and feel, but can be customized to fit your specific needs.
-
-
-
-## Supported Platforms
-
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
+SystemNotification supports extensive styling and customizations, custom views and can be used on all major Apple platforms.
 
 
 
@@ -47,27 +41,77 @@ or with CocoaPods
 pod SystemNotification
 ```
 
-You can also clone the repository and build the library locally.
+If you prefer to no have external dependencies, you can also just copy the source code into your app.
+
+
+
+## Supported Platforms
+
+SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
 ## Getting started
 
-The online documentation has a [getting-started guide][Getting-Started] that will help you get started with the library.
+The [online documentation][Documentation] has a [getting started guide][Getting-Started] guide to help you get started with SystemNotification.
+
+SystemNotification supports both state- and context-based notifications. Context-based notifications work similar to `sheet`, `alert` and `fullScreenModal`, but use an observable `SystemNotificationContext` instead of state:
+
+```swift
+struct MyView: View {
+
+    @StateObject 
+    private var notification = SystemNotificationContext()
+
+    var body: some View {
+        List {
+            Button("Show notification", action: showNotification)
+            Button("Show orange notification", action: showCustomNotification)
+        }.systemNotification(notification)
+    }
+    
+    func showNotification() {
+        notification.present {
+            SystemNotificationMessage(
+                icon: Image(systemName: "􀋚"),
+                title: Text("Silent mode")
+                text: Text("Off",
+                style: .init(iconColor: .red)
+            )
+        }
+    }
+    
+    func showCustomNotification() {
+        notification.present(
+            configuration: .init(backgroundColor: .orange)
+        ) {
+            VStack {
+                Text("Custom notification").font(.headline)
+                Divider()
+                Text("SystemNotification supports using any views you like as notification messages.")
+            }
+            .foregroundColor(.white)
+            .padding()
+        }
+    }
+}
+```
+
+The context-based approach lets you use the same context in your entire application, with a single view modifier being applied to a single view hierarchy.
+
+For more information, please see the [online documentation][Documentation] and [getting started guide][Getting-Started].
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
-
-The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`. 
+The [online documentation][Documentation] contains more information, code examples, etc., and makes it easy to overview the various parts of the library.
 
 
 
 ## Demo Application
 
-This project has a demo app that lets you explore the library on iOS and macOS. To try it out, just open and run `Demo/Demo.xcodeproj`.
+The demo app lets you explore the library on iOS and macOS. To try it out, just open and run the `Demo` project.
 
 
 
@@ -81,9 +125,10 @@ You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for 
 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
-* E-mail: [daniel.saidi@gmail.com][Email]
+* Website: [danielsaidi.com][Website]
+* Mastodon: [@danielsaidi@mastodon.social][Mastodon]
 * Twitter: [@danielsaidi][Twitter]
-* Web site: [danielsaidi.com][Website]
+* E-mail: [daniel.saidi@gmail.com][Email]
 
 
 
@@ -93,8 +138,9 @@ SystemNotification is available under the MIT license. See the [LICENSE][License
 
 
 [Email]: mailto:daniel.saidi@gmail.com
-[Twitter]: http://www.twitter.com/danielsaidi
-[Website]: http://www.danielsaidi.com
+[Website]: https://www.danielsaidi.com
+[Twitter]: https://www.twitter.com/danielsaidi
+[Mastodon]: https://mastodon.social/@danielsaidi
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Documentation]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/

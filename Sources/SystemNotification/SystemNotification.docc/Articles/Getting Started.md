@@ -53,13 +53,14 @@ struct MyView: View {
             Button("Toggle") { isActive.toggle() }
         }.systemNotification(
             isActive: $isActive,
-            content: notificationView
+            content: notification
         )
     }
 
-    func notificationView() -> some View {
-        Text("This is a custom notification")
-            .padding()
+    func notification() -> some View {
+        SystemNotificationMessage(
+            text: Text("This is a standard message with just the small text")
+        )
     }
 }
 ```
@@ -75,30 +76,38 @@ Context-based notifications work similar to `sheet`, `alert` and `fullScreenModa
 ```swift
 struct MyView: View {
 
-@StateObject 
+    @StateObject 
     private var notification = SystemNotificationContext()
 
     var body: some View {
         List {
             Button("Show notification", action: showNotification)
-            Button("Show orange notification", action: showOrangeNotification)
+            Button("Show orange notification", action: showCustomNotification)
         }.systemNotification(notification)
     }
     
     func showNotification() {
         notification.present {
-            Text("This notification uses a standard configuration")
-                .padding()
+            SystemNotificationMessage(
+                icon: Image(systemName: "􀋚"),
+                title: Text("Silent mode")
+                text: Text("Off"),
+                style: .init(iconColor: .red)
+            )
         }
     }
     
-    func showOrangeNotification() {
+    func showCustomNotification() {
         notification.present(
             configuration: .init(backgroundColor: .orange)
         ) {
-            Text("This notification uses a custom configuration")
-                .foregroundColor(.white)
-                .padding()
+            VStack {
+                Text("Custom notification").font(.headline)
+                Divider()
+                Text("SystemNotification supports using any views you like as notification messages.")
+            }
+            .foregroundColor(.white)
+            .padding()
         }
     }
 }

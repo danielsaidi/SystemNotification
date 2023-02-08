@@ -12,12 +12,6 @@ System notifications have a standard style, but can be customized to great exten
 
 
 
-## Supported Platforms
-
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
-
-
-
 ## Installation
 
 SystemNotification can be installed with the Swift Package Manager:
@@ -32,7 +26,13 @@ or with CocoaPods
 pod SystemNotification
 ```
 
-You can also clone the repository and build the library locally.
+If you prefer to not have external dependencies, you can also just copy the source code into your app.
+
+
+
+## Supported Platforms
+
+SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 

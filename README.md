@@ -41,7 +41,7 @@ or with CocoaPods
 pod SystemNotification
 ```
 
-If you prefer to no have external dependencies, you can also just copy the source code into your app.
+If you prefer to not have external dependencies, you can also just copy the source code into your app.
 
 
 
@@ -105,7 +105,7 @@ For more information, please see the [online documentation][Documentation] and [
 
 ## Documentation
 
-The [online documentation][Documentation] contains more information, code examples, etc., and makes it easy to overview the various parts of the library.
+The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
 
 
 
@@ -135,6 +135,7 @@ Feel free to reach out if you have questions or if you want to contribute in any
 ## License
 
 SystemNotification is available under the MIT license. See the [LICENSE][License] file for more info.
+
 
 
 [Email]: mailto:daniel.saidi@gmail.com

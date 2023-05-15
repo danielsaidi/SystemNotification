@@ -65,3 +65,4 @@ SystemNotification is available under the MIT license.
 - ``SystemNotificationMessage``
 - ``SystemNotificationMessageStyle``
 - ``SystemNotificationStyle`` 
+- ``SystemNotificationUIKitOverlay`` 

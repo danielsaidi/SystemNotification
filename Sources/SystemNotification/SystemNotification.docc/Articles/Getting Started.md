@@ -30,7 +30,7 @@ struct MyView: View {
 }
 ```
 
-You can use both state- and context and message-based notifications, use pre-defined or custom views and style your notifications to great extent.
+You can use both state- and context and message-based notifications and style your notifications to great extent.
 
 
 
@@ -59,13 +59,14 @@ struct MyView: View {
 
     func notification() -> some View {
         SystemNotificationMessage(
-            text: Text("This is a standard message with just the small text")
+            icon: Image(systemName: "star.fill")
+            text: Text("This is a standard notification message with just the small text and a star icon")
         )
     }
 }
 ```
 
-State-based notifications are easy to use, but if you plan on presenting many different notifications, the context-based approach is more versatile.
+State-based notifications are easy to use, but the context-based approach is better if you want to present many different notifications with a single binding.
 
 
 
@@ -77,7 +78,7 @@ Context-based notifications work similar to `sheet`, `alert` and `fullScreenModa
 struct MyView: View {
 
     @StateObject 
-    private var notification = SystemNotificationContext()
+    var notification = SystemNotificationContext()
 
     var body: some View {
         List {
@@ -113,19 +114,51 @@ struct MyView: View {
 }
 ```
 
-The context-based approach lets you use the same context in your entire application, with a single view modifier being applied to a single view hierarchy. You can then use the context to present a notification from anywhere in your app. 
+This approach lets you use the same context in your entire application and a single view modifier being applied to a single view hierarchy. 
 
-You can for instance apply a context-based notification to a root `TabView` or `NavigationView`, which ensures that the notification is presented regardless or where in the app the presentation is triggered, above any tab and navigation views. 
+You can then use pass down the context into the view hierarchy and use it to present a notification from anywhere in your app. 
 
-Note that sheets and full screen covers require a separate modifier to be applied. You can however still use the same context in these modifiers. Also consider the various platform behaviors when picking a proper notification mechanism. For instance, since iPad sheets are presented as square modals in the center of the screen, a system notification may not be the best solution there.  
+You can for instance apply a context-based `.systemNotification` modifier to a root `TabView` or `NavigationView`, which ensures that the notification is presented regardless or where in the app the presentation is triggered.
 
 Context-based notifications are very versatile and a great choice if you want to present many different notifications with a single modifier.
 
 
 
-## Message-based notifications
+## Sheets and full screen covers
 
-Message-based notifications aim to mimic the iOS system notification look and behavior, with a leading tinted icon, a title and a message. To mimic this notification, just use a ``SystemNotificationMessage`` when presenting your notification:
+Since any new sheets and full screen cover will cover the presenting view, you must apply a new view modifier to the modal root view. 
+
+You can however still use the same context to present your notifications. The only effect that will have is that you'll see the underlying message sliding in if you are using a sheet. 
+
+Make sure to consider that various platforms behave different when picking a proper notification mechanism. For instance, since iPad sheets are presented as center square modals, a system notification may not be the best solution there.  
+
+
+
+## Notification views
+
+You can present any custom view as a system notification, for instance:
+
+```swift
+struct MyView: View {
+
+    @StateObject 
+    private var notification = SystemNotificationContext()
+
+    var body: some View {
+        List {
+            Button("Show notification", action: showNotification)
+        }.systemNotification(notification)
+    }
+    
+    func showNotification() {
+        notification.present {
+            Text("Hello, world!")
+        }
+    }
+}
+```
+
+However, to mimic the iOS system notification, you can use a ``SystemNotificationMessage`` instead:
 
 ```swift
 struct MyView: View {
@@ -151,13 +184,16 @@ struct MyView: View {
     }
 }
 ```
-The `style` parameter lets you modify the message style, like the colors, spacings etc. However, this only styles the message itself, not the notification. For that, we can use a ``SystemNotificationStyle``.
+
+The `style` parameter lets you modify the message style, like the colors, spacings etc. of the message view.
 
 
 
 ## How to style a system notification
 
-A ``SystemNotification`` can be styled in a couple of ways. For instance, you can provide a `style` in the view modifier, when you apply a system notification to a view:
+The ``SystemNotification`` view can be styled in a couple of ways. 
+
+For instance, you can provide a `style` in the view modifier:
 
 ```swift
 struct MyView: View {
@@ -176,7 +212,9 @@ struct MyView: View {
 }
 ```
 
-This will be used as the default style, and applied to all notifications. You can however override this style whenever you present a notification with a context:
+This will be used as the default style, and applied to all notifications. 
+
+You can however override this style whenever you present a notification with a context:
 
 ```
 notification.present(
@@ -187,13 +225,15 @@ notification.present(
 }
 ```
 
-This custom style is applied for as long as the notification is presented, then reset to the default style.
+This style is applied for as long as the notification is presented, then resets to the default one.
 
 
 
 ## How to configure a system notification
 
-Just like with the style, a A ``SystemNotification`` can be configured in a couple of ways. For instance, you can provide a `configuration` in the view modifier:
+Just like with the style, a ``SystemNotification`` can be configured in a couple of ways. 
+
+For instance, you can provide a `configuration` in the view modifier:
 
 ```swift
 struct MyView: View {
@@ -212,7 +252,9 @@ struct MyView: View {
 }
 ```
 
-This will be used as the default configuration, and applied to all notifications. You can however override it whenever you present a notification with a context:
+This will be used as the default configuration, and applied to all notifications. 
+
+You can however override this configuration whenever you present a notification with a context:
 
 ```
 notification.present(
@@ -222,5 +264,5 @@ notification.present(
 }
 ```
 
-This configuration is applied for as long as the notification is presented, then reset to the default one.
+This configuration is applied for as long as the notification is presented, then resets to the default one.
 

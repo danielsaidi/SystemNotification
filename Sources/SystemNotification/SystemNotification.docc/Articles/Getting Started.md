@@ -38,7 +38,7 @@ You can use both state- and context and message-based notifications and style yo
 
 State-based notifications work just like state-based `sheet`, `alert` and `fullScreenModal` modifiers.
 
-To use a state-based notification, just provide the `systemNotification` modifier with an `isActive` binding and the view to present:
+For state-based notifications, just provide the `systemNotification` modifier with an `isActive` binding and the view to present:
 
 ```swift
 struct MyView: View {
@@ -66,13 +66,13 @@ struct MyView: View {
 }
 ```
 
-State-based notifications are easy to use, but the context-based approach is better if you want to present many different notifications with a single binding.
+State-based notifications are easy to use, but the context-based approach is better if you want to present many different notifications with a single modifier.
 
 
 
 ## Context-based notifications
 
-Context-based notifications work similar to `sheet`, `alert` and `fullScreenModal`, but use an observable ``SystemNotificationContext`` instead of state:
+Context-based notifications work similar to `sheet`, `alert` and `fullScreenModal`, but use an observable context instead of state:
 
 ```swift
 struct MyView: View {
@@ -114,21 +114,15 @@ struct MyView: View {
 }
 ```
 
-This approach lets you use the same context in your entire application and a single view modifier being applied to a single view hierarchy. 
-
-You can then use pass down the context into the view hierarchy and use it to present a notification from anywhere in your app. 
+This lets you use the same ``SystemNotificationContext`` in your entire application. You can then pass down the context into the view hierarchy and use it to present a notification from anywhere in your app. 
 
 You can for instance apply a context-based `.systemNotification` modifier to a root `TabView` or `NavigationView`, which ensures that the notification is presented regardless or where in the app the presentation is triggered.
-
-Context-based notifications are very versatile and a great choice if you want to present many different notifications with a single modifier.
 
 
 
 ## Sheets and full screen covers
 
-Since any new sheets and full screen cover will cover the presenting view, you must apply a new view modifier to the modal root view. 
-
-You can however still use the same context to present your notifications. The only effect that will have is that you'll see the underlying message sliding in if you are using a sheet. 
+Since sheets and full screen cover will cover the presenting view, you must apply a new view modifier to their root views. You can still use the same context everywhere, but will for sheets notice that the underlying screen will also present the notification. 
 
 Make sure to consider that various platforms behave different when picking a proper notification mechanism. For instance, since iPad sheets are presented as center square modals, a system notification may not be the best solution there.  
 
@@ -185,84 +179,4 @@ struct MyView: View {
 }
 ```
 
-The `style` parameter lets you modify the message style, like the colors, spacings etc. of the message view.
-
-
-
-## How to style a system notification
-
-The ``SystemNotification`` view can be styled in a couple of ways. 
-
-For instance, you can provide a `style` in the view modifier:
-
-```swift
-struct MyView: View {
-
-    @StateObject 
-    private var notification = SystemNotificationContext()
-
-    var body: some View {
-        List {
-            ...
-        }.systemNotification(
-            notification,
-            style: .init(backgroundColor: .red)
-        )
-    }
-}
-```
-
-This will be used as the default style, and applied to all notifications. 
-
-You can however override this style whenever you present a notification with a context:
-
-```
-notification.present(
-    style: .init(backgroundColor: .green)
-) {
-    Text("A green message")
-        .foregroundColor(.white)
-}
-```
-
-This style is applied for as long as the notification is presented, then resets to the default one.
-
-
-
-## How to configure a system notification
-
-Just like with the style, a ``SystemNotification`` can be configured in a couple of ways. 
-
-For instance, you can provide a `configuration` in the view modifier:
-
-```swift
-struct MyView: View {
-
-    @StateObject 
-    private var notification = SystemNotificationContext()
-
-    var body: some View {
-        List {
-            ...
-        }.systemNotification(
-            notification,
-            configuration: .init(duration: 5)
-        )
-    }
-}
-```
-
-This will be used as the default configuration, and applied to all notifications. 
-
-You can however override this configuration whenever you present a notification with a context:
-
-```
-notification.present(
-    configuration: .init(duration: 10)
-) {
-    Text("An important, long-lived notification")
-}
-```
-
-This configuration is applied for as long as the notification is presented, then resets to the default one.
-
+The `style` parameter lets you modify the message style, like the colors, spacings etc. of the message view.  To style the surrounding notification shape, you must provide a ``SystemNotificationStyle`` when setting up or presenting the notification.

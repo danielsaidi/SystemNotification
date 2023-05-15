@@ -74,8 +74,8 @@ struct MyView: View {
         notification.present {
             SystemNotificationMessage(
                 icon: Image(systemName: "􀋚"),
-                title: Text("Silent mode")
-                text: Text("Off",
+                title: Text("Silent mode"),
+                text: Text("Off"),
                 style: .init(iconColor: .red)
             )
         }

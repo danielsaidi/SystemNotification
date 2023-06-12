@@ -1,6 +1,6 @@
 # ``SystemNotification``
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification, which for instance is presented when toggling silent mode on and off on your iPhone.
+SystemNotification lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc.
 
 
 
@@ -8,7 +8,9 @@ SystemNotification is a `SwiftUI` library that lets you mimic the native iOS sys
 
 ![SystemNotification logo](Logo.png)
 
-System notifications have a standard style, but can be customized to great extent to fit your specific needs.
+SystemNotification notifications can be styled and customized to great extent. You can also use completely custom views.
+
+SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -20,27 +22,25 @@ SystemNotification can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/SystemNotification.git
 ```
 
-or with CocoaPods
-
-```
-pod SystemNotification
-```
-
 If you prefer to not have external dependencies, you can also just copy the source code into your app.
 
 
 
-## Supported Platforms
+## Getting started
 
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
+The <doc:Getting-Started> article has a guide to help you get started with SystemNotification.
+
+
+
+## Repository
+
+For more information, source code, and to report issues, sponsor the project etc., visit the [project repository](https://github.com/danielsaidi/SystemNotification).
 
 
 
 ## About this documentation
 
-The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
-
-Note that DocC currently omits extensions, which means that some extensions are missing. Future versions will aim to improve this.
+The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
 
 
 

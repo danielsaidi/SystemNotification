@@ -19,7 +19,7 @@
 
 ## About SystemNotification
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification that for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
+SystemNotification lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
 
 The result can look like this, or completely different:
 
@@ -27,7 +27,9 @@ The result can look like this, or completely different:
     <img src="Resources/Demo.gif" width=350 />
 </p>
 
-SystemNotification supports extensive styling and customizations, custom views and can be used on all major Apple platforms.
+SystemNotification notifications can be styled and customized to great extent. You can also use completely custom views.
+
+SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -39,19 +41,7 @@ SystemNotification can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/SystemNotification.git
 ```
 
-or with CocoaPods
-
-```
-pod SystemNotification
-```
-
 If you prefer to not have external dependencies, you can also just copy the source code into your app.
-
-
-
-## Supported Platforms
-
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -119,9 +109,11 @@ The demo app lets you explore the library on iOS and macOS. To try it out, just 
 
 
 
-## Support
+## Support this library
 
-You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support. 
+I manage my various open-source projects in my free time and am really thankful for any help I can get from the community. 
+
+You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support.
 
 
 

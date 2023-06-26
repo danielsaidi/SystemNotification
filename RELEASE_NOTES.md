@@ -5,6 +5,14 @@ Deprecations will most often be removed in the next minor update.
 If you have problem upgrading from a few minor versions back, try upgrading step-wise.
 
 
+## 0.7.2
+
+### ✨ New features
+
+* `SystemNotificationPresenter` is a new convenience protocol.
+
+
+
 ## 0.7.1
 
 This version rolls back the UIKit support deprecation.

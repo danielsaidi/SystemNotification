@@ -52,7 +52,7 @@ public extension SystemNotificationPresenter {
         content: @escaping () -> Content
     ) {
         perform(after: delay) {
-            systemNotification.present(content)
+            systemNotification.present(content: content)
         }
     }
 }

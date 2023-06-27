@@ -5,6 +5,14 @@ Deprecations will most often be removed in the next minor update.
 If you have problem upgrading from a few minor versions back, try upgrading step-wise.
 
 
+## 0.7.3
+
+### ✨ New features
+
+* The `SystemNotificationPresenter` feature was a bad addition and has been deprecated.
+
+
+
 ## 0.7.2
 
 ### ✨ New features

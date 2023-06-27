@@ -100,7 +100,7 @@ public class SystemNotificationContext: ObservableObject {
     public func present<Content: View>(
         configuration: SystemNotificationConfiguration? = nil,
         style: SystemNotificationStyle? = nil,
-        @ViewBuilder _ content: @escaping () -> Content
+        @ViewBuilder content: @escaping () -> Content
     ) {
         present(
             content: content(),

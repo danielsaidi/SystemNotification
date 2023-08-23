@@ -19,7 +19,7 @@
 
 ## About SystemNotification
 
-SystemNotification lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
+SystemNotification can be used to present notifications that mimic the native iOS system notification that for instance are shown when you toggle silent mode on and off, connect your AirPods etc. 
 
 The result can look like this, or completely different:
 
@@ -27,7 +27,7 @@ The result can look like this, or completely different:
     <img src="Resources/Demo.gif" width=350 />
 </p>
 
-SystemNotification notifications can be styled and customized to great extent. You can also use completely custom views.
+System notifications can be styled and customized to great extent. You can also use completely custom views.
 
 SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
@@ -49,26 +49,30 @@ If you prefer to not have external dependencies, you can also just copy the sour
 
 The [online documentation][Documentation] has a [getting started guide][Getting-Started] guide to help you get started with SystemNotification.
 
-SystemNotification supports both state- and context-based notifications. Context-based notifications work similar to `sheet`, `alert` and `fullScreenModal`, but use an observable `SystemNotificationContext` instead of state:
+SystemNotification supports both state- and context-based notifications, where context-based ones give you the most flexibility:
 
 ```swift
-struct MyView: View {
+struct ContentView: View {
 
     @StateObject 
-    private var notification = SystemNotificationContext()
+    private var context = SystemNotificationContext()
 
     var body: some View {
-        List {
-            Button("Show notification", action: showNotification)
-            Button("Show orange notification", action: showCustomNotification)
-        }.systemNotification(notification)
+        NavigationView {
+            List {
+                Button("Show notification", action: showNotification)
+                Button("Show orange notification", action: showCustomNotification)
+            }
+        }
+        .environmentObject(context)
+        .systemNotification(context)
     }
     
     func showNotification() {
         notification.present {
             SystemNotificationMessage(
                 icon: Image(systemName: "􀋚"),
-                title: Text("Silent mode"),
+                title: Text("Silent mode")
                 text: Text("Off"),
                 style: .init(iconColor: .red)
             )
@@ -80,9 +84,10 @@ struct MyView: View {
             configuration: .init(backgroundColor: .orange)
         ) {
             VStack {
-                Text("Custom notification").font(.headline)
+                Text("Custom notification")
+                    .font(.headline)
                 Divider()
-                Text("SystemNotification supports using any views you like as notification messages.")
+                Text("SystemNotification supports using any content views you like.")
             }
             .foregroundColor(.white)
             .padding()
@@ -91,7 +96,7 @@ struct MyView: View {
 }
 ```
 
-The context-based approach lets you use the same context in your entire application, with a single view modifier being applied to a single view hierarchy.
+In the code above, we both apply a system notification, but also passes in the context as an environment object. This lets other views in the view hierarchy use it to present a notifications from the same root view.
 
 For more information, please see the [online documentation][Documentation] and [getting started guide][Getting-Started].
 

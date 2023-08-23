@@ -9,12 +9,13 @@
 import SwiftUI
 
 /**
- This view mimics the content of the native iOS notification
- that is presented when e.g. silent mode is toggled.
+ This view mimics the native iOS system notification content
+ view, which for instance is shown when toggling silent mode
+ on and off.
  
- You can provide this message with an optional icon, a title
- and a text. You can also provide this message with a custom
- ``SystemNotificationMessageStyle`` to define its style.
+ You can provide this message with a custom  `icon`, `title`,
+ `text` and `style`. You can use any custom view as icon, to
+ be able to e.g. animate the view when it's presented.
  */
 public struct SystemNotificationMessage<IconView: View>: View {
     
@@ -63,7 +64,8 @@ public struct SystemNotificationMessage<IconView: View>: View {
     }
 
     /**
-     Create a standard system notification message.
+     Create a standard system notification message that uses
+     an `EmptyView` as its icon.
 
      - Parameters:
        - title: The bold title text, by default `nil`.

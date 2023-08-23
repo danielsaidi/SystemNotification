@@ -38,53 +38,55 @@ You can use both state- and context and message-based notifications and style yo
 
 State-based notifications work just like state-based `sheet`, `alert` and `fullScreenModal` modifiers.
 
-For state-based notifications, just provide the `systemNotification` modifier with an `isActive` binding and the view to present:
+Just apply a `systemNotification` modifier to your view and provide an `isActive` binding and a `content` builder:
 
 ```swift
-struct MyView: View {
+struct ContentView: View {
 
     @State 
     private var isActive = false
 
     var body: some View {
-        List {
-            Button("Show") { isActive = true }
-            Button("Hide") { isActive = false }
-            Button("Toggle") { isActive.toggle() }
-        }.systemNotification(
-            isActive: $isActive,
-            content: notification
-        )
-    }
-
-    func notification() -> some View {
-        SystemNotificationMessage(
-            icon: Image(systemName: "star.fill")
-            text: Text("This is a standard notification message with just the small text and a star icon")
-        )
+        NavigationView {
+            List {
+                Button("Show") { isActive = true }
+                Button("Hide") { isActive = false }
+                Button("Toggle") { isActive.toggle() }
+            }
+        }
+        .systemNotification(isActive: $isActive) {
+            SystemNotificationMessage(
+                icon: Image(systemName: "star.fill")
+                text: Text("This is a standard notification message with just the small text and a star icon")
+            )
+        }
     }
 }
 ```
 
-State-based notifications are easy to use, but the context-based approach is better if you want to present many different notifications with a single modifier.
+State-based notifications are easy to use, but are less flexible than context-based ones.
 
 
 
 ## Context-based notifications
 
-Context-based notifications work similar to `sheet`, `alert` and `fullScreenModal`, but use an observable context instead of state:
+Context-based notifications use an observable context instead of state:
 
 ```swift
-struct MyView: View {
+struct ContentView: View {
 
     @StateObject 
-    var notification = SystemNotificationContext()
+    private var context = SystemNotificationContext()
 
     var body: some View {
-        List {
-            Button("Show notification", action: showNotification)
-            Button("Show orange notification", action: showCustomNotification)
-        }.systemNotification(notification)
+        NavigationView {
+            List {
+                Button("Show notification", action: showNotification)
+                Button("Show orange notification", action: showCustomNotification)
+            }
+        }
+        .environmentObject(context)
+        .systemNotification(context)
     }
     
     func showNotification() {
@@ -103,9 +105,10 @@ struct MyView: View {
             configuration: .init(backgroundColor: .orange)
         ) {
             VStack {
-                Text("Custom notification").font(.headline)
+                Text("Custom notification")
+                    .font(.headline)
                 Divider()
-                Text("SystemNotification supports using any views you like as notification messages.")
+                Text("SystemNotification supports using any content views you like.")
             }
             .foregroundColor(.white)
             .padding()
@@ -114,15 +117,15 @@ struct MyView: View {
 }
 ```
 
-This lets you use the same ``SystemNotificationContext`` in your entire application. You can then pass down the context into the view hierarchy and use it to present a notification from anywhere in your app. 
-
-You can for instance apply a context-based `.systemNotification` modifier to a root `TabView` or `NavigationView`, which ensures that the notification is presented regardless or where in the app the presentation is triggered.
+In the code above, we both apply a system notification, but also passes in the context as an environment object. This lets other views in the view hierarchy use it to present a notifications from the same root view. 
 
 
 
 ## Sheets and full screen covers
 
-Since sheets and full screen cover will cover the presenting view, you must apply a new view modifier to their root views. You can still use the same context everywhere, but will for sheets notice that the underlying screen will also present the notification. 
+Since sheets and full screen cover will cover the presenting view, you must apply a new view modifier to their root views. 
+
+You can still use the same context in your modals, but that will make the screen below a sheet present the same notification. 
 
 Make sure to consider that various platforms behave different when picking a proper notification mechanism. For instance, since iPad sheets are presented as center square modals, a system notification may not be the best solution there.  
 
@@ -136,12 +139,12 @@ You can present any custom view as a system notification, for instance:
 struct MyView: View {
 
     @StateObject 
-    private var notification = SystemNotificationContext()
+    private var context = SystemNotificationContext()
 
     var body: some View {
         List {
             Button("Show notification", action: showNotification)
-        }.systemNotification(notification)
+        }.systemNotification(context)
     }
     
     func showNotification() {
@@ -152,7 +155,7 @@ struct MyView: View {
 }
 ```
 
-However, to mimic the iOS system notification, you can use a ``SystemNotificationMessage`` instead:
+To fully mimic the iOS system notification, you can use a ``SystemNotificationMessage``:
 
 ```swift
 struct MyView: View {
@@ -179,4 +182,4 @@ struct MyView: View {
 }
 ```
 
-The `style` parameter lets you modify the message style, like the colors, spacings etc. of the message view.  To style the surrounding notification shape, you must provide a ``SystemNotificationStyle`` when setting up or presenting the notification.
+The `style` parameter lets you style the message.  To style the notification shape, you must provide a ``SystemNotificationStyle`` when setting up or presenting the notification.

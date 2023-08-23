@@ -1,6 +1,6 @@
 # ``SystemNotification``
 
-SystemNotification lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc.
+SystemNotification can be used to present notifications that mimic the native iOS system notification that for instance are shown when you toggle silent mode on and off, connect your AirPods etc.
 
 
 
@@ -8,7 +8,7 @@ SystemNotification lets you mimic the native iOS system notification, which for 
 
 ![SystemNotification logo](Logo.png)
 
-SystemNotification notifications can be styled and customized to great extent. You can also use completely custom views.
+System notifications can be styled and customized to great extent. You can also use completely custom views.
 
 SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
@@ -57,6 +57,8 @@ SystemNotification is available under the MIT license.
 - <doc:Getting-Started>
 - <doc:Configuration>
 - <doc:Styling>
+
+### Essentials
 
 - ``SystemNotification/SystemNotification``
 - ``SystemNotificationConfiguration``

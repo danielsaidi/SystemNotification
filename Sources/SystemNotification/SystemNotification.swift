@@ -9,20 +9,22 @@
 import SwiftUI
 
 /**
- This view mimics the native iOS system notification that is
- presented when e.g. silent mode is toggled.
+ This view mimics a native iOS system notification which for
+ instance is shown when toggling silent mode on and off.
  
- When you create a notification, you must provide it with an
- `isActive` binding, which controls if it's presented or not.
- You can also provide a `configuration` to customize how the
- notification looks and behaves.
+ The view will render a notification shape that contains the
+ content view that is provided by the `content` view builder.
+ You can provide it with a custom `configuration` and `style`
+ to control its behavior and design.
  
- Although this view can use any view as its content, you can
- use the ``SystemNotificationMessage`` view to mimic the iOS
- notification, which has an `icon`, a `title` and a `text`.
+ The provided `isActive` binding will be set to `false` when
+ a user swipes to dismiss the notification.
  
- Use the `View+SystemNotification` view extensions to attach
- a system notification to a view.
+ You should not use this view directly, but rather apply the
+ `systemNotification` modifier to any view in your app, then
+ use your ``SystemNotificationContext`` to present any views
+ you like, like a ``SystemNotificationMessage`` view that is
+ used to mimic the iOS notification message.
  */
 public struct SystemNotification<Content: View>: View {
 

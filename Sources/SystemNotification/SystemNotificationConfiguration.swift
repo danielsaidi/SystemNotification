@@ -11,6 +11,18 @@ import SwiftUI
 /**
  This configuration can be used to configure the behavior of
  a ``SystemNotification``.
+ 
+ You can easily create new configurations like this:
+ 
+ ```swift
+ extension SystemNotificationConfiguration {
+ 
+    static var custom = Self(animation: .easeInOut)
+ }
+ ```
+
+ The ``standard`` configuration will be used by default when
+ you don't provide a custom configuration.
  */
 public struct SystemNotificationConfiguration {
 
@@ -32,29 +44,25 @@ public struct SystemNotificationConfiguration {
         self.isSwipeToDismissEnabled = isSwipeToDismissEnabled
     }
 
-    /**
-     This is a standard notification configuration.
-
-     You can apply a custom value to this property to affect
-     all system notification within an app.
-     */
-    public static var standard = SystemNotificationConfiguration()
-
-    /**
-     The animation to apply when sliding in the notification.
-     */
+    /// The animation to use when presenting a notification.
     public var animation: Animation
 
-    /**
-     The number of seconds the notification should be presented.
-     */
+    /// The number of seconds a notification should be shown.
     public var duration: TimeInterval
 
-    /**
-     Whether or not a user can swipe to dismiss a notification.
-     */
+    /// Whether or not swiping can to dismiss a notification.
     public var isSwipeToDismissEnabled: Bool
 
     @available(*, deprecated, message: "This is just used to bridge between the configuration and the new style. This will be removed in the next minor update.")
     var style: SystemNotificationStyle = .standard
+}
+
+public extension SystemNotificationConfiguration {
+    
+    /**
+     The standard system notification configuration.
+
+     You can change this value to affect the global default.
+     */
+    static var standard = Self()
 }

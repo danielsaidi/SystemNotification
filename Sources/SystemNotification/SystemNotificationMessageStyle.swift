@@ -9,12 +9,19 @@
 import SwiftUI
 
 /**
- This style can be used to customize the style and feel of a
- ``SystemNotificationMessage`` view.
+ This style can be used with ``SystemNotificationMessage``s.
+ 
+ You can easily create new styles like this:
+ 
+ ```swift
+ extension SystemNotificationMessageStyle {
+ 
+    static var custom = Self(iconColor: .yellow)
+ }
+ ```
 
- You can use the ``standard`` style if you want to apply the
- standard library style and overwrite it with a custom style
- to change the standard style. 
+ The ``standard`` style will be used by default if you don't
+ provide a custom style.
  */
 public struct SystemNotificationMessageStyle {
 
@@ -62,48 +69,30 @@ public struct SystemNotificationMessageStyle {
      */
     public static var standard = SystemNotificationMessageStyle()
     
-    /**
-     The color to apply to the icon.
-     */
+    /// The color to apply to the icon.
     public var iconColor: Color
     
-    /**
-     The font to apply to the icon.
-     */
+    /// The font to apply to the icon.
     public var iconFont: Font
     
-    /**
-     The spacing to apply between the icon and the text.
-     */
+    /// The spacing to apply between the icon and the text.
     public var iconTextSpacing: CGFloat
     
-    /**
-     The padding to add to the content.
-     */
+    /// The padding to add to the content.
     public var padding: CGSize
     
-    /**
-     The color to apply to the text.
-     */
+    /// The color to apply to the text.
     public var textColor: Color
     
-    /**
-     The font to apply to the text.
-     */
+    /// The font to apply to the text.
     public var textFont: Font
     
-    /**
-     The color to apply to the title.
-     */
+    /// The color to apply to the title.
     public var titleColor: Color
     
-    /**
-     The font to apply to the title.
-     */
+    /// The font to apply to the title.
     public var titleFont: Font
     
-    /**
-     The spacing to apply between the title and the text.
-     */
+    /// The spacing to apply between the title and the text.
     public var titleTextSpacing: CGFloat
 }

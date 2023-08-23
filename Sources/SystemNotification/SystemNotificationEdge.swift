@@ -10,7 +10,7 @@ import SwiftUI
 
 /**
  This enum specifies the edges from which a notification can
- be presented.
+ currently be presented.
  */
 public enum SystemNotificationEdge {
     

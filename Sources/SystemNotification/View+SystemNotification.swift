@@ -11,12 +11,13 @@ import SwiftUI
 public extension View {
     
     /**
-     Attach a system notification view to the view.
+     Attach a ``SystemNotification`` to the view.
      
      View-based system notifications give you control over a
-     single system notification. If you want to present many
-     different notifications, consider using a context-based
-     view modifier instead.
+     single notification.
+     
+     After attaching the modifier, you can use the `isActive`
+     binding to present the provided `content`.
      */
     func systemNotification<Content: View>(
         isActive: Binding<Bool>,
@@ -30,7 +31,8 @@ public extension View {
                 isActive: isActive,
                 configuration: configuration,
                 style: style,
-                content: { _ in content() })
+                content: { _ in content() }
+            )
         }
     }
     
@@ -38,9 +40,10 @@ public extension View {
      Attach a system notification context to the view.
      
      Context-based system notifications make it easy to show
-     many different notifications with a single context. You
-     then use this context to control which views to present,
-     which style and configuration to use etc.
+     many different notifications with a single context.
+     
+     After attaching the modifier, you can use the context's
+     present functions to present different notifications.
      */
     func systemNotification(
         _ context: SystemNotificationContext

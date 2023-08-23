@@ -10,21 +10,28 @@ import SwiftUI
 
 /**
  This context can be used to present system notifications in
- easier and more flexible ways.
+ a more flexible way.
  
  To use this class, create a context instance and bind it to
  a view with the context-based `systemNotification` modifier.
- You can now call the context `present` functions to present
- different notifications with different configurations using
- that single modifier, instead of having separate states and
- bindings to manage each notification.
-
- You can either create the context as a `@StateObject` value
- in the root view or as shared state elsewhere, for instance
- to be able to use the state within other services. When you
- use the latter approach, remember to observe this value for
- the view hierarchy to update. You can then for instance use
- `@ObservedObject` or `@EnvironmentObject`.
+ 
+ ```swift
+ struct ContentView: View {
+ 
+    @StateObject
+    var context = SystemNotificationContext()
+ 
+    var body: some View {
+        TabView {
+            ...
+        }.systemNotification(context)
+    }
+ }
+ ```
+ 
+ You can now call the various `present` functions to present
+ notifications using this single modifier, instead of having
+ separate states and bindings for each notification.
  */
 public class SystemNotificationContext: ObservableObject {
 
@@ -61,25 +68,19 @@ public class SystemNotificationContext: ObservableObject {
         )
     }
     
-    /**
-     Dismiss the current notification, if any.
-     */
+    /// Dismiss the current notification, if any.
     public func dismiss() {
         dismiss {}
     }
         
-    /**
-     Dismiss the current notification, if any.
-     */
+    /// Dismiss the current notification, if any.
     public func dismiss(completion: @escaping Action) {
         guard isActive else { return completion() }
         isActive = false
         perform(after: 0.3, action: completion)
     }
     
-    /**
-     Present a system notification.
-     */
+    /// Present a system notification.
     public func present<Content: View>(
         content: Content,
         configuration: SystemNotificationConfiguration? = nil,
@@ -94,9 +95,7 @@ public class SystemNotificationContext: ObservableObject {
         }
     }
     
-    /**
-     Present a system notification.
-     */
+    /// Present a system notification.
     public func present<Content: View>(
         configuration: SystemNotificationConfiguration? = nil,
         style: SystemNotificationStyle? = nil,

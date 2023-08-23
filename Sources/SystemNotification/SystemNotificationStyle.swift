@@ -9,12 +9,19 @@
 import SwiftUI
 
 /**
- This style can be used to customize the style and feel of a
- ``SystemNotification`` view.
+ This style can be used with ``SystemNotification``s.
+ 
+ You can easily create new styles like this:
+ 
+ ```swift
+ extension SystemNotificationStyle {
+ 
+    static var custom = Self(backgroundColor: .red)
+ }
+ ```
 
- You can use the ``standard`` style if you want to apply the
- standard library style and overwrite it with a custom style
- to change the standard style.
+ The ``standard`` style will be used by default if you don't
+ provide a custom style.
  */
 public struct SystemNotificationStyle {
 
@@ -22,12 +29,12 @@ public struct SystemNotificationStyle {
      Create a system notification style.
 
      - Parameters:
-       - backgroundColor: A custom background color to apply to the notification, by default `nil`.
-       - cornerRadius: A custom corner radius to apply to the notification, by default `nil`.
-       - padding: A custom edge padding to apply to the notification, by default `nil`.
-       - edge: The edge from which to slide in the notification, by default `.top`.
+       - backgroundColor: The background color to apply to the notification, by default `nil`.
+       - cornerRadius: The corner radius to apply to the notification, by default `nil`.
+       - padding: The edge padding to apply to the notification, by default `nil`.
+       - edge: The edge from which to present the notification, by default `.top`.
        - shadowColor: The shadow color to apply to the notification, by default `.black.opacity(0.1)`.
-       - shadowOffset: The vertical offset of the notification shadow, by default `5`.
+       - shadowOffset: The shadow offset to apply to the notification, by default `5`.
        - shadowRadius: The shadow radius to apply to the notification, by default `7.5`.
      */
     public init(
@@ -48,17 +55,7 @@ public struct SystemNotificationStyle {
         self.shadowRadius = shadowRadius
     }
 
-    /**
-     This is a standard notification configuration.
-
-     You can apply a custom value to this property to affect
-     all system notification within an app.
-     */
-    public static var standard = SystemNotificationStyle()
-
-    /**
-     The standard background color to apply to notifications.
-     */
+    /// The standard background color.
     @ViewBuilder
     public static func standardBackgroundColor(for colorScheme: ColorScheme) -> some View {
         if colorScheme == .light {
@@ -76,9 +73,7 @@ public struct SystemNotificationStyle {
         }
     }
 
-    /**
-     The standard padding to apply to system notifications.
-     */
+    /// The standard content padding.
     public static var standardPadding: EdgeInsets {
         #if os(iOS)
         EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
@@ -87,38 +82,34 @@ public struct SystemNotificationStyle {
         #endif
     }
 
-    /**
-     A custom background color to apply to the notification.
-     */
+    /// The background color to apply to the notification.
     public var backgroundColor: Color?
 
-    /**
-     A custom corner radius to apply to the notification.
-     */
+    /// The corner radius to apply to the notification.
     public var cornerRadius: CGFloat?
 
-    /**
-     The number of seconds the notification should be presented.
-     */
+    /// The edge from which to present the notification.
     public var edge: SystemNotificationEdge
 
-    /**
-     A custom edge padding to apply to the notification.
-     */
+    /// The edge padding to apply to the notification.
     public var padding: EdgeInsets
 
-    /**
-     The shadow color to apply to the notification.
-     */
+    /// The shadow color to apply to the notification.
     public var shadowColor: Color
 
-    /**
-     The vertical offset of the notification shadow.
-     */
+    /// The shadow offset to apply to the notification.
     public var shadowOffset: CGFloat
 
-    /**
-     The shadow radius to apply to the notification.
-     */
+    /// The shadow radius to apply to the notification.
     public var shadowRadius: CGFloat
+}
+
+public extension SystemNotificationStyle {
+
+    /**
+     The standard system notification style.
+
+     You can change this value to affect the global default.
+     */
+    static var standard = Self()
 }

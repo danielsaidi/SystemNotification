@@ -54,8 +54,8 @@ SystemNotification supports both state- and context-based notifications, where c
 ```swift
 struct ContentView: View {
 
-    @StateObject 
-    private var context = SystemNotificationContext()
+    @StateObject
+    private var notificationContext = SystemNotificationContext()
 
     var body: some View {
         NavigationView {
@@ -64,24 +64,24 @@ struct ContentView: View {
                 Button("Show orange notification", action: showCustomNotification)
             }
         }
-        .environmentObject(context)
-        .systemNotification(context)
+        .environmentObject(notificationContext)
+        .systemNotification(notificationContext)
     }
     
     func showNotification() {
-        notification.present {
+        notificationContext.present {
             SystemNotificationMessage(
                 icon: Image(systemName: "􀋚"),
-                title: Text("Silent mode")
-                text: Text("Off"),
+                title: "Silent mode",
+                text: "Off",
                 style: .init(iconColor: .red)
             )
         }
     }
     
     func showCustomNotification() {
-        notification.present(
-            configuration: .init(backgroundColor: .orange)
+        notificationContext.present(
+            style: SystemNotificationStyle(backgroundColor: .orange)
         ) {
             VStack {
                 Text("Custom notification")

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src ="Resources/Logo_GitHub.png" alt="SystemNotification Logo" title="SystemNotification" />
+    <img src ="Resources/Logo_GitHub_New.png" alt="SystemNotification Logo" title="SystemNotification" />
 </p>
 
 <p align="center">

@@ -1,8 +1,21 @@
 # Release notes
 
-Deprecations will most often be removed in the next minor update.
+SystemNotification will use semver after 1.0. 
 
-If you have problem upgrading from a few minor versions back, try upgrading step-wise.
+Until then, breaking changes can happen in any version, and deprecated features may be removed in any minor version bump.
+
+
+
+## 0.8
+
+### ✨ New features
+
+* SystemNotification now supports visionOS.
+
+### 💥 Breaking changes
+
+* SystemNotification now requires Swift 5.9.
+
 
 
 ## 0.7.3

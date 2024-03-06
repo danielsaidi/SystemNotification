@@ -70,7 +70,7 @@ private extension SilentModeBell {
     }
 }
 
-struct SilentModeBell_Previews: PreviewProvider {
+#Preview {
 
     struct Preview: View {
 
@@ -89,7 +89,5 @@ struct SilentModeBell_Previews: PreviewProvider {
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }

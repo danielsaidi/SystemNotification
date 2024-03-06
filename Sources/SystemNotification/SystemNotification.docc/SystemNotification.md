@@ -36,7 +36,7 @@ https://github.com/danielsaidi/SystemNotification.git
 
 ## Repository
 
-For more information, source code, etc., visit the [project repository][https://github.com/danielsaidi/SystemNotification].
+For more information, source code, etc., visit the [project repository](https://github.com/danielsaidi/SystemNotification).
 
 
 

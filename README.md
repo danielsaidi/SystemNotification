@@ -67,7 +67,7 @@ The [online documentation][Documentation] has more information, articles, code e
 
 ## Demo Application
 
-The demo app lets you explore the library on iOS and macOS. To try it out, just open and run the `Demo` project.
+The demo app lets you explore the library with iOS, macOS, and visionOS. To try it out, just open and run the `Demo` project.
 
 
 

@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.9
 
 import PackageDescription
 
@@ -8,20 +8,24 @@ let package = Package(
         .iOS(.v14),
         .macOS(.v11),
         .tvOS(.v14),
-        .watchOS(.v7)
+        .watchOS(.v7),
+        .visionOS(.v1)
     ],
     products: [
         .library(
             name: "SystemNotification",
-            targets: ["SystemNotification"])
+            targets: ["SystemNotification"]
+        )
     ],
     dependencies: [],
     targets: [
         .target(
             name: "SystemNotification",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "SystemNotificationTests",
-            dependencies: ["SystemNotification"])
+            dependencies: ["SystemNotification"]
+        )
     ]
 )

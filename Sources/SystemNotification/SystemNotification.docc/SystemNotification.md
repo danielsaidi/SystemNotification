@@ -22,31 +22,27 @@ SystemNotification can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/SystemNotification.git
 ```
 
-If you prefer to not have external dependencies, you can also just copy the source code into your app.
-
 
 
 ## Getting started
 
-The <doc:Getting-Started> article has a guide to help you get started with SystemNotification.
+@Links(visualStyle: detailedGrid) {
+    
+    - <doc:Getting-Started>
+    - <doc:Demo-Article>
+}
 
 
 
 ## Repository
 
-For more information, source code, and to report issues, sponsor the project etc., visit the [project repository](https://github.com/danielsaidi/SystemNotification).
-
-
-
-## About this documentation
-
-The online documentation is currently iOS only. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+For more information, source code, etc., visit the [project repository][https://github.com/danielsaidi/SystemNotification].
 
 
 
 ## License
 
-SystemNotification is available under the MIT license.
+ApiKit is available under the MIT license.
 
 
 

@@ -2,13 +2,23 @@
 
 This article describes how you can configure a system notification.
 
+@Metadata {
+    
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+    
+    @PageColor(blue)
+}
 
 
 ## Overview
 
 A system notification can be configured in a couple of ways. 
 
-For instance, you can provide a default ``SystemNotificationConfiguration`` to the view modifier:
+For instance, you can provide a ``SystemNotificationConfiguration`` to the view modifier:
 
 ```swift
 struct MyView: View {
@@ -19,7 +29,8 @@ struct MyView: View {
     var body: some View {
         List {
             ...
-        }.systemNotification(
+        }
+        .systemNotification(
             notification,
             configuration: .init(duration: 5)
         )
@@ -33,9 +44,7 @@ This will be used as the default configuration and applied to all notifications.
 
 ## How to change the default configuration
 
-If you don't provide a custom configuration, the ``SystemNotificationConfiguration/standard`` configuration will be used.
-
-You can change this value to a custom one to change the global default.
+If you don't provide a custom configuration, the ``SystemNotificationConfiguration/standard`` configuration will be used. You can change this value to a custom one to change the global default.
 
 
 

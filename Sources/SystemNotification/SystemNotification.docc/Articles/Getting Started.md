@@ -2,21 +2,22 @@
 
 This article describes how to get started with the SystemNotification library.
 
-SystemNotification is a `SwiftUI` library that lets you mimic the native iOS system notification, which for instance is presented when you toggle silent mode on and off, connect your AirPods etc. 
+@Metadata {
+    
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+    
+    @PageColor(blue)
+}
 
-These notifications have a standard style that aims to mimic the iOS system notification look and feel, but can be customized to fit your specific needs.
 
 
+## Overview
 
-## How does it work?
-
-You must first add SystemNotification to your project, preferably using the Swift Package Manager:
-
-```
-https://github.com/danielsaidi/SystemNotification.git
-```
-
-You can then add a system notification to a view hierarchy just as you add `sheet`, `alert` and `fullScreenModal`:
+After adding SystemNotification to your project, you can add a system notification to a view hierarchy just as you add a sheet, alert and full screen modal, using a `systemNotification` view modifier:
 
 ```swift
 import SystemNotification
@@ -38,7 +39,7 @@ You can use both state- and context and message-based notifications and style yo
 
 State-based notifications work just like state-based `sheet`, `alert` and `fullScreenModal` modifiers.
 
-Just apply a `systemNotification` modifier to your view and provide an `isActive` binding and a `content` builder:
+Just apply a `systemNotification` modifier to your view and provide an `isActive` binding and a view builder:
 
 ```swift
 struct ContentView: View {
@@ -64,7 +65,7 @@ struct ContentView: View {
 }
 ```
 
-State-based notifications are easy to use, but are less flexible than context-based ones.
+State-based notifications are easy to use, but less flexible than context-based ones.
 
 
 
@@ -76,7 +77,7 @@ Context-based notifications use an observable context instead of state:
 struct ContentView: View {
 
     @StateObject 
-    private var context = SystemNotificationContext()
+    private var notification = SystemNotificationContext()
 
     var body: some View {
         NavigationView {
@@ -85,8 +86,8 @@ struct ContentView: View {
                 Button("Show orange notification", action: showCustomNotification)
             }
         }
-        .environmentObject(context)
-        .systemNotification(context)
+        .environmentObject(notification)
+        .systemNotification(notification)
     }
     
     func showNotification() {
@@ -117,17 +118,7 @@ struct ContentView: View {
 }
 ```
 
-In the code above, we both apply a system notification, but also passes in the context as an environment object. This lets other views in the view hierarchy use it to present a notifications from the same root view. 
-
-
-
-## Sheets and full screen covers
-
-Since sheets and full screen cover will cover the presenting view, you must apply a new view modifier to their root views. 
-
-You can still use the same context in your modals, but that will make the screen below a sheet present the same notification. 
-
-Make sure to consider that various platforms behave different when picking a proper notification mechanism. For instance, since iPad sheets are presented as center square modals, a system notification may not be the best solution there.  
+In the code above, we apply a notification context to the view, and also pass it as an environment object to let other views use it as well. 
 
 
 
@@ -139,12 +130,13 @@ You can present any custom view as a system notification, for instance:
 struct MyView: View {
 
     @StateObject 
-    private var context = SystemNotificationContext()
+    private var notification = SystemNotificationContext()
 
     var body: some View {
         List {
             Button("Show notification", action: showNotification)
-        }.systemNotification(context)
+        }
+        .systemNotification(notification)
     }
     
     func showNotification() {
@@ -155,7 +147,7 @@ struct MyView: View {
 }
 ```
 
-To fully mimic the iOS system notification, you can use a ``SystemNotificationMessage``:
+You can use a ``SystemNotificationMessage`` to easily mimic a iOS system notification:
 
 ```swift
 struct MyView: View {
@@ -166,7 +158,8 @@ struct MyView: View {
     var body: some View {
         List {
             Button("Show notification", action: showNotification)
-        }.systemNotification(notification)
+        }
+        .systemNotification(notification)
     }
     
     func showNotification() {
@@ -183,3 +176,13 @@ struct MyView: View {
 ```
 
 The `style` parameter lets you style the message.  To style the notification shape, you must provide a ``SystemNotificationStyle`` when setting up or presenting the notification.
+
+
+
+## Further Reading
+
+@Links(visualStyle: detailedGrid) {
+    
+    - <doc:Configuration>
+    - <doc:Styling>
+}

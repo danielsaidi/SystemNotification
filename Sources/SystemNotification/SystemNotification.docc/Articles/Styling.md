@@ -2,6 +2,16 @@
 
 This article describes how you can style a system notification.
 
+@Metadata {
+    
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+    
+    @PageColor(blue)
+}
 
 
 ## Overview

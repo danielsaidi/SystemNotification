@@ -1,25 +1,20 @@
 <p align="center">
-    <img src ="Resources/Logo_GitHub.png" alt="SystemNotification Logo" title="SystemNotification" width=600 />
+    <img src ="Resources/Logo_GitHub.png" alt="SystemNotification Logo" title="SystemNotification" />
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/danielsaidi/SystemNotification?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/Swift-5.6-orange.svg" alt="Swift 5.6" />
-    <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
+    <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" title="Swift 5.9" />
     <img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" />
-    <a href="https://twitter.com/danielsaidi">
-        <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fdanielsaidi" alt="Twitter: @danielsaidi" title="Twitter: @danielsaidi" />
-    </a>
-    <a href="https://mastodon.social/@danielsaidi">
-        <img src="https://img.shields.io/mastodon/follow/000253346?label=mastodon&style=social" alt="Mastodon: @danielsaidi@mastodon.social" title="Mastodon: @danielsaidi@mastodon.social" />
-    </a>
+    <a href="https://twitter.com/danielsaidi"><img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fdanielsaidi" alt="Twitter: @danielsaidi" title="Twitter: @danielsaidi" /></a>
+    <a href="https://mastodon.social/@danielsaidi"><img src="https://img.shields.io/mastodon/follow/000253346?label=mastodon&style=social" alt="Mastodon: @danielsaidi@mastodon.social" title="Mastodon: @danielsaidi@mastodon.social" /></a>
 </p>
 
 
 
 ## About SystemNotification
 
-SystemNotification can be used to present notifications that mimic the native iOS system notification that for instance are shown when you toggle silent mode on and off, connect your AirPods etc. 
+SystemNotification is a Swift SDK that helps you mimic the native iOS system notification in SwiftUI. 
 
 The result can look like this, or completely different:
 
@@ -27,9 +22,7 @@ The result can look like this, or completely different:
     <img src="Resources/Demo.gif" width=350 />
 </p>
 
-System notifications can be styled and customized to great extent. You can also use completely custom views.
-
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
+This system notification can be styled and customized to great extent. You can also use completely custom views.
 
 
 
@@ -41,70 +34,33 @@ SystemNotification can be installed with the Swift Package Manager:
 https://github.com/danielsaidi/SystemNotification.git
 ```
 
-If you prefer to not have external dependencies, you can also just copy the source code into your app.
-
 
 
 ## Getting started
 
-The [online documentation][Documentation] has a [getting started guide][Getting-Started] guide to help you get started with SystemNotification.
-
-SystemNotification supports both state- and context-based notifications, where context-based ones give you the most flexibility:
+After adding SystemNotification to your project, you can add a system notification to a view hierarchy just as you add `sheet`, `alert` and `fullScreenModal`:
 
 ```swift
-struct ContentView: View {
+import SystemNotification
 
-    @StateObject
-    private var notificationContext = SystemNotificationContext()
+struct MyView: View {
 
     var body: some View {
-        NavigationView {
-            List {
-                Button("Show notification", action: showNotification)
-                Button("Show orange notification", action: showCustomNotification)
-            }
-        }
-        .environmentObject(notificationContext)
-        .systemNotification(notificationContext)
-    }
-    
-    func showNotification() {
-        notificationContext.present {
-            SystemNotificationMessage(
-                icon: Image(systemName: "􀋚"),
-                title: "Silent mode",
-                text: "Off",
-                style: .init(iconColor: .red)
-            )
-        }
-    }
-    
-    func showCustomNotification() {
-        notificationContext.present(
-            style: SystemNotificationStyle(backgroundColor: .orange)
-        ) {
-            VStack {
-                Text("Custom notification")
-                    .font(.headline)
-                Divider()
-                Text("SystemNotification supports using any content views you like.")
-            }
-            .foregroundColor(.white)
-            .padding()
-        }
+        Text("Hello, world")
+            .systemNotification(...)
     }
 }
 ```
 
-In the code above, we both apply a system notification, but also passes in the context as an environment object. This lets other views in the view hierarchy use it to present a notifications from the same root view.
+You can use both state- and context and message-based notifications and style your notifications to great extent.
 
-For more information, please see the [online documentation][Documentation] and [getting started guide][Getting-Started].
+For more information, please see the [getting started guide][Getting-Started].
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library.
+The [online documentation][Documentation] has more information, articles, code examples, etc.
 
 
 
@@ -114,11 +70,11 @@ The demo app lets you explore the library on iOS and macOS. To try it out, just 
 
 
 
-## Support this library
+## Support my work 
 
-I manage my various open-source projects in my free time and am really thankful for any help I can get from the community. 
+You can [sponsor me][Sponsors] on GitHub Sponsors or [reach out][Email] for paid support, to help support my [open-source projects][OpenSource].
 
-You can sponsor this project on [GitHub Sponsors][Sponsors] or get in touch for paid support.
+Your support makes it possible for me to put more work into these projects and make them the best they can be.
 
 
 
@@ -141,10 +97,12 @@ SystemNotification is available under the MIT license. See the [LICENSE][License
 
 [Email]: mailto:daniel.saidi@gmail.com
 [Website]: https://www.danielsaidi.com
+[GitHub]: https://www.github.com/danielsaidi
 [Twitter]: https://www.twitter.com/danielsaidi
 [Mastodon]: https://mastodon.social/@danielsaidi
 [Sponsors]: https://github.com/sponsors/danielsaidi
+[OpenSource]: https://www.danielsaidi.com/opensource
 
 [Documentation]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/
 [Getting-Started]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/getting-started
-[License]: https://github.com/danielsaidi/DeckKit/blob/master/LICENSE
+[License]: https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE

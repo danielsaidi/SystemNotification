@@ -3,7 +3,7 @@
 //  SystemNotification
 //
 //  Created by Daniel Saidi on 2021-06-01.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -71,9 +71,13 @@ public struct SystemNotification<Content: View>: View {
                 color: style.shadowColor,
                 radius: style.shadowRadius,
                 y: style.shadowOffset)
+            #if os(visionOS)
+            .animation(.spring(), value: isActive)
+            #else
             .animation(.spring())
+            #endif
             .offset(x: 0, y: verticalOffset)
-            #if os(iOS) || os(macOS) || os(watchOS)
+            #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
             .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
             #endif
             .padding(style.padding)
@@ -109,7 +113,7 @@ private extension SystemNotification {
         }
     }
     
-    #if os(iOS) || os(macOS) || os(watchOS)
+    #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
     var swipeGesture: some Gesture {
         DragGesture(minimumDistance: 20, coordinateSpace: .global)
             .onEnded { value in

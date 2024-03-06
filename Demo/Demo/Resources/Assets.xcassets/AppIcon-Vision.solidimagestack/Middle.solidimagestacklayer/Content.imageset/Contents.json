@@ -1,0 +1,13 @@
+{
+  "images" : [
+    {
+      "filename" : "Icon-visionOS-Middle.png",
+      "idiom" : "vision",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

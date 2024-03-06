@@ -17,7 +17,7 @@ This article describes how to try the SystemNotification demo app.
 
 SystemNotification has a multi-platform demo app that show how to use the library on multiple platforms.
 
-The demo app can be explored from the [GitHub repository][GitHub]. It's a SwiftUI app that runs on both macOS, iOS, and iPadOS.
+The demo app can be explored from the [GitHub repository][GitHub]. It's a SwiftUI app that runs on macOS, iOS & iPadOS.
 
 
 

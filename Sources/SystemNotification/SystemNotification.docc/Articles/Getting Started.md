@@ -1,6 +1,6 @@
 # Getting Started
 
-This article describes how to get started with the SystemNotification library.
+This article describes how to get started with SystemNotification.
 
 @Metadata {
     

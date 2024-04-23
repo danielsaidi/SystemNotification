@@ -16,20 +16,11 @@ public class SystemNotificationContext: ObservableObject {
 
     public typealias Action = () -> Void
 
-
-    @Published
-    @available(*, deprecated, message: "Use the new view modifiers instead. This is no longer used!")
-    public var configuration: SystemNotificationConfiguration? = nil
-
     @Published
     public var content = AnyView(EmptyView())
 
     @Published
     public var isActive = false
-
-    @Published
-    @available(*, deprecated, message: "Use the new view modifiers instead. This is no longer used!")
-    public var style = SystemNotificationStyle.standard
 
 
     public var isActiveBinding: Binding<Bool> {
@@ -54,7 +45,7 @@ public class SystemNotificationContext: ObservableObject {
     
     /// Present a system notification.
     public func present<Content: View>(
-        content: Content
+        _ content: Content
     ) {
         dismiss {
             self.presentAfterDismiss(content)
@@ -65,7 +56,7 @@ public class SystemNotificationContext: ObservableObject {
     public func present<Content: View>(
         @ViewBuilder content: @escaping () -> Content
     ) {
-        present(content: content())
+        present(content())
     }
 }
 

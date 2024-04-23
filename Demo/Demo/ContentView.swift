@@ -9,83 +9,102 @@
 import SwiftUI
 import SystemNotification
 
-/**
- This is the main demo app view, which is reused across four
- demo app tabs on iOS.
-
- The ``DemoApp`` struct creates a `SystemNotificationContext`
- that it injects as an environment object and applies to the
- view hierarchy, using a `systemNotification` modifier. This
- context can be used to present an app-wide notification. We
- also use a state-based `systemNotification` in this view to
- present nofitications based on `isNotificationActive`.
-
- Note that the context-based approach requires an additional
- setup for each modal that you present. In the code below, a
- `systemNotification` modifier is added to each modal. While
- it works ok, a sheet will reveal any underlying, additional
- notifications, which may look a bit strange. Future work :)
- */
+/// This is main screen is reused across all four tabs.
+///
+/// The ``DemoApp`` has a shared ``SystemNotificationContext``
+/// that it applies to the main app view. This makes the app
+/// able to show notifications above the tab view, so that a
+/// notification stays when switching tabs.
+///
+/// Since notification styles and configurations are applied
+/// with view modifiers, we pass in the style if you want to
+/// change it. But remember that you then have to set it for
+/// every notification, since it persists the last value. In
+/// a real-world app, you should probably use separate state
+/// and modifiers for different types of notifications.
+///
+/// > Important: Note how this view adds .systemNotification
+/// view modifiers to the sheet and full screen modals. This
+/// is needed, since a sheet and full screen modal creates a
+/// new view hierarchy.
 struct ContentView: View {
 
-    init(isModal: Bool = false) {
+    init(
+        style: Binding<SystemNotificationStyle>,
+        isModal: Bool = false
+    ) {
+        self._style = style
         self.isModal = isModal
     }
 
     private let isModal: Bool
-
-    @State
-    private var isCoverActive = false
-
-    @State
-    private var isNotificationActive = false
-
-    @State
-    private var isSilentModeOn = false
-
-    @State
-    private var isSheetActive = false
+    
+    @Binding
+    var style: SystemNotificationStyle
+    
+    @Environment(\.dismiss) 
+    var dismiss
 
     @EnvironmentObject
-    private var context: SystemNotificationContext
+    var notification: SystemNotificationContext
 
-    @Environment(\.presentationMode) private var presentationMode
+    @State
+    var isCoverActive = false
+    
+    @State
+    var isSilentModeOn = false
+
+    @State
+    var isSheetActive = false
+    
+    @StateObject
+    var toast = SystemNotificationContext()
 
     var body: some View {
         List {
-            Section(header: Text("Context-based notifications")) {
+            Section("Section.Notifications") {
                 Toggle(isOn: $isSilentModeOn) {
-                    label(.silentModeOff, "Silent mode")
+                    label(.silentModeOff, "Toggle.SilentMode")
                 }
-                listItem(.globe, "Show localized notification", presentLocalized)
-                listItem(.warning, "Show orange warning", presentWarning)
-                listItem(.error, "Show red error from bottom", presentError)
-                listItem(.flag, "Show custom view", presentCustomView)
+//                listItem(.globe, "Show localized notification", presentLocalized)
+                listItem(.warning, "Menu.Warning", presentWarning)
+                listItem(.warning, "Menu.LocalizedMessage", presentLocalizedMessage)
+                listItem(.warning, "Menu.CustomView", presentCustomView)
+                listItem(.warning, "Menu.BottomToast", presentBottomToast)
+//                listItem(.error, "Show red error from bottom", presentError)
+//                listItem(.flag, "Show custom view", presentCustomView)
             }
-            Section(header: Text("Non-dismissing notifications")) {
-                listItem(.static, "Show non-dismissing notification", presentStaticNotification)
-            }
-            Section(header: Text("Modal screens")) {
-                listItem(.sheet, "Show sheet", presentModalSheet)
-                listItem(.cover, "Show full screen cover", presentModalCover)
+//            Section(header: Text("Non-dismissing notifications")) {
+//                listItem(.static, "Show non-dismissing notification", presentStaticNotification)
+//            }
+            Section("Section.Modals") {
+                listItem(.sheet, "Menu.Sheet", presentModalSheet)
+                listItem(.cover, "Menu.Cover", presentModalCover)
                 if isModal {
-                    listItem(.dismiss, "Dismiss", dismiss)
+                    listItem(.dismiss, "Dismiss", dismiss.callAsFunction)
                 }
             }
         }
         .buttonStyle(.plain)
         .navigationTitle("SystemNotification")
         .sheet(isPresented: $isSheetActive) {
-            ContentView(isModal: true).systemNotification(context)
+            ContentView(style: $style, isModal: true)
+                .systemNotification(notification)
+                .systemNotificationStyle(style)
         }
         #if os(iOS)
         .fullScreenCover(isPresented: $isCoverActive) {
-            ContentView(isModal: true).systemNotification(context)
+            ContentView(style: $style, isModal: true)
+                .systemNotification(notification)
+                .systemNotificationStyle(style)
         }
         #endif
-        .systemNotification(isActive: $isNotificationActive) {
-            DemoNotification.static
-        }
+        .systemNotification(toast)
+        .systemNotificationConfiguration(
+            .init(animation: .bouncy, edge: .bottom)
+        )
+        .systemNotificationStyle(.init(backgroundColor: .black))
+        
         .onChange(of: isSilentModeOn) {
             if $0 {
                 presentSilentModeOn()
@@ -98,7 +117,7 @@ struct ContentView: View {
 
 private extension ContentView {
 
-    func label(_ icon: Image, _ text: String) -> some View {
+    func label(_ icon: Image, _ text: LocalizedStringKey) -> some View {
         Label {
             Text(text)
         } icon: {
@@ -106,7 +125,7 @@ private extension ContentView {
         }
     }
 
-    func listItem(_ icon: Image, _ text: String, _ action: @escaping () -> Void) -> some View {
+    func listItem(_ icon: Image, _ text: LocalizedStringKey, _ action: @escaping () -> Void) -> some View {
         Button(action: action) {
             label(icon, text)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -116,28 +135,55 @@ private extension ContentView {
 }
 
 private extension ContentView {
-
-    func dismiss() {
-        presentationMode.wrappedValue.dismiss()
+    
+    var flagView: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Color.blue
+                    .frame(width: 45)
+                Color.yellow
+                    .frame(width: 15)
+                Color.blue
+            }
+            .frame(height: 30)
+            
+            Color.yellow
+                .frame(height: 15)
+            
+            HStack(spacing: 0) {
+                Color.blue
+                    .frame(width: 45)
+                Color.yellow
+                    .frame(width: 15)
+                Color.blue
+            }
+            .frame(height: 30)
+        }
     }
-
+    
+    func presentBottomToast() {
+        toast.present {
+            SystemNotificationMessage(
+                title: "Message.Toast.Title",
+                text: "Message.Toast.Text"
+            )
+            .environment(\.colorScheme, .dark)
+        }
+    }
+    
     func presentCustomView() {
-        context.present(
-            content: DemoNotification.custom,
-            style: DemoNotification.customStyle
+        notification.present(
+            flagView
         )
     }
-
-    func presentError() {
-        context.present(
-            content: DemoNotification.error,
-            style: DemoNotification.errorStyle
-        )
-    }
-
-    func presentLocalized() {
-        context.present(
-            content: DemoNotification.localized
+    
+    func presentLocalizedMessage() {
+        notification.present(
+            SystemNotificationMessage(
+                icon: Text("🇸🇪"),
+                title: "Message.Localized.Title",
+                text: "Message.Localized.Text"
+            )
         )
     }
 
@@ -150,31 +196,49 @@ private extension ContentView {
     }
 
     func presentSilentModeOff() {
-        context.present(
-            content: DemoNotification.silentModeOff
-        )
+        notification.present {
+            SystemNotificationMessage(
+                icon: SilentModeBell(isSilentModeOn: false),
+                text: "Silent Mode On"
+            )
+        }
     }
 
     func presentSilentModeOn() {
-        context.present(
-            content: DemoNotification.silentModeOn
-        )
-    }
-
-    func presentStaticNotification() {
-        isNotificationActive = true
+        notification.present {
+            SystemNotificationMessage(
+                icon: SilentModeBell(isSilentModeOn: true),
+                text: "Silent Mode On"
+            )
+        }
     }
 
     func presentWarning() {
-        context.present(
-            content: DemoNotification.warning,
-            style: DemoNotification.warningStyle
+        notification.present(
+            Text("Warning!")
+                .padding(5)
+                .padding(.horizontal)
+                .foregroundStyle(.white)
+                .background(Color.orange)
         )
     }
 }
 
-
 #Preview {
     
-    ContentView()
+    struct Preview: View {
+        
+        @StateObject
+        var notification = SystemNotificationContext()
+        
+        @State
+        var style = SystemNotificationStyle.standard
+        
+        var body: some View {
+            ContentView(style: $style)
+                .systemNotification(notification)
+        }
+    }
+    
+    return Preview()
 }

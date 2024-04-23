@@ -6,14 +6,13 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
-## 0.9
+## 1.0
 
 This version bumps the deployment targets and moves styling and configuration to view modifiers.
 
 ### 🚨 Important Information
 
-* The context configuration and style are no longer used!
-* The notification edge has been moved back to configuration.
+* All previous style- and config-based initializers have been removed.
 
 ### 📱 New Deployment Targets
 
@@ -35,10 +34,6 @@ This version bumps the deployment targets and moves styling and configuration to
 ### 🐛 Bug fixes
 
 * `SystemNotification` now correctly applies the configuration animation.
-
-### 🗑 Deprecations
-
-* The `SystemNotification` initializer that takes a style and a configuration has been deprecated. 
 
 
 

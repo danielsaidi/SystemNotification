@@ -1,0 +1,164 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "🇸🇪" : {
+
+    },
+    "Ding!" : {
+
+    },
+    "Dismiss" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dismiss"
+          }
+        }
+      }
+    },
+    "Menu.BottomToast" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a bottom toast"
+          }
+        }
+      }
+    },
+    "Menu.Cover" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a full screen cover"
+          }
+        }
+      }
+    },
+    "Menu.CustomView" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a custom view"
+          }
+        }
+      }
+    },
+    "Menu.LocalizedMessage" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a localized message"
+          }
+        }
+      }
+    },
+    "Menu.Sheet" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a sheet"
+          }
+        }
+      }
+    },
+    "Menu.Warning" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present an orange warning"
+          }
+        }
+      }
+    },
+    "Message.Localized.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This notification is localized"
+          }
+        }
+      }
+    },
+    "Message.Localized.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Localization Support!"
+          }
+        }
+      }
+    },
+    "Message.Toast.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This toast is presented from the bottom because of the custom system notification configuration."
+          }
+        }
+      }
+    },
+    "Message.Toast.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toastie!"
+          }
+        }
+      }
+    },
+    "Section.Modals" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modals"
+          }
+        }
+      }
+    },
+    "Section.Notifications" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        }
+      }
+    },
+    "Silent Mode On" : {
+
+    },
+    "SystemNotification" : {
+
+    },
+    "Tab %lld" : {
+
+    },
+    "Toggle.SilentMode" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Silent Mode"
+          }
+        }
+      }
+    },
+    "Warning!" : {
+
+    }
+  },
+  "version" : "1.0"
+}

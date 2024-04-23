@@ -23,12 +23,12 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - text: The plain message text.
     public init(
         icon: IconView,
-        title: String? = nil,
-        text: String
+        title: LocalizedStringKey? = nil,
+        text: LocalizedStringKey
     ) {
         self.icon = icon
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
+        self.title = title
+        self.text = text
         self.initStyle = nil
     }
 
@@ -40,12 +40,12 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - text: The plain message text.
     public init(
         icon: Image,
-        title: String? = nil,
-        text: String
+        title: LocalizedStringKey? = nil,
+        text: LocalizedStringKey
     ) where IconView == Image {
         self.icon = icon
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
+        self.title = title
+        self.text = text
         self.initStyle = nil
     }
 
@@ -55,52 +55,13 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
     public init(
-        title: String? = nil,
-        text: String
+        title: LocalizedStringKey? = nil,
+        text: LocalizedStringKey
     ) where IconView == EmptyView {
         self.icon = EmptyView()
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
+        self.title = title
+        self.text = text
         self.initStyle = nil
-    }
-    
-    
-    @available(*, deprecated, message: "Apply the style with the new view modifier instead.")
-    public init(
-        icon: IconView,
-        title: String? = nil,
-        text: String,
-        style: SystemNotificationMessageStyle = .standard
-    ) {
-        self.icon = icon
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
-        self.initStyle = style
-    }
-
-    @available(*, deprecated, message: "Apply the style with the new view modifier instead.")
-    public init(
-        icon: Image,
-        title: String? = nil,
-        text: String,
-        style: SystemNotificationMessageStyle = .standard
-    ) where IconView == Image {
-        self.icon = icon
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
-        self.initStyle = style
-    }
-
-    @available(*, deprecated, message: "Apply the style with the new view modifier instead.")
-    public init(
-        title: String? = nil,
-        text: String,
-        style: SystemNotificationMessageStyle = .standard
-    ) where IconView == EmptyView {
-        self.icon = EmptyView()
-        self.title = Self.title(for: title)
-        self.text = LocalizedStringKey(text)
-        self.initStyle = style
     }
     
     let icon: IconView
@@ -114,6 +75,7 @@ public struct SystemNotificationMessage<IconView: View>: View {
     public var body: some View {
         HStack(spacing: style.iconTextSpacing) {
             iconView
+                .id(UUID())
             textContent
             iconView.opacity(0.001)
         }
@@ -131,14 +93,6 @@ private extension SystemNotificationMessage {
 
 private extension SystemNotificationMessage {
 
-    static func title(for title: String?) -> LocalizedStringKey? {
-        if let title = title {
-            return LocalizedStringKey(title)
-        } else {
-            return nil
-        }
-    }
-    
     var textContent: some View {
         VStack(spacing: style.titleTextSpacing) {
             if let title = title {

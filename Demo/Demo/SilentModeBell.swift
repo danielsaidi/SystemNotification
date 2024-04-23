@@ -83,6 +83,7 @@ private extension SilentModeBell {
                     SilentModeBell(isSilentModeOn: true)
                     SilentModeBell(isSilentModeOn: false)
                 }
+                
                 Button("Ding!") { hasBells.toggle() }
             }
             .font(.largeTitle)

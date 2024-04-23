@@ -75,6 +75,20 @@ public extension View {
     }
 }
 
+extension View {
+
+    @ViewBuilder
+    func systemNotificationConfiguration(
+        _ configuration: SystemNotificationConfiguration?
+    ) -> some View {
+        if let configuration {
+            self.environment(\.systemNotificationConfiguration, configuration)
+        } else {
+            self
+        }
+    }
+}
+
 private extension SystemNotificationConfiguration {
 
     struct Key: EnvironmentKey {

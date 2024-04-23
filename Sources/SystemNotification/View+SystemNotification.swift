@@ -30,22 +30,6 @@ public extension View {
         }
     }
     
-    @available(*, deprecated, message: "Use the new view modifiers to apply style and configuration. These have no effect anymore!")
-    func systemNotification<Content: View>(
-        isActive: Binding<Bool>,
-        configuration: SystemNotificationConfiguration = .standard,
-        style: SystemNotificationStyle = .standard,
-        content: @escaping () -> Content
-    ) -> some View {
-        ZStack {
-            self
-            SystemNotification(
-                isActive: isActive,
-                content: { _ in content() }
-            )
-        }
-    }
-    
     /// Attach a system notification context to the view.
     ///
     /// Context-based system notifications make it very easy
@@ -53,12 +37,16 @@ public extension View {
     ///
     /// After applying the modifier, you can use the context
     /// to present notifications.
+    ///
+    /// This modifier will also pass in the context into the
+    /// environment, as an environment object.
     func systemNotification(
         _ context: SystemNotificationContext
     ) -> some View {
         self.systemNotification(
-            isActive: context.isActiveBinding,
-            content: { context.content }
-        )
+                isActive: context.isActiveBinding,
+                content: { context.content }
+            )
+            .environmentObject(context)
     }
 }

@@ -53,25 +53,6 @@ public struct SystemNotificationStyle {
         self.shadowOffset = shadowOffset
         self.shadowRadius = shadowRadius
     }
-    
-    @available(*, deprecated, message: "Edge is now part of the configuration instead.")
-    public init(
-        backgroundColor: Color? = nil,
-        cornerRadius: CGFloat? = nil,
-        padding: EdgeInsets? = nil,
-        edge: SystemNotificationEdge,
-        shadowColor: Color = .black.opacity(0.1),
-        shadowOffset: CGFloat = 5,
-        shadowRadius: CGFloat = 7.5
-    ) {
-        self.backgroundColor = backgroundColor
-        self.backgroundMaterial = .thin
-        self.cornerRadius = cornerRadius
-        self.padding = padding ?? Self.standardPadding
-        self.shadowColor = shadowColor
-        self.shadowOffset = shadowOffset
-        self.shadowRadius = shadowRadius
-    }
 
     /// The standard background color.
     @ViewBuilder
@@ -109,9 +90,6 @@ public struct SystemNotificationStyle {
     /// The corner radius to apply.
     public var cornerRadius: CGFloat?
 
-    @available(*, deprecated, message: "This has been moved to the configuration. This is no longer used!")
-    public var edge: SystemNotificationEdge = .top
-
     /// The edge padding to apply.
     public var padding: EdgeInsets
 
@@ -140,6 +118,20 @@ public extension View {
         _ style: SystemNotificationStyle
     ) -> some View {
         self.environment(\.systemNotificationStyle, style)
+    }
+}
+
+extension View {
+
+    @ViewBuilder
+    func systemNotificationStyle(
+        _ style: SystemNotificationStyle?
+    ) -> some View {
+        if let style {
+            self.environment(\.systemNotificationStyle, style)
+        } else {
+            self
+        }
     }
 }
 

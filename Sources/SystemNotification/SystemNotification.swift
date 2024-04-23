@@ -38,19 +38,6 @@ public struct SystemNotification<Content: View>: View {
         self.initConfig = nil
         self.content = content
     }
-
-    @available(*, deprecated, message: "Apply the style and configuration with the new view modifiers instead.")
-    public init(
-        isActive: Binding<Bool>,
-        configuration: SystemNotificationConfiguration = .standard,
-        style: SystemNotificationStyle = .standard,
-        @ViewBuilder content: @escaping ContentBuilder
-    ) {
-        _isActive = isActive
-        self.initStyle = style
-        self.initConfig = configuration
-        self.content = content
-    }
     
     public typealias ContentBuilder = (_ isActive: Bool) -> Content
 

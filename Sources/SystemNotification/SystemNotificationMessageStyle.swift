@@ -42,9 +42,9 @@ public struct SystemNotificationMessageStyle {
         iconFont: Font = Font.title3,
         iconTextSpacing: CGFloat = 20,
         padding: CGSize = .init(width: 15, height: 7),
-        textColor: Color = .primary.opacity(0.4),
+        textColor: Color = .secondary,
         textFont: Font = Font.footnote.bold(),
-        titleColor: Color = .primary.opacity(0.6),
+        titleColor: Color = .primary,
         titleFont: Font = Font.footnote.bold(),
         titleTextSpacing: CGFloat = 2
     ) {

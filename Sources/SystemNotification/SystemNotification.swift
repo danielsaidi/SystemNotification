@@ -15,21 +15,30 @@ import SwiftUI
 /// the provided content view.
 ///
 /// You can apply ``SwiftUI/View/systemNotificationStyle(_:)``
-/// to style this view with a custom style, and also apply a
-/// ``SwiftUI/View/systemNotificationConfiguration(_:)`` for
-/// when you need to customize its behavior.
+/// to customize the notification style, e.g. color. You can
+/// apply ``SwiftUI/View/systemNotificationConfiguration(_:)``
+/// to customize its behavior, e.g. the animation & duration.
 ///
 /// Note that you shouldn't use the view directly but rather
 /// use the ``SwiftUI/View/systemNotification(_:)`` modifier.
 public struct SystemNotification<Content: View>: View {
-
+    
     /// Create a system notification view.
     ///
     /// - Parameters:
     ///   - isActive: A binding that controls the active state of the notification.
-    ///   - configuration: The notification configuration to use, by default ``SystemNotificationConfiguration/standard``.
-    ///   - style: The notification style to use, by default ``SystemNotificationStyle/standard``.
     ///   - content: The view to present within the notification badge.
+    public init(
+        isActive: Binding<Bool>,
+        @ViewBuilder content: @escaping ContentBuilder
+    ) {
+        _isActive = isActive
+        self.initStyle = nil
+        self.initConfig = nil
+        self.content = content
+    }
+
+    @available(*, deprecated, message: "Inject style and configuration with the new view modifiers instead.")
     public init(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
@@ -37,17 +46,15 @@ public struct SystemNotification<Content: View>: View {
         @ViewBuilder content: @escaping ContentBuilder
     ) {
         _isActive = isActive
-        self.style = style
-        self.configuration = configuration
+        self.initStyle = style
+        self.initConfig = configuration
         self.content = content
     }
     
     public typealias ContentBuilder = (_ isActive: Bool) -> Content
 
-    private let configuration: SystemNotificationConfiguration
-
-    private let style: SystemNotificationStyle
-    
+    private let initConfig: SystemNotificationConfiguration?
+    private let initStyle: SystemNotificationStyle?
     private let content: ContentBuilder
     
     @Binding
@@ -55,6 +62,12 @@ public struct SystemNotification<Content: View>: View {
     
     @Environment(\.colorScheme)
     private var colorScheme
+    
+    @Environment(\.systemNotificationConfiguration)
+    private var envConfig
+    
+    @Environment(\.systemNotificationStyle)
+    private var envStyle
     
     public var body: some View {
         content(isActive)
@@ -65,15 +78,26 @@ public struct SystemNotification<Content: View>: View {
                 radius: style.shadowRadius,
                 y: style.shadowOffset)
             #if os(visionOS)
-            .animation(.spring(), value: isActive)
+            .animation(config.animation, value: isActive)
             #else
-            .animation(.spring())
+            .animation(config.animation)
             #endif
             .offset(x: 0, y: verticalOffset)
             #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
-            .gesture(swipeGesture, if: configuration.isSwipeToDismissEnabled)
+            .gesture(swipeGesture, if: config.isSwipeToDismissEnabled)
             #endif
             .padding(style.padding)
+    }
+}
+
+private extension SystemNotification {
+    
+    var config: SystemNotificationConfiguration {
+        initConfig ?? envConfig
+    }
+    
+    var style: SystemNotificationStyle {
+        initStyle ?? envStyle
     }
 }
 
@@ -149,19 +173,32 @@ private extension SystemNotification {
         
         var body: some View {
             ZStack {
-                
-                
-                SystemNotification(
-                    isActive: $isPresented,
-                    configuration: .standard,
-                    style: .standard
-                ) { param in
-                    Text("HELLO")
-                        .padding()
+                HStack {
+                    SystemNotification(
+                        isActive: $isPresented
+                    ) { param in
+                        Text("HELLO")
+                            .padding()
+                    }
+                    .systemNotificationStyle(.standard)
+                    .systemNotificationConfiguration(.standard)
+                    
+                    SystemNotification(
+                        isActive: $isPresented
+                    ) { param in
+                        Text("HELLO")
+                            .padding()
+                    }
+                    .systemNotificationStyle(
+                        .init(backgroundColor: .red)
+                    )
+                    .systemNotificationConfiguration(
+                        .init(animation: .bouncy)
+                    )
                 }
-                .onTapGesture {
-                    isPresented.toggle()
-                }
+            }
+            .onTapGesture {
+                isPresented.toggle()
             }
         }
     }

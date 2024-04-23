@@ -14,6 +14,10 @@ This version bumps the deployment targets and moves styling and configuration to
 
 * `View` has new `systemNotificationConfiguration` and `systemNotificationStyle` modifiers.
 
+### 🐛 Bug fixes
+
+* `SystemNotification` now correctly applies the configuration animation.
+
 ### 🗑 Deprecations
 
 * The `SystemNotification` initializer that takes a style and a configuration has been deprecated. 

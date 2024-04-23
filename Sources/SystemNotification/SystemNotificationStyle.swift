@@ -118,7 +118,7 @@ public extension View {
     func systemNotificationStyle(
         _ style: SystemNotificationStyle
     ) -> some View {
-        self.environment(\.autocompleteToolbarStyle, style)
+        self.environment(\.systemNotificationStyle, style)
     }
 }
 
@@ -132,7 +132,7 @@ private extension SystemNotificationStyle {
 
 public extension EnvironmentValues {
 
-    var autocompleteToolbarStyle: SystemNotificationStyle {
+    var systemNotificationStyle: SystemNotificationStyle {
         get { self [SystemNotificationStyle.Key.self] }
         set { self [SystemNotificationStyle.Key.self] = newValue }
     }

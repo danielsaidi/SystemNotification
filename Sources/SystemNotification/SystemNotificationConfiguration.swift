@@ -30,12 +30,12 @@ public struct SystemNotificationConfiguration {
      Create a system notification configuration.
 
      - Parameters:
-       - animation: The animation to apply when sliding in the notification, by default `.spring()`.
+       - animation: The animation to apply when sliding in the notification, by default `.bouncy`.
        - duration: The number of seconds the notification should be presented, by default `3`.
        - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
      */
     public init(
-        animation: Animation = .spring(),
+        animation: Animation = .easeOut,
         duration: TimeInterval = 3,
         isSwipeToDismissEnabled: Bool = true
     ) {

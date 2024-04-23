@@ -12,15 +12,16 @@ import SwiftUI
 /// for instance is shown when toggling silent mode.
 /// 
 /// This view will render a notification shape that contains
-/// the provided content view.
+/// the provided content view. You can use a custom view, or
+/// use ``SystemNotificationMessage`` for an iOS native look.
+///
+/// The view will use the applied style and configuration to
+/// style itself, then behave according to the configuration.
 ///
 /// You can apply ``SwiftUI/View/systemNotificationStyle(_:)``
 /// to customize the notification style, e.g. color. You can
 /// apply ``SwiftUI/View/systemNotificationConfiguration(_:)``
 /// to customize its behavior, e.g. the animation & duration.
-///
-/// Note that you shouldn't use the view directly but rather
-/// use the ``SwiftUI/View/systemNotification(_:)`` modifier.
 public struct SystemNotification<Content: View>: View {
     
     /// Create a system notification view.
@@ -69,20 +70,27 @@ public struct SystemNotification<Content: View>: View {
     @Environment(\.systemNotificationStyle)
     private var envStyle
     
+    @State
+    private var currentId = UUID()
+    
     public var body: some View {
-        content(isActive)
-            .background(background)
-            .cornerRadius(style.cornerRadius ?? 1_000)
-            .shadow(
-                color: style.shadowColor,
-                radius: style.shadowRadius,
-                y: style.shadowOffset)
-            .animation(config.animation, value: isActive)
-            .offset(x: 0, y: verticalOffset)
-            #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
-            .gesture(swipeGesture, if: config.isSwipeToDismissEnabled)
-            #endif
-            .padding(style.padding)
+        ZStack(alignment: edge.alignment) {
+            Color.clear
+            content(isActive)
+                .background(background)
+                .cornerRadius(style.cornerRadius ?? 1_000)
+                .shadow(
+                    color: style.shadowColor,
+                    radius: style.shadowRadius,
+                    y: style.shadowOffset)
+                .animation(config.animation, value: isActive)
+                .offset(x: 0, y: verticalOffset)
+                #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
+                .gesture(swipeGesture, if: config.isSwipeToDismissEnabled)
+                #endif
+                .padding(style.padding)
+                .onChange(of: isActive, perform: handlePresentation)
+        }
     }
 }
 
@@ -91,9 +99,36 @@ private extension SystemNotification {
     var config: SystemNotificationConfiguration {
         initConfig ?? envConfig
     }
+
+    var edge: SystemNotificationEdge {
+        config.edge
+    }
+    
+    var verticalOffset: CGFloat {
+        if isActive { return 0 }
+        switch edge {
+        case .top: return -250
+        case .bottom: return 250
+        }
+    }
+    
+    func dismiss() {
+        isActive = false
+    }
     
     var style: SystemNotificationStyle {
         initStyle ?? envStyle
+    }
+    
+    func handlePresentation(_ isPresented: Bool) {
+        guard isPresented else { return }
+        currentId = UUID()
+        let id = currentId
+        DispatchQueue.main.asyncAfter(deadline: .now() + config.duration) {
+            if id == currentId {
+                isActive = false
+            }
+        }
     }
 }
 
@@ -143,28 +178,6 @@ private extension SystemNotification {
     #endif
 }
 
-
-// MARK: - Private Logic
-
-private extension SystemNotification {
-    
-    var edge: SystemNotificationEdge {
-        config.edge
-    }
-    
-    var verticalOffset: CGFloat {
-        if isActive { return 0 }
-        switch edge {
-        case .top: return -250
-        case .bottom: return 250
-        }
-    }
-    
-    func dismiss() {
-        isActive = false
-    }
-}
-
 #Preview {
     
     struct Preview: View {
@@ -173,6 +186,14 @@ private extension SystemNotification {
         
         var body: some View {
             ZStack {
+                AsyncImage(url: .init(string: "https://picsum.photos/200/300")) {
+                
+                    $0.image?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                }
+                .ignoresSafeArea()
+                
                 HStack {
                     SystemNotification(
                         isActive: $isPresented
@@ -196,6 +217,20 @@ private extension SystemNotification {
                         .init(animation: .bouncy)
                     )
                 }
+                
+                
+                SystemNotification(
+                    isActive: $isPresented
+                ) { param in
+                    Text("HELLO")
+                        .padding()
+                }
+                .systemNotificationConfiguration(
+                    .init(
+                        animation: .smooth,
+                        edge: .bottom
+                    )
+                )
             }
             .onTapGesture {
                 isPresented.toggle()

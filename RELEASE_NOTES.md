@@ -25,6 +25,7 @@ This version bumps the deployment targets and moves styling and configuration to
 
 ### ✨ New features
 
+* `SystemNotification` is more self-managed than before.
 * `View` has new `systemNotificationConfiguration` and `systemNotificationStyle` modifiers.
 
 ### 🐛 Bug fixes

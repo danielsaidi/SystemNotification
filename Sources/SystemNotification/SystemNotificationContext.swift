@@ -16,8 +16,6 @@ public class SystemNotificationContext: ObservableObject {
 
     public typealias Action = () -> Void
 
-    private var presentationId = UUID()
-
 
     @Published
     @available(*, deprecated, message: "Use the new view modifiers instead. This is no longer used!")
@@ -84,8 +82,6 @@ private extension SystemNotificationContext {
     func presentAfterDismiss<Content: View>(
         content: Content
     ) {
-        let id = UUID()
-        self.presentationId = id
         self.content = AnyView(content)
         perform(setActive, after: 0.1)
     }

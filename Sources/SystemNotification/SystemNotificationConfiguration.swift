@@ -11,7 +11,7 @@ import SwiftUI
 /// This type can be used to configure ``SystemNotification``.
 ///
 /// Apply ``SwiftUI/View/systemNotificationConfiguration(_:)``
-/// if an app should use a custom configuration.
+/// if an /// app or notification should use a custom config.
 ///
 /// You can easily create a custom configuration like this:
 ///
@@ -55,9 +55,6 @@ public struct SystemNotificationConfiguration {
 
     /// Whether or not swiping can to dismiss a notification.
     public var isSwipeToDismissEnabled: Bool
-
-    @available(*, deprecated, message: "This is just used to bridge between the configuration and the new style. This will be removed in the next minor update.")
-    var style: SystemNotificationStyle = .standard
 }
 
 public extension SystemNotificationConfiguration {

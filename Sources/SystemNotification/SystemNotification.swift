@@ -39,7 +39,7 @@ public struct SystemNotification<Content: View>: View {
         self.content = content
     }
 
-    @available(*, deprecated, message: "Inject style and configuration with the new view modifiers instead.")
+    @available(*, deprecated, message: "Apply the style and configuration with the new view modifiers instead.")
     public init(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,

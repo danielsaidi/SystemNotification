@@ -12,8 +12,8 @@ This version bumps the deployment targets and moves styling and configuration to
 
 ### 🚨 Important Information
 
-* Due to the new style and configuration view modifiers, the context configuration and style are no longer used!
-* The notification edge has been moved back to configuration from style, since it makes more sense with the new setup.
+* The context configuration and style are no longer used!
+* The notification edge has been moved back to configuration.
 
 ### 📱 New Deployment Targets
 
@@ -26,8 +26,11 @@ This version bumps the deployment targets and moves styling and configuration to
 ### ✨ New features
 
 * `SystemNotification` is more self-managed than before.
+* `SystemNotificationConfiguration` can now be used as an environment value.
 * `SystemNotificationStyle` now supports background materials.
-* `View` has new `systemNotificationConfiguration` and `systemNotificationStyle` modifiers.
+* `SystemNotificationStyle` can now be used as an environment value.
+* `SystemNotificationMessageStyle` can now be used as an environment value.
+* `View` has new system notification-related style- and config view modifiers.
 
 ### 🐛 Bug fixes
 

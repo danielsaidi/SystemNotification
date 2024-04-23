@@ -9,10 +9,8 @@
 #if os(iOS)
 import SwiftUI
 
-/**
- This view can be used to create an overlay that can then be
- added to any UIKit view, using `addAsOverlay(to:)`.
- */
+/// This view can be used to create an overlay that can then
+/// be added to any UIKit view, using `addAsOverlay(to:)`.
 public struct SystemNotificationUIKitOverlay: View {
     
     public init(context: SystemNotificationContext) {

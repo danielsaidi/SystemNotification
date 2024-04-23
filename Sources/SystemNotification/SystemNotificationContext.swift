@@ -44,7 +44,9 @@ public class SystemNotificationContext: ObservableObject {
     }
         
     /// Dismiss the current notification, if any.
-    public func dismiss(completion: @escaping Action) {
+    public func dismiss(
+        completion: @escaping Action
+    ) {
         guard isActive else { return completion() }
         isActive = false
         perform(after: 0.3, action: completion)
@@ -55,9 +57,7 @@ public class SystemNotificationContext: ObservableObject {
         content: Content
     ) {
         dismiss {
-            self.presentAfterDismiss(
-                content: content
-            )
+            self.presentAfterDismiss(content)
         }
     }
     
@@ -79,9 +79,7 @@ private extension SystemNotificationContext {
         perform(action, after: seconds)
     }
     
-    func presentAfterDismiss<Content: View>(
-        content: Content
-    ) {
+    func presentAfterDismiss<Content: View>(_ content: Content) {
         self.content = AnyView(content)
         perform(setActive, after: 0.1)
     }

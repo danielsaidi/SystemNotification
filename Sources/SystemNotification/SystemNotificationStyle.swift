@@ -8,35 +8,33 @@
 
 import SwiftUI
 
-/**
- This style can be used with ``SystemNotification``s.
- 
- You can easily create new styles like this:
- 
- ```swift
- extension SystemNotificationStyle {
- 
-    static var custom = Self(backgroundColor: .red)
- }
- ```
-
- The ``standard`` style will be used by default if you don't
- provide a custom style.
- */
+/// This type can be used to style ``SystemNotification``.
+///
+/// Apply ``SwiftUI/View/systemNotificationStyle(_:)`` if an
+/// if an app should use a custom style.
+///
+/// You can easily create a custom style like this:
+///
+/// ```swift
+/// extension SystemNotificationStyle {
+///     static var custom = Self(backgroundColor: .red)
+/// }
+/// ```
+///
+/// The ``standard`` value is used by default when you don't
+/// apply a custom value.
 public struct SystemNotificationStyle {
 
-    /**
-     Create a system notification style.
-
-     - Parameters:
-       - backgroundColor: The background color to apply to the notification, by default `nil`.
-       - cornerRadius: The corner radius to apply to the notification, by default `nil`.
-       - padding: The edge padding to apply to the notification, by default `nil`.
-       - edge: The edge from which to present the notification, by default `.top`.
-       - shadowColor: The shadow color to apply to the notification, by default `.black.opacity(0.1)`.
-       - shadowOffset: The shadow offset to apply to the notification, by default `5`.
-       - shadowRadius: The shadow radius to apply to the notification, by default `7.5`.
-     */
+    /// Create a system notification style.
+    ///
+    /// - Parameters:
+    ///   - backgroundColor: The background color to apply to the notification, by default `nil`.
+    ///   - cornerRadius: The corner radius to apply to the notification, by default `nil`.
+    ///   - padding: The edge padding to apply to the notification, by default `nil`.
+    ///   - edge: The edge from which to present the notification, by default `.top`.
+    ///   - shadowColor: The shadow color to apply to the notification, by default `.black.opacity(0.1)`.
+    ///   - shadowOffset: The shadow offset to apply to the notification, by default `5`.
+    ///   - shadowRadius: The shadow radius to apply to the notification, by default `7.5`.
     public init(
         backgroundColor: Color? = nil,
         cornerRadius: CGFloat? = nil,

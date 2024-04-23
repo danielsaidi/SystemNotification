@@ -77,11 +77,7 @@ public struct SystemNotification<Content: View>: View {
                 color: style.shadowColor,
                 radius: style.shadowRadius,
                 y: style.shadowOffset)
-            #if os(visionOS)
             .animation(config.animation, value: isActive)
-            #else
-            .animation(config.animation)
-            #endif
             .offset(x: 0, y: verticalOffset)
             #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
             .gesture(swipeGesture, if: config.isSwipeToDismissEnabled)

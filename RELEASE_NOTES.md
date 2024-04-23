@@ -10,6 +10,14 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 This version bumps the deployment targets and moves styling and configuration to view modifiers.
 
+### 📱 New Deployment Targets
+
+* .iOS(.v15)
+* .macOS(.v12)
+* .tvOS(.v15)
+* .watchOS(.v8)
+* .visionOS(.v1)
+
 ### ✨ New features
 
 * `View` has new `systemNotificationConfiguration` and `systemNotificationStyle` modifiers.

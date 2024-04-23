@@ -8,32 +8,29 @@
 
 import SwiftUI
 
-/**
- This configuration can be used to configure the behavior of
- a ``SystemNotification``.
- 
- You can easily create new configurations like this:
- 
- ```swift
- extension SystemNotificationConfiguration {
- 
-    static var custom = Self(animation: .easeInOut)
- }
- ```
-
- The ``standard`` configuration will be used by default when
- you don't provide a custom configuration.
- */
+/// This type can be used to configure ``SystemNotification``.
+///
+/// Apply ``SwiftUI/View/systemNotificationConfiguration(_:)``
+/// if an app should use a custom configuration.
+///
+/// You can easily create a custom configuration like this:
+///
+/// ```swift
+/// extension SystemNotificationConfiguration {
+///     static var custom = Self(animation: .easeInOut)
+/// }
+/// ```
+///
+/// The ``standard`` value is used by default when you don't
+/// apply a custom value.
 public struct SystemNotificationConfiguration {
 
-    /**
-     Create a system notification configuration.
-
-     - Parameters:
-       - animation: The animation to apply when sliding in the notification, by default `.bouncy`.
-       - duration: The number of seconds the notification should be presented, by default `3`.
-       - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
-     */
+    /// Create a custom system notification configuration.
+    ///
+    /// - Parameters:
+    ///   - animation: The animation to apply when sliding in the notification, by default `.bouncy`.
+    ///   - duration: The number of seconds the notification should be presented, by default `3`.
+    ///   - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
     public init(
         animation: Animation = .easeOut,
         duration: TimeInterval = 3,

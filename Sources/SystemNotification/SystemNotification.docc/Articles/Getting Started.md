@@ -17,7 +17,7 @@ This article describes how to get started with SystemNotification.
 
 ## Overview
 
-After adding SystemNotification to your project, you can add a system notification to a view hierarchy just as you add a sheet, alert and full screen modal, using a `systemNotification` view modifier:
+After adding SystemNotification to your project, you can add a system notification to a view just as you add a sheet, alert or full screen modal, using ``SwiftUI/View/systemNotification(_:)`` or ``SwiftUI/View/systemNotification(isActive:configuration:style:content:)``:
 
 ```swift
 import SystemNotification
@@ -31,15 +31,13 @@ struct MyView: View {
 }
 ```
 
-You can use both state- and context and message-based notifications and style your notifications to great extent.
+You can use both state and ``SystemNotificationContext``-based notifications and style your custom notifications to great extent.
 
 
 
 ## State-based notifications
 
-State-based notifications work just like state-based `sheet`, `alert` and `fullScreenModal` modifiers.
-
-Just apply a `systemNotification` modifier to your view and provide an `isActive` binding and a view builder:
+State-based notifications work like state-based `sheet`, `alert` and `fullScreenModal` modifiers, and take an `isActive` binding:
 
 ```swift
 struct ContentView: View {
@@ -65,13 +63,13 @@ struct ContentView: View {
 }
 ```
 
-State-based notifications are easy to use, but less flexible than context-based ones.
+State-based notifications are easy to use, but less flexible than context-based ones, since they are meant to present a specific view.
 
 
 
 ## Context-based notifications
 
-Context-based notifications use an observable context instead of state:
+Context-based notifications use an observable ``SystemNotificationContext`` instead of state:
 
 ```swift
 struct ContentView: View {
@@ -124,7 +122,7 @@ In the code above, we apply a notification context to the view, and also pass it
 
 ## Notification views
 
-You can present any custom view as a system notification, for instance:
+You can present any custom view as a system notification, for instance plain text:
 
 ```swift
 struct MyView: View {

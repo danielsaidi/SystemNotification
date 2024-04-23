@@ -8,35 +8,28 @@
 
 import SwiftUI
 
-/**
- This view mimics a native iOS system notification which for
- instance is shown when toggling silent mode on and off.
- 
- The view will render a notification shape that contains the
- content view that is provided by the `content` view builder.
- You can provide it with a custom `configuration` and `style`
- to control its behavior and design.
- 
- The provided `isActive` binding will be set to `false` when
- a user swipes to dismiss the notification.
- 
- You should not use this view directly, but rather apply the
- `systemNotification` modifier to any view in your app, then
- use your ``SystemNotificationContext`` to present any views
- you like, like a ``SystemNotificationMessage`` view that is
- used to mimic the iOS notification message.
- */
+/// This view mimics the native iOS system notification that
+/// for instance is shown when toggling silent mode.
+/// 
+/// This view will render a notification shape that contains
+/// the provided content view.
+///
+/// You can apply ``SwiftUI/View/systemNotificationStyle(_:)``
+/// to style this view with a custom style, and also apply a
+/// ``SwiftUI/View/systemNotificationConfiguration(_:)`` for
+/// when you need to customize its behavior.
+///
+/// Note that you shouldn't use the view directly but rather
+/// use the ``SwiftUI/View/systemNotification(_:)`` modifier.
 public struct SystemNotification<Content: View>: View {
 
-    /**
-     Create a system notification.
-
-     - Parameters:
-       - isActive: A binding that controls the active state of the notification.
-       - configuration: The notification configuration to use, by default ``SystemNotificationConfiguration/standard``.
-       - style: The notification style to use, by default ``SystemNotificationStyle/standard``.
-       - content: The view to present within the notification badge.
-     */
+    /// Create a system notification view.
+    ///
+    /// - Parameters:
+    ///   - isActive: A binding that controls the active state of the notification.
+    ///   - configuration: The notification configuration to use, by default ``SystemNotificationConfiguration/standard``.
+    ///   - style: The notification style to use, by default ``SystemNotificationStyle/standard``.
+    ///   - content: The view to present within the notification badge.
     public init(
         isActive: Binding<Bool>,
         configuration: SystemNotificationConfiguration = .standard,
@@ -146,4 +139,32 @@ private extension SystemNotification {
     func dismiss() {
         isActive = false
     }
+}
+
+#Preview {
+    
+    struct Preview: View {
+        
+        @State var isPresented = false
+        
+        var body: some View {
+            ZStack {
+                
+                
+                SystemNotification(
+                    isActive: $isPresented,
+                    configuration: .standard,
+                    style: .standard
+                ) { param in
+                    Text("HELLO")
+                        .padding()
+                }
+                .onTapGesture {
+                    isPresented.toggle()
+                }
+            }
+        }
+    }
+    
+    return Preview()
 }

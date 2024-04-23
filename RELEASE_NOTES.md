@@ -6,6 +6,20 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 0.9
+
+This version bumps the deployment targets and moves styling and configuration to view modifiers.
+
+### ✨ New features
+
+* `View` has new `systemNotificationConfiguration` and `systemNotificationStyle` modifiers.
+
+### 🗑 Deprecations
+
+* The `SystemNotification` initializer that takes a style and a configuration has been deprecated. 
+
+
+
 ## 0.8
 
 ### ✨ New features

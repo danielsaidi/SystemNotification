@@ -106,10 +106,34 @@ public struct SystemNotificationStyle {
 
 public extension SystemNotificationStyle {
 
-    /**
-     The standard system notification style.
-
-     You can change this value to affect the global default.
-     */
+    /// The standard system notification style.
+    ///
+    /// You can set this style to change the global default.
     static var standard = Self()
+}
+
+public extension View {
+
+    /// Apply a ``SystemNotificationStyle`` to the view.
+    func systemNotificationStyle(
+        _ style: SystemNotificationStyle
+    ) -> some View {
+        self.environment(\.autocompleteToolbarStyle, style)
+    }
+}
+
+private extension SystemNotificationStyle {
+
+    struct Key: EnvironmentKey {
+
+        static var defaultValue: SystemNotificationStyle = .standard
+    }
+}
+
+public extension EnvironmentValues {
+
+    var autocompleteToolbarStyle: SystemNotificationStyle {
+        get { self [SystemNotificationStyle.Key.self] }
+        set { self [SystemNotificationStyle.Key.self] = newValue }
+    }
 }

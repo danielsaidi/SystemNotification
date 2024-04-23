@@ -59,10 +59,34 @@ public struct SystemNotificationConfiguration {
 
 public extension SystemNotificationConfiguration {
     
-    /**
-     The standard system notification configuration.
-
-     You can change this value to affect the global default.
-     */
+    /// The standard system notification configuration.
+    ///
+    /// You can set this style to change the global default.
     static var standard = Self()
+}
+
+public extension View {
+
+    /// Apply a ``SystemNotificationConfiguration`` to the view.
+    func systemNotificationConfiguration(
+        _ configuration: SystemNotificationConfiguration
+    ) -> some View {
+        self.environment(\.systemNotificationConfiguration, configuration)
+    }
+}
+
+private extension SystemNotificationConfiguration {
+
+    struct Key: EnvironmentKey {
+
+        static var defaultValue: SystemNotificationConfiguration = .standard
+    }
+}
+
+public extension EnvironmentValues {
+
+    var systemNotificationConfiguration: SystemNotificationConfiguration {
+        get { self [SystemNotificationConfiguration.Key.self] }
+        set { self [SystemNotificationConfiguration.Key.self] = newValue }
+    }
 }

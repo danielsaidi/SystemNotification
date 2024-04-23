@@ -1,6 +1,6 @@
 # ``SystemNotification``
 
-SystemNotification can be used to present notifications that mimic the native iOS system notification that for instance are shown when you toggle silent mode on and off, connect your AirPods etc.
+SystemNotification is a SwiftUI SDK that lets you mimic the native iOS system notification. 
 
 
 
@@ -8,9 +8,9 @@ SystemNotification can be used to present notifications that mimic the native iO
 
 ![SystemNotification logo](Logo.png)
 
-System notifications can be styled and customized to great extent. You can also use completely custom views.
+SystemNotification is a SwiftUI SDK that lets you mimic the native iOS system notification that are presented when you toggle silent mode, connect your AirPods, etc. 
 
-SystemNotification supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
+These notifications can be styled and customized to great extent. You can also use completely custom views.
 
 
 

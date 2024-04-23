@@ -180,7 +180,7 @@ private extension SystemNotification {
                 
                 SystemNotification(
                     isActive: $isPresented
-                ) { param in
+                ) { _ in
                     SystemNotificationMessage(
                         icon: Image(systemName: "bell.fill"),
                         title: "Silent mode",
@@ -194,7 +194,7 @@ private extension SystemNotification {
                 
                 SystemNotification(
                     isActive: $isPresented
-                ) { param in
+                ) { _ in
                     Text("HELLO")
                         .padding()
                 }
@@ -205,9 +205,11 @@ private extension SystemNotification {
                     .init(animation: .smooth, edge: .bottom)
                 )
             }
+            #if os(iOS)
             .onTapGesture {
                 isPresented.toggle()
             }
+            #endif
         }
     }
     

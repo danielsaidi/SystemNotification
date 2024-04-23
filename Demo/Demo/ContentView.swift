@@ -68,9 +68,9 @@ struct ContentView: View {
                 }
 //                listItem(.globe, "Show localized notification", presentLocalized)
                 listItem(.warning, "Menu.Warning", presentWarning)
-                listItem(.warning, "Menu.LocalizedMessage", presentLocalizedMessage)
-                listItem(.warning, "Menu.CustomView", presentCustomView)
-                listItem(.warning, "Menu.BottomToast", presentBottomToast)
+                listItem(.flag, "Menu.LocalizedMessage", presentLocalizedMessage)
+                listItem(.static, "Menu.CustomView", presentCustomView)
+                listItem(.sheet, "Menu.BottomToast", presentBottomToast)
 //                listItem(.error, "Show red error from bottom", presentError)
 //                listItem(.flag, "Show custom view", presentCustomView)
             }
@@ -100,10 +100,7 @@ struct ContentView: View {
         }
         #endif
         .systemNotification(toast)
-        .systemNotificationConfiguration(
-            .init(animation: .bouncy, edge: .bottom)
-        )
-        .systemNotificationStyle(.init(backgroundColor: .black))
+        .systemNotificationConfiguration(.standardToast)
         
         .onChange(of: isSilentModeOn) {
             if $0 {
@@ -167,6 +164,12 @@ private extension ContentView {
                 title: "Message.Toast.Title",
                 text: "Message.Toast.Text"
             )
+            .systemNotificationMessageStyle(
+                .init(
+                    backgroundColor: .black,
+                    padding: .init(width: 30, height: 20)
+                )
+            )
             .environment(\.colorScheme, .dark)
         }
     }
@@ -199,7 +202,7 @@ private extension ContentView {
         notification.present {
             SystemNotificationMessage(
                 icon: SilentModeBell(isSilentModeOn: false),
-                text: "Silent Mode On"
+                text: "Silent Mode Off"
             )
         }
     }
@@ -215,11 +218,17 @@ private extension ContentView {
 
     func presentWarning() {
         notification.present(
-            Text("Warning!")
-                .padding(5)
-                .padding(.horizontal)
-                .foregroundStyle(.white)
-                .background(Color.orange)
+            SystemNotificationMessage(
+                icon: Image.warning,
+                title: "Message.Warning.Title",
+                text: "Message.Warning.Text"
+            )
+            .systemNotificationMessageStyle(
+                .init(
+                    backgroundColor: .orange,
+                    foregroundColor: .white
+                )
+            )
         )
     }
 }

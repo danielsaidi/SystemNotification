@@ -102,7 +102,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This toast is presented from the bottom because of the custom system notification configuration."
+            "value" : "This toast is presented from the bottom, and styled a bit."
           }
         }
       }
@@ -113,6 +113,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Toastie!"
+          }
+        }
+      }
+    },
+    "Message.Warning.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warning, warning!"
+          }
+        }
+      }
+    },
+    "Message.Warning.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Look at the orange color - this is a serious message!"
           }
         }
       }
@@ -155,9 +175,6 @@
           }
         }
       }
-    },
-    "Warning!" : {
-
     }
   },
   "version" : "1.0"

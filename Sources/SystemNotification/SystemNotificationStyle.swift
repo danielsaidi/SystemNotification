@@ -39,7 +39,6 @@ public struct SystemNotificationStyle {
         backgroundColor: Color? = nil,
         cornerRadius: CGFloat? = nil,
         padding: EdgeInsets? = nil,
-        edge: SystemNotificationEdge = .top,
         shadowColor: Color = .black.opacity(0.1),
         shadowOffset: CGFloat = 5,
         shadowRadius: CGFloat = 7.5
@@ -47,7 +46,24 @@ public struct SystemNotificationStyle {
         self.backgroundColor = backgroundColor
         self.cornerRadius = cornerRadius
         self.padding = padding ?? Self.standardPadding
-        self.edge = edge
+        self.shadowColor = shadowColor
+        self.shadowOffset = shadowOffset
+        self.shadowRadius = shadowRadius
+    }
+    
+    @available(*, deprecated, message: "Edge is now part of the configuration instead.")
+    public init(
+        backgroundColor: Color? = nil,
+        cornerRadius: CGFloat? = nil,
+        padding: EdgeInsets? = nil,
+        edge: SystemNotificationEdge,
+        shadowColor: Color = .black.opacity(0.1),
+        shadowOffset: CGFloat = 5,
+        shadowRadius: CGFloat = 7.5
+    ) {
+        self.backgroundColor = backgroundColor
+        self.cornerRadius = cornerRadius
+        self.padding = padding ?? Self.standardPadding
         self.shadowColor = shadowColor
         self.shadowOffset = shadowOffset
         self.shadowRadius = shadowRadius
@@ -86,8 +102,8 @@ public struct SystemNotificationStyle {
     /// The corner radius to apply to the notification.
     public var cornerRadius: CGFloat?
 
-    /// The edge from which to present the notification.
-    public var edge: SystemNotificationEdge
+    @available(*, deprecated, message: "This has been moved to the configuration. This is no longer used!")
+    public var edge: SystemNotificationEdge = .top
 
     /// The edge padding to apply to the notification.
     public var padding: EdgeInsets

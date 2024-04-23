@@ -136,8 +136,8 @@ private extension SystemNotification {
                 let isUp = verticalTranslation < 0
                 // let isLeft = horizontalTranslation < 0
                 guard isVertical else { return }            // We only use vertical edges
-                if isUp && style.edge == .top { dismiss() }
-                if !isUp && style.edge == .bottom { dismiss() }
+                if isUp && edge == .top { dismiss() }
+                if !isUp && edge == .bottom { dismiss() }
             }
     }
     #endif
@@ -148,9 +148,13 @@ private extension SystemNotification {
 
 private extension SystemNotification {
     
+    var edge: SystemNotificationEdge {
+        config.edge
+    }
+    
     var verticalOffset: CGFloat {
         if isActive { return 0 }
-        switch style.edge {
+        switch edge {
         case .top: return -250
         case .bottom: return 250
         }

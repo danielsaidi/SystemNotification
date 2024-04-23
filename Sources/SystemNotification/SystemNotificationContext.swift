@@ -8,31 +8,8 @@
 
 import SwiftUI
 
-/**
- This context can be used to present system notifications in
- a more flexible way.
- 
- To use this class, create a context instance and bind it to
- a view with the context-based `systemNotification` modifier.
- 
- ```swift
- struct ContentView: View {
- 
-    @StateObject
-    var context = SystemNotificationContext()
- 
-    var body: some View {
-        TabView {
-            ...
-        }.systemNotification(context)
-    }
- }
- ```
- 
- You can now call the various `present` functions to present
- notifications using this single modifier, instead of having
- separate states and bindings for each notification.
- */
+/// This context can be used to present system notifications
+/// in a more flexible way.
 public class SystemNotificationContext: ObservableObject {
 
     public init() {}
@@ -43,7 +20,8 @@ public class SystemNotificationContext: ObservableObject {
 
 
     @Published
-    public var configuration = SystemNotificationConfiguration.standard
+    @available(*, deprecated, message: "Use the new view modifiers instead. This is no longer used!")
+    public var configuration: SystemNotificationConfiguration? = nil
 
     @Published
     public var content = AnyView(EmptyView())
@@ -52,14 +30,8 @@ public class SystemNotificationContext: ObservableObject {
     public var isActive = false
 
     @Published
+    @available(*, deprecated, message: "Use the new view modifiers instead. This is no longer used!")
     public var style = SystemNotificationStyle.standard
-
-
-    @Published
-    private var originalConfiguration: SystemNotificationConfiguration?
-
-    @Published
-    private var originalStyle: SystemNotificationStyle?
 
 
     public var isActiveBinding: Binding<Bool> {
@@ -82,30 +54,20 @@ public class SystemNotificationContext: ObservableObject {
     
     /// Present a system notification.
     public func present<Content: View>(
-        content: Content,
-        configuration: SystemNotificationConfiguration? = nil,
-        style: SystemNotificationStyle? = nil
+        content: Content
     ) {
         dismiss {
             self.presentAfterDismiss(
-                content: content,
-                configuration: configuration,
-                style: style
+                content: content
             )
         }
     }
     
     /// Present a system notification.
     public func present<Content: View>(
-        configuration: SystemNotificationConfiguration? = nil,
-        style: SystemNotificationStyle? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        present(
-            content: content(),
-            configuration: configuration,
-            style: style
-        )
+        present(content: content())
     }
 }
 
@@ -120,35 +82,15 @@ private extension SystemNotificationContext {
     }
     
     func presentAfterDismiss<Content: View>(
-        content: Content,
-        configuration: SystemNotificationConfiguration?,
-        style: SystemNotificationStyle?
+        content: Content
     ) {
         let id = UUID()
         self.presentationId = id
-        updateConfiguration(with: configuration)
-        updateStyle(with: style)
         self.content = AnyView(content)
         perform(setActive, after: 0.1)
-        perform(after: self.configuration.duration) {
-            guard id == self.presentationId else { return }
-            self.dismiss()
-        }
     }
     
     func setActive() {
         isActive = true
-    }
-
-    func updateConfiguration(with config: SystemNotificationConfiguration?) {
-        self.configuration = self.originalConfiguration ?? self.configuration
-        self.originalConfiguration = self.configuration
-        self.configuration = config ?? self.configuration
-    }
-
-    func updateStyle(with style: SystemNotificationStyle?) {
-        self.style = self.originalStyle ?? self.style
-        self.originalStyle = self.style
-        self.style = style ?? self.style
     }
 }

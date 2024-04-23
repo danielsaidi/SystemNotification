@@ -30,14 +30,17 @@ public struct SystemNotificationConfiguration {
     /// - Parameters:
     ///   - animation: The animation to apply when sliding in the notification, by default `.bouncy`.
     ///   - duration: The number of seconds the notification should be presented, by default `3`.
+    ///   - edge: The edge from which to present the notification, by default `.top`.
     ///   - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
     public init(
         animation: Animation = .easeOut,
         duration: TimeInterval = 3,
+        edge: SystemNotificationEdge = .top,
         isSwipeToDismissEnabled: Bool = true
     ) {
         self.animation = animation
         self.duration = duration
+        self.edge = edge
         self.isSwipeToDismissEnabled = isSwipeToDismissEnabled
     }
 
@@ -46,6 +49,9 @@ public struct SystemNotificationConfiguration {
 
     /// The number of seconds a notification should be shown.
     public var duration: TimeInterval
+    
+    /// The edge to present from.
+    public var edge: SystemNotificationEdge = .top
 
     /// Whether or not swiping can to dismiss a notification.
     public var isSwipeToDismissEnabled: Bool

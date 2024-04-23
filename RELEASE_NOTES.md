@@ -10,6 +10,11 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 This version bumps the deployment targets and moves styling and configuration to view modifiers.
 
+### 🚨 Important Information
+
+* Due to the new style and configuration view modifiers, the context configuration and style are no longer used!
+* The notification edge has been moved back to configuration from style, since it makes more sense with the new setup.
+
 ### 📱 New Deployment Targets
 
 * .iOS(.v15)

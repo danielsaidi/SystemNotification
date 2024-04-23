@@ -28,15 +28,17 @@ public struct SystemNotificationStyle {
     /// Create a system notification style.
     ///
     /// - Parameters:
-    ///   - backgroundColor: The background color to apply to the notification, by default `nil`.
-    ///   - cornerRadius: The corner radius to apply to the notification, by default `nil`.
-    ///   - padding: The edge padding to apply to the notification, by default `nil`.
+    ///   - backgroundColor: The background color to apply, by default `nil`.
+    ///   - backgroundMaterial: The background material to apply, by default `.thin`.
+    ///   - cornerRadius: The corner radius to apply, by default `nil`.
+    ///   - padding: The edge padding to apply, by default `nil`.
     ///   - edge: The edge from which to present the notification, by default `.top`.
-    ///   - shadowColor: The shadow color to apply to the notification, by default `.black.opacity(0.1)`.
-    ///   - shadowOffset: The shadow offset to apply to the notification, by default `5`.
-    ///   - shadowRadius: The shadow radius to apply to the notification, by default `7.5`.
+    ///   - shadowColor: The shadow color to apply, by default `.black.opacity(0.1)`.
+    ///   - shadowOffset: The shadow offset to apply, by default `5`.
+    ///   - shadowRadius: The shadow radius to apply, by default `7.5`.
     public init(
         backgroundColor: Color? = nil,
+        backgroundMaterial: Material = .thin,
         cornerRadius: CGFloat? = nil,
         padding: EdgeInsets? = nil,
         shadowColor: Color = .black.opacity(0.1),
@@ -44,6 +46,7 @@ public struct SystemNotificationStyle {
         shadowRadius: CGFloat = 7.5
     ) {
         self.backgroundColor = backgroundColor
+        self.backgroundMaterial = backgroundMaterial
         self.cornerRadius = cornerRadius
         self.padding = padding ?? Self.standardPadding
         self.shadowColor = shadowColor
@@ -62,6 +65,7 @@ public struct SystemNotificationStyle {
         shadowRadius: CGFloat = 7.5
     ) {
         self.backgroundColor = backgroundColor
+        self.backgroundMaterial = .thin
         self.cornerRadius = cornerRadius
         self.padding = padding ?? Self.standardPadding
         self.shadowColor = shadowColor
@@ -96,25 +100,28 @@ public struct SystemNotificationStyle {
         #endif
     }
 
-    /// The background color to apply to the notification.
+    /// The background color to apply.
     public var backgroundColor: Color?
+    
+    /// The background material to apply.
+    public var backgroundMaterial: Material
 
-    /// The corner radius to apply to the notification.
+    /// The corner radius to apply.
     public var cornerRadius: CGFloat?
 
     @available(*, deprecated, message: "This has been moved to the configuration. This is no longer used!")
     public var edge: SystemNotificationEdge = .top
 
-    /// The edge padding to apply to the notification.
+    /// The edge padding to apply.
     public var padding: EdgeInsets
 
-    /// The shadow color to apply to the notification.
+    /// The shadow color to apply.
     public var shadowColor: Color
 
-    /// The shadow offset to apply to the notification.
+    /// The shadow offset to apply.
     public var shadowOffset: CGFloat
 
-    /// The shadow radius to apply to the notification.
+    /// The shadow radius to apply.
     public var shadowRadius: CGFloat
 }
 

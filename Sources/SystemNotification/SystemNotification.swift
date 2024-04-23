@@ -77,7 +77,8 @@ public struct SystemNotification<Content: View>: View {
         ZStack(alignment: edge.alignment) {
             Color.clear
             content(isActive)
-                .background(background)
+                .background(style.backgroundColor)
+                .background(style.backgroundMaterial)
                 .cornerRadius(style.cornerRadius ?? 1_000)
                 .shadow(
                     color: style.shadowColor,
@@ -186,38 +187,27 @@ private extension SystemNotification {
         
         var body: some View {
             ZStack {
-                AsyncImage(url: .init(string: "https://picsum.photos/200/300")) {
-                
+                AsyncImage(url: .init(string: "https://picsum.photos/500/500")) {
                     $0.image?
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                 }
+                .clipped()
                 .ignoresSafeArea()
                 
-                HStack {
-                    SystemNotification(
-                        isActive: $isPresented
-                    ) { param in
-                        Text("HELLO")
-                            .padding()
-                    }
-                    .systemNotificationStyle(.standard)
-                    .systemNotificationConfiguration(.standard)
-                    
-                    SystemNotification(
-                        isActive: $isPresented
-                    ) { param in
-                        Text("HELLO")
-                            .padding()
-                    }
-                    .systemNotificationStyle(
-                        .init(backgroundColor: .red)
-                    )
-                    .systemNotificationConfiguration(
-                        .init(animation: .bouncy)
+                SystemNotification(
+                    isActive: $isPresented
+                ) { param in
+                    SystemNotificationMessage(
+                        icon: Image(systemName: "bell.fill"),
+                        title: "Silent mode",
+                        text: "Silent mode is off"
                     )
                 }
-                
+                .systemNotificationStyle(.standard)
+                .systemNotificationConfiguration(
+                    .init(animation: .bouncy)
+                )
                 
                 SystemNotification(
                     isActive: $isPresented
@@ -225,11 +215,11 @@ private extension SystemNotification {
                     Text("HELLO")
                         .padding()
                 }
+                .systemNotificationStyle(
+                    .init(backgroundColor: .blue)
+                )
                 .systemNotificationConfiguration(
-                    .init(
-                        animation: .smooth,
-                        edge: .bottom
-                    )
+                    .init(animation: .smooth, edge: .bottom)
                 )
             }
             .onTapGesture {

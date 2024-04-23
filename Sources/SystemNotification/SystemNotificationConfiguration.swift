@@ -22,7 +22,8 @@ import SwiftUI
 /// ```
 ///
 /// The ``standard`` value is used by default when you don't
-/// apply a custom value.
+/// apply a custom value. You can use ``standardToast`` when
+/// you want to present the notification as a toast.
 public struct SystemNotificationConfiguration {
 
     /// Create a custom system notification configuration.
@@ -63,6 +64,14 @@ public extension SystemNotificationConfiguration {
     ///
     /// You can set this style to change the global default.
     static var standard = Self()
+    
+    /// A standard toast configuration.
+    ///
+    /// You can set this style to change the global default.
+    static var standardToast = Self(
+        animation: .bouncy,
+        edge: .bottom
+    )
 }
 
 public extension View {

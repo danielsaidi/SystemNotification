@@ -17,7 +17,7 @@ This article describes how to get started with SystemNotification.
 
 ## Overview
 
-After adding SystemNotification to your project, you can add a system notification to a view just as you add a sheet, alert or full screen modal, using ``SwiftUI/View/systemNotification(_:)`` or ``SwiftUI/View/systemNotification(isActive:configuration:style:content:)``:
+After adding SystemNotification to your project, you can add a system notification to a view just as you add a sheet, alert or full screen modal, using ``SwiftUI/View/systemNotification(_:)`` or ``SwiftUI/View/systemNotification(isActive:content:)``:
 
 ```swift
 import SystemNotification
@@ -32,6 +32,8 @@ struct MyView: View {
 ```
 
 You can use both state and ``SystemNotificationContext``-based notifications and style your custom notifications to great extent.
+
+> Important: If you want a system notification to be global, make sure to apply the notification modifier to the application root view, e.g. the main `TabView` or `NavigationStack`. You must apply the modifier again if you present a sheet or full screen modal.
 
 
 
@@ -165,22 +167,22 @@ struct MyView: View {
             SystemNotificationMessage(
                 icon: Image(systemName: "bell.slash.fill"),
                 title: "Silent Mode",
-                text: "On",
-                style: .init(iconColor: .red)
+                text: "On"
+            )
+            .systemNotificationMessageStyle(
+                .init(iconColor: .red)
             )
         }
     }
 }
 ```
 
-The `style` parameter lets you style the message.  To style the notification shape, you must provide a ``SystemNotificationStyle`` when setting up or presenting the notification.
+
+## Styling and configuration
+
+You can style system notifications with ``SwiftUI/View/systemNotificationStyle(_:)`` and ``SwiftUI/View/systemNotificationConfiguration(_:)``, which must be applied after the ``SwiftUI/View/systemNotification(_:)`` view modifier.
+
+You can style system notification message views with ``SwiftUI/View/systemNotificationMessageStyle(_:)``. This lets you style individual messages while keeping the global notification style for the corner radius, background material, etc.
 
 
-
-## Further Reading
-
-@Links(visualStyle: detailedGrid) {
-    
-    - <doc:Configuration>
-    - <doc:Styling>
-}
+See ``SystemNotificationStyle``, ``SystemNotificationConfiguration`` and ``SystemNotificationMessageStyle`` for more information about how to style and configure these views.

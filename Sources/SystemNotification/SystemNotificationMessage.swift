@@ -81,6 +81,7 @@ public struct SystemNotificationMessage<IconView: View>: View {
         }
         .padding(.vertical, style.padding.height)
         .padding(.horizontal, style.padding.width)
+        .background(style.backgroundColor)
     }
 }
 
@@ -88,6 +89,12 @@ private extension SystemNotificationMessage {
     
     var style: SystemNotificationMessageStyle {
         initStyle ?? envStyle
+    }
+    
+    func foregroundColor(
+        for color: Color
+    ) -> Color {
+        style.foregroundColor ?? color
     }
 }
 
@@ -98,11 +105,11 @@ private extension SystemNotificationMessage {
             if let title = title {
                 Text(title)
                     .font(style.titleFont)
-                    .foregroundColor(style.titleColor)
+                    .foregroundStyle(foregroundColor(for: style.titleColor))
             }
             Text(text)
                 .font(style.textFont)
-                .foregroundColor(style.textColor)
+                .foregroundStyle(foregroundColor(for: style.textColor))
         }
         .multilineTextAlignment(.center)
     }
@@ -110,7 +117,7 @@ private extension SystemNotificationMessage {
     @ViewBuilder
     var iconView: some View {
         icon.font(style.iconFont)
-            .foregroundColor(style.iconColor)
+            .foregroundStyle(foregroundColor(for: style.iconColor))
     }
 }
 
@@ -124,7 +131,10 @@ private extension SystemNotificationMessage {
                 text: "On"
             )
             .systemNotificationMessageStyle(
-                .init(iconColor: .red)
+                .init(
+                    backgroundColor: .yellow,
+                    iconColor: .red
+                )
             )
 
             SystemNotificationMessage(

@@ -11,17 +11,13 @@ import SwiftUI
 /// This view mimics the native iOS system notification that
 /// for instance is shown when toggling silent mode.
 /// 
-/// This view will render a notification shape that contains
-/// the provided content view. You can use a custom view, or
-/// use ``SystemNotificationMessage`` for an iOS native look.
+/// This view renders a notification shape that contains the
+/// provided content view. You can use a custom view, or use
+/// a ``SystemNotificationMessage`` for convenience.
 ///
-/// The view will use the applied style and configuration to
-/// style itself, then behave according to the configuration.
-///
-/// You can apply ``SwiftUI/View/systemNotificationStyle(_:)``
-/// to customize the notification style, e.g. color. You can
-/// apply ``SwiftUI/View/systemNotificationConfiguration(_:)``
-/// to customize its behavior, e.g. the animation & duration.
+/// You can use a ``SwiftUI/View/systemNotificationStyle(_:)``
+/// and a ``SwiftUI/View/systemNotificationConfiguration(_:)``
+/// to style and configure a system notification.
 public struct SystemNotification<Content: View>: View {
     
     /// Create a system notification view.

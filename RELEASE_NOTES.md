@@ -29,6 +29,8 @@ This version bumps the deployment targets and moves styling and configuration to
 * `SystemNotificationStyle` now supports background materials.
 * `SystemNotificationStyle` can now be used as an environment value.
 * `SystemNotificationMessageStyle` can now be used as an environment value.
+* `SystemNotificationMessageStyle` now supports specifying a foreground color.
+* `SystemNotificationMessageStyle` now supports specifying a background color.
 * `View` has new system notification-related style- and config view modifiers.
 
 ### 🐛 Bug fixes

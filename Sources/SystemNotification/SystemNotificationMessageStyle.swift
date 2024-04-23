@@ -10,24 +10,22 @@ import SwiftUI
 
 /// This style can style a ``SystemNotificationMessage``.
 ///
-/// Apply ``SwiftUI/View/systemNotificationMessageStyle(_:)``
-/// if an app or notification should use a custom style.
+/// You can either set an overall foreground color, which is
+/// then applied to all components, or use individual colors.
 ///
-/// You can easily create a custom style like this:
+/// See <doc:Getting-Started> for more information on how to
+/// style and configure system notifications.
 ///
-/// ```swift
-/// extension SystemNotificationMessageStyle {
-///    static var custom = Self(iconColor: .yellow)
-/// }
-/// ```
-///
-/// The ``standard`` value is used by default when you don't
-/// apply a custom value.
+/// You can apply a custom value with the corresponding view
+/// modifier. The ``standard`` value is used by default when
+/// you don't apply a custom value.
 public struct SystemNotificationMessageStyle {
 
     /// Create a custom system notification message style.
     ///
     /// - Parameters:
+    ///   - backgroundColor: The overall background color.
+    ///   - foregroundColor: The overall foreground color.
     ///   - iconColor: The color to apply to the icon.
     ///   - iconFont: The font to apply to the icon.
     ///   - iconTextSpacing: The spacing to apply between the icon and the text.
@@ -38,6 +36,8 @@ public struct SystemNotificationMessageStyle {
     ///   - titleFont: The font to apply to the title.
     ///   - titleTextSpacing: The spacing to apply between the title and the text.
     public init(
+        backgroundColor: Color? = nil,
+        foregroundColor: Color? = nil,
         iconColor: Color = .primary.opacity(0.6),
         iconFont: Font = Font.title3,
         iconTextSpacing: CGFloat = 20,
@@ -48,6 +48,8 @@ public struct SystemNotificationMessageStyle {
         titleFont: Font = Font.footnote.bold(),
         titleTextSpacing: CGFloat = 2
     ) {
+        self.backgroundColor = backgroundColor
+        self.foregroundColor = foregroundColor
         self.iconColor = iconColor
         self.iconFont = iconFont
         self.iconTextSpacing = iconTextSpacing
@@ -58,6 +60,12 @@ public struct SystemNotificationMessageStyle {
         self.titleFont = titleFont
         self.titleTextSpacing = titleTextSpacing
     }
+    
+    /// The overall background color.
+    public var backgroundColor: Color?
+    
+    /// The overall foreground color.
+    public var foregroundColor: Color?
     
     /// The color to apply to the icon.
     public var iconColor: Color

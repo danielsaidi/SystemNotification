@@ -122,7 +122,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Warning, warning!"
+            "value" : "Look at the orange color - this is a serious message!"
           }
         }
       }
@@ -132,7 +132,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Look at the orange color - this is a serious message!"
+            "value" : "Warning, warning!"
           }
         }
       }
@@ -156,6 +156,9 @@
           }
         }
       }
+    },
+    "Silent Mode Off" : {
+
     },
     "Silent Mode On" : {
 

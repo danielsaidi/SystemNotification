@@ -45,24 +45,32 @@ public class SystemNotificationContext: ObservableObject {
     
     /// Present a system notification.
     public func present<Content: View>(
-        _ content: Content
+        _ content: Content,
+        afterDelay delay: TimeInterval = 0
     ) {
         dismiss {
-            self.presentAfterDismiss(content)
+            self.perform(after: delay) {
+                self.presentAfterDismiss(content)
+            }
         }
     }
     
     /// Present a system notification.
     public func present<Content: View>(
+        afterDelay delay: TimeInterval = 0,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        present(content())
+        present(content(), afterDelay: delay)
     }
 }
 
 private extension SystemNotificationContext {
     
-    func perform(_ action: @escaping Action, after seconds: TimeInterval) {
+    func perform(
+        _ action: @escaping Action,
+        after seconds: TimeInterval
+    ) {
+        guard seconds > 0 else { return action() }
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: action)
     }
     

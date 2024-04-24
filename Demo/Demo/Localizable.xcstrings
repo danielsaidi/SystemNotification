@@ -4,9 +4,6 @@
     "🇸🇪" : {
 
     },
-    "Ding!" : {
-
-    },
     "Dismiss" : {
       "localizations" : {
         "en" : {
@@ -47,6 +44,16 @@
         }
       }
     },
+    "Menu.Error" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present an error message"
+          }
+        }
+      }
+    },
     "Menu.LocalizedMessage" : {
       "localizations" : {
         "en" : {
@@ -67,12 +74,42 @@
         }
       }
     },
+    "Menu.Success" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present a success message"
+          }
+        }
+      }
+    },
     "Menu.Warning" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Present an orange warning"
+            "value" : "Present a warning"
+          }
+        }
+      }
+    },
+    "Message.Error.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong"
+          }
+        }
+      }
+    },
+    "Message.Error.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error!"
           }
         }
       }
@@ -97,12 +134,32 @@
         }
       }
     },
+    "Message.Success.Text" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This was a big success"
+          }
+        }
+      }
+    },
+    "Message.Success.Title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yay!"
+          }
+        }
+      }
+    },
     "Message.Toast.Text" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This toast is presented from the bottom, and styled a bit."
+            "value" : "This black toast is presented from the bottom"
           }
         }
       }
@@ -157,11 +214,25 @@
         }
       }
     },
-    "Silent Mode Off" : {
-
+    "Section.Predefined" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Predefined message types"
+          }
+        }
+      }
     },
-    "Silent Mode On" : {
-
+    "Section.Toasts" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toasts"
+          }
+        }
+      }
     },
     "SystemNotification" : {
 

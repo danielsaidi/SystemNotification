@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension SystemNotificationMessageStyle {
+public extension SystemNotificationMessageStyle {
     
     static var error: Self {
         prominent(backgroundColor: .red)
@@ -34,7 +34,7 @@ extension SystemNotificationMessageStyle {
     }
 }
 
-extension SystemNotificationMessage where IconView == Image {
+public extension SystemNotificationMessage where IconView == Image {
     
     static func error(
         icon: Image = .init(systemName: "exclamationmark.triangle"),

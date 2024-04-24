@@ -19,5 +19,6 @@ extension Image {
     static let silentModeOff = Image(systemName: "bell.fill")
     static let silentModeOn = Image(systemName: "bell.slash.fill")
     static let `static` = Image(systemName: "viewfinder")
+    static let success = Image(systemName: "checkmark")
     static let warning = Image(systemName: "exclamationmark.triangle")
 }

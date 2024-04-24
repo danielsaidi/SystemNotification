@@ -66,17 +66,18 @@ struct ContentView: View {
                 Toggle(isOn: $isSilentModeOn) {
                     label(.silentModeOff, "Toggle.SilentMode")
                 }
-//                listItem(.globe, "Show localized notification", presentLocalized)
-                listItem(.warning, "Menu.Warning", presentWarning)
                 listItem(.flag, "Menu.LocalizedMessage", presentLocalizedMessage)
                 listItem(.static, "Menu.CustomView", presentCustomView)
-                listItem(.sheet, "Menu.BottomToast", presentBottomToast)
-//                listItem(.error, "Show red error from bottom", presentError)
-//                listItem(.flag, "Show custom view", presentCustomView)
             }
-//            Section(header: Text("Non-dismissing notifications")) {
-//                listItem(.static, "Show non-dismissing notification", presentStaticNotification)
-//            }
+            Section("Section.Predefined") {
+                listItem(.error, "Menu.Error", presentError)
+                listItem(.success, "Menu.Success", presentSuccess)
+                listItem(.warning, "Menu.Warning", presentWarning)
+            }
+            Section("Section.Toasts") {
+                listItem(.sheet, "Menu.BottomToast", presentBottomToast)
+                
+            }
             Section("Section.Modals") {
                 listItem(.sheet, "Menu.Sheet", presentModalSheet)
                 listItem(.cover, "Menu.Cover", presentModalCover)
@@ -101,14 +102,7 @@ struct ContentView: View {
         #endif
         .systemNotification(toast)
         .systemNotificationConfiguration(.standardToast)
-        
-        .onChange(of: isSilentModeOn) {
-            if $0 {
-                presentSilentModeOn()
-            } else {
-                presentSilentModeOff()
-            }
-        }
+        .onChange(of: isSilentModeOn) { _ in presentSilentMode() }
     }
 }
 
@@ -162,21 +156,24 @@ private extension ContentView {
         toast.present {
             SystemNotificationMessage(
                 title: "Message.Toast.Title",
-                text: "Message.Toast.Text"
+                text: "Message.Toast.Text",
+                style: .prominent(backgroundColor: .black)
             )
-            .systemNotificationMessageStyle(
-                .init(
-                    backgroundColor: .black,
-                    padding: .init(width: 30, height: 20)
-                )
-            )
-            .environment(\.colorScheme, .dark)
         }
     }
     
     func presentCustomView() {
         notification.present(
             flagView
+        )
+    }
+    
+    func presentError() {
+        notification.presentMessage(
+            .error(
+                title: "Message.Error.Title",
+                text: "Message.Error.Text"
+            )
         )
     }
     
@@ -198,36 +195,26 @@ private extension ContentView {
         isSheetActive = true
     }
 
-    func presentSilentModeOff() {
-        notification.present {
-            SystemNotificationMessage(
-                icon: SilentModeBell(isSilentModeOn: false),
-                text: "Silent Mode Off"
-            )
-        }
+    func presentSilentMode() {
+        notification.presentMessage(
+            .silentMode(on: isSilentModeOn)
+        )
     }
-
-    func presentSilentModeOn() {
-        notification.present {
-            SystemNotificationMessage(
-                icon: SilentModeBell(isSilentModeOn: true),
-                text: "Silent Mode On"
+    
+    func presentSuccess() {
+        notification.presentMessage(
+            .success(
+                title: "Message.Success.Title",
+                text: "Message.Success.Text"
             )
-        }
+        )
     }
-
+    
     func presentWarning() {
-        notification.present(
-            SystemNotificationMessage(
-                icon: Image.warning,
+        notification.presentMessage(
+            .warning(
                 title: "Message.Warning.Title",
                 text: "Message.Warning.Text"
-            )
-            .systemNotificationMessageStyle(
-                .init(
-                    backgroundColor: .orange,
-                    foregroundColor: .white
-                )
             )
         )
     }

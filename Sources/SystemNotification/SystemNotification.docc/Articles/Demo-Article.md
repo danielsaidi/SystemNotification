@@ -1,6 +1,6 @@
 # Demo App
 
-This article describes how to try the SystemNotification demo app.
+This article describes the SystemNotification demo app.
 
 @Metadata {
     

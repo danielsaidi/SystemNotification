@@ -62,6 +62,7 @@ public struct SystemNotification<Content: View>: View {
             content(isActive)
                 .background(style.backgroundColor)
                 .background(style.backgroundMaterial)
+                .compositingGroup()
                 .cornerRadius(style.cornerRadius ?? 1_000)
                 .shadow(
                     color: style.shadowColor,
@@ -214,4 +215,61 @@ private extension SystemNotification {
     }
     
     return Preview()
+}
+
+#Preview("README #1") {
+    
+    struct MyView: View {
+
+        @State
+        var isActive = false
+
+        var body: some View {
+            VStack {
+                Button("Show notification") {
+                    isActive = true
+                }
+            }
+            .systemNotification(isActive: $isActive) {
+                Text("You can use any custom content view")
+                    .padding()
+            }
+        }
+    }
+    
+    return MyView()
+}
+
+
+#Preview("README #2") {
+    
+    struct MyView: View {
+
+        @StateObject
+        var notification = SystemNotificationContext()
+
+        var body: some View {
+            VStack {
+                Button("Show text") {
+                    notification.present {
+                        Text("Context-based notifications are more flexible.")
+                            .padding()
+                            .multilineTextAlignment(.center)
+                    }
+                }
+                Button("Show message") {
+                    notification.present {
+                        SystemNotificationMessage(
+                            icon: Text("👍"),
+                            title: "Great job!",
+                            text: "You presented a native-looking message!"
+                        )
+                    }
+                }
+            }
+            .systemNotification(notification)
+        }
+    }
+    
+    return MyView()
 }

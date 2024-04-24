@@ -23,7 +23,7 @@ The result can look like this, or completely different:
     <img src="Resources/Demo.gif" width=350 />
 </p>
 
-These notifications can be styled and customized to great extent. You can also use completely custom views.
+System notifications can be styled and customized. You can use a native-looking `SystemNotificationMessage` view as the content view, or any custom view.
 
 
 
@@ -39,23 +39,69 @@ https://github.com/danielsaidi/SystemNotification.git
 
 ## Getting started
 
-After adding SystemNotification to your project, you can add a system notification to a view hierarchy just as you add a `sheet`, `alert` and `fullScreenModal`:
+With SystemNotification, you can add a system notification to any view just as you add a `sheet`, `alert` and `fullScreenModal`, by applying a `systemNotification` view modifier (preferably to the application root view).
+
+State-based notifications take a boolean state binding and a view builder:
 
 ```swift
 import SystemNotification
 
 struct MyView: View {
 
+    @State
+    var isActive = false
+
     var body: some View {
-        Text("Hello, world")
-            .systemNotification(...)
+        VStack {
+            Button("Show notification") {
+                isActive = true
+            }
+        }
+        .systemNotification(isActive: $isActive) {
+            Text("You can use any custom content view")
+                .padding()
+        }
     }
 }
 ```
 
-You can use both state- and context and message-based notifications and style your notifications to great extent.
+Context-based notifications just take a `SystemNotificationContext` instance and can then show many different notifications with a single modifier:
 
-For more information, please see the [getting started guide][Getting-Started].
+```swift
+import SystemNotification
+
+struct MyView: View {
+
+    @StateObject
+    var notification = SystemNotificationContext()
+
+    var body: some View {
+        VStack {
+            Button("Show text") {
+                notification.present {
+                    Text("Context-based notifications are more flexible.")
+                        .padding()
+                        .multilineTextAlignment(.center)
+                }
+            }
+            Button("Show message") {
+                notification.present {
+                    SystemNotificationMessage(
+                        icon: Text("👍"),
+                        title: "Great job!",
+                        text: "You presented a native-looking message!"
+                    )
+                }
+            }
+        }
+        .systemNotification(notification)
+    }
+}
+```
+
+The `SystemNotificationMessage` view lets you easily mimic a native notification view, with an icon, title and text, but you can use any custom view as the notification body.
+
+For more information about how to configure and style your notifications, please see the [getting started guide][Getting-Started].
 
 
 
@@ -67,7 +113,7 @@ The [online documentation][Documentation] has more information, articles, code e
 
 ## Demo Application
 
-The demo app lets you explore the library with iOS, macOS, and visionOS. To try it out, just open and run the `Demo` project.
+The demo app lets you explore the library. To try it out, just open and run the `Demo` project.
 
 
 

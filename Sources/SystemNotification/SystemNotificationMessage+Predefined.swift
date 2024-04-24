@@ -80,12 +80,12 @@ public extension SystemNotificationMessage where IconView == AnyView {
     
     /// This message mimics a native iOS silent mode message.
     static func silentMode(
-        on: Bool,
+        isOn: Bool,
         title: LocalizedStringKey? = nil
     ) -> Self {
         .init(
-            icon: AnyView(SilentModeBell(isSilentModeOn: on)),
-            text: title ?? "Silent Mode \(on ? "On" : "Off")"
+            icon: AnyView(SilentModeBell(isSilentModeOn: isOn)),
+            text: title ?? "Silent Mode \(isOn ? "On" : "Off")"
         )
     }
 }
@@ -153,8 +153,8 @@ private extension SilentModeBell {
 #Preview {
  
     VStack {
-        SystemNotificationMessage.silentMode(on: true)
-        SystemNotificationMessage.silentMode(on: false)
+        SystemNotificationMessage.silentMode(isOn: true)
+        SystemNotificationMessage.silentMode(isOn: false)
         SystemNotificationMessage.error(title: "Error!", text: "Something failed!")
         SystemNotificationMessage.success(title: "Success!", text: "You did it!")
         SystemNotificationMessage.warning(title: "Warning!", text: "Danger ahead!")

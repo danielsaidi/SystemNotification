@@ -291,7 +291,7 @@ private extension SystemNotification {
             }
             .systemNotification(notification)
             .onChange(of: isSilentModeEnabled) { value in
-                notification.presentMessage(.silentMode(on: value))
+                notification.presentMessage(.silentMode(isOn: value))
             }
         }
     }

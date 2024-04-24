@@ -197,7 +197,7 @@ private extension ContentView {
 
     func presentSilentMode() {
         notification.presentMessage(
-            .silentMode(on: isSilentModeOn)
+            .silentMode(isOn: isSilentModeOn)
         )
     }
     

@@ -47,7 +47,7 @@ struct MyView: View {
 }
 ```
 
-Context-based notifications just take a ``SystemNotificationContext`` instance and can then show many different notifications with a single modifier:
+Context-based notifications take a ``SystemNotificationContext`` and can then show different notifications with a single modifier:
 
 ```swift
 import SystemNotification
@@ -83,14 +83,28 @@ struct MyView: View {
 
 The ``SystemNotificationMessage`` view lets you easily mimic a native notification view, with an icon, an optional title and a text, but you can use any custom view as the notification content view.
 
-You can use the ``SwiftUI/View/systemNotificationConfiguration(_:)`` and ``SwiftUI/View/systemNotificationStyle(_:)`` view modifiers to apply custom configurations and styles, and the ``SwiftUI/View/systemNotificationMessageStyle(_:)`` to style the message.
+You can use the ``SwiftUI/View/systemNotificationConfiguration(_:)`` and ``SwiftUI/View/systemNotificationStyle(_:)`` view modifiers to apply custom configurations and styles.
 
 
-## Styling and configuration
 
-You can style system notifications with ``SwiftUI/View/systemNotificationStyle(_:)`` and ``SwiftUI/View/systemNotificationConfiguration(_:)``, which must be applied after the ``SwiftUI/View/systemNotification(_:)`` view modifier.
+## How to create custom notification messages
 
-You can style system notification message views with ``SwiftUI/View/systemNotificationMessageStyle(_:)``. This lets you style individual messages while keeping the global notification style for the corner radius, background material, etc.
+The ``SystemNotificationMessage`` view lets you easily mimic a native notification message, with an icon, an optional title and a text, as well as an explicit style that overrides any environment style.
 
+You can easily extend ``SystemNotificationMessage`` with your own custom messages, which can then be easily presented with the context's ``SystemNotificationContext/presentMessage(_:afterDelay:)`` function:
 
-See ``SystemNotificationStyle``, ``SystemNotificationConfiguration`` and ``SystemNotificationMessageStyle`` for more information about how to style and configure these views.
+```swift
+extension SystemNotificationMessage where IconView == Image {
+
+    static var itemCreated: Self {
+        .init(
+            icon: Image(systemName: "checkmark"),
+            title: "Item created!",
+            text: "A new item was created",
+            style: ....
+        )
+    }
+}
+```
+
+You can also use the ``SwiftUI/View/systemNotificationMessageStyle(_:)`` view modifier to provide a standard style for all other messages.

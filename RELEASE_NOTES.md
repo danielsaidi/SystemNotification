@@ -6,6 +6,18 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.1
+
+This version adds predefined system notification messages and styles and makes it easier to present a message.
+
+### ✨ New features
+
+* `SystemNotificationContext` has a new `presentMessage` function.
+* `SystemNotificationMessage` has new, predefined `error`, `success`, `warning` and `silentMode` messages.
+* `SystemNotificationMessageStyle` has new, predefined `prominent`, `error`, `success` and `warning` styles.
+
+
+
 ## 1.0
 
 This version bumps the deployment targets and moves styling and configuration to view modifiers.

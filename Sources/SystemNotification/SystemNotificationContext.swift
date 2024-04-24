@@ -62,6 +62,14 @@ public class SystemNotificationContext: ObservableObject {
     ) {
         present(content(), afterDelay: delay)
     }
+    
+    /// Present a system notification message.
+    public func presentMessage<IconType: View>(
+        _ message: SystemNotificationMessage<IconType>,
+        afterDelay delay: TimeInterval = 0
+    ) {
+        present(message, afterDelay: delay)
+    }
 }
 
 private extension SystemNotificationContext {

@@ -13,6 +13,19 @@ import SwiftUI
 ///
 /// You can provide a custom icon view, title, and text, and
 /// e.g. animate the icon when it's presented.
+///
+/// You can easily create custom messages, by extending this
+/// type with static message builders, for instance:
+///
+/// ```swift
+/// extension SystemNotificationMessage where IconView == Image {
+///
+///     static func silentMode(on: Bool) -> Self {
+///
+///     }
+/// }
+///
+/// ```
 public struct SystemNotificationMessage<IconView: View>: View {
     
     /// Create a system notification message view.
@@ -21,15 +34,17 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - icon: The leading icon view.
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
+    ///   - style: An optional, explicit style to apply.
     public init(
         icon: IconView,
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        style: SystemNotificationMessageStyle? = nil
     ) {
         self.icon = icon
         self.title = title
         self.text = text
-        self.initStyle = nil
+        self.initStyle = style
     }
 
     /// Create a system notification message view.
@@ -38,15 +53,17 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - icon: The leading icon image.
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
+    ///   - style: An optional, explicit style to apply.
     public init(
         icon: Image,
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        style: SystemNotificationMessageStyle? = nil
     ) where IconView == Image {
         self.icon = icon
         self.title = title
         self.text = text
-        self.initStyle = nil
+        self.initStyle = style
     }
 
     /// Create a system notification message view.
@@ -54,14 +71,16 @@ public struct SystemNotificationMessage<IconView: View>: View {
     /// - Parameters:
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
+    ///   - style: An optional, explicit style to apply.
     public init(
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        style: SystemNotificationMessageStyle? = nil
     ) where IconView == EmptyView {
         self.icon = EmptyView()
         self.title = title
         self.text = text
-        self.initStyle = nil
+        self.initStyle = style
     }
     
     let icon: IconView
@@ -70,7 +89,7 @@ public struct SystemNotificationMessage<IconView: View>: View {
     let initStyle: SystemNotificationMessageStyle?
     
     @Environment(\.systemNotificationMessageStyle)
-    private var envStyle
+    private var environmentStyle
     
     public var body: some View {
         HStack(spacing: style.iconTextSpacing) {
@@ -88,7 +107,7 @@ public struct SystemNotificationMessage<IconView: View>: View {
 private extension SystemNotificationMessage {
     
     var style: SystemNotificationMessageStyle {
-        initStyle ?? envStyle
+        initStyle ?? environmentStyle
     }
     
     func foregroundColor(
@@ -156,17 +175,9 @@ private extension SystemNotificationMessage {
             SystemNotificationMessage(
                 icon: Image(systemName: "exclamationmark.triangle"),
                 title: "Warning",
-                text: "This is a long message to demonstrate multiline messages."
+                text: "This is a long warning message to demonstrate multiline messages."
             )
-            .systemNotificationMessageStyle(
-                .init(
-                    iconColor: .orange,
-                    iconFont: .headline,
-                    textColor: .orange,
-                    titleColor: .orange,
-                    titleFont: .headline
-                )
-            )
+            .systemNotificationMessageStyle(.warning)
         }
         .background(Color.white)
         .cornerRadius(5)

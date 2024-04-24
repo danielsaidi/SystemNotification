@@ -101,7 +101,7 @@ struct MyView: View {
 
 The `SystemNotificationMessage` view lets you easily mimic a native notification view, with an icon, title and text, but you can use any custom view as the notification body.
 
-For more information about how to configure and style your notifications, please see the [getting started guide][Getting-Started].
+For more information about how to configure and style your notifications, predefined message types and styles, and how to create your own custom message types, please see the [getting started guide][Getting-Started].
 
 
 

@@ -273,3 +273,28 @@ private extension SystemNotification {
     
     return MyView()
 }
+
+
+#Preview("README #3") {
+    
+    struct MyView: View {
+        
+        @State
+        var isSilentModeEnabled = false
+
+        @StateObject
+        var notification = SystemNotificationContext()
+
+        var body: some View {
+            List {
+                Toggle("Silent Mode", isOn: $isSilentModeEnabled)
+            }
+            .systemNotification(notification)
+            .onChange(of: isSilentModeEnabled) { value in
+                notification.presentMessage(.silentMode(on: value))
+            }
+        }
+    }
+    
+    return MyView()
+}

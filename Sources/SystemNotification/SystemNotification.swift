@@ -55,7 +55,10 @@ public struct SystemNotification<Content: View>: View {
     
     @State
     private var currentId = UUID()
-    
+
+    @State 
+    private var contentHeight: CGFloat = 0
+
     public var body: some View {
         ZStack(alignment: edge.alignment) {
             Color.clear
@@ -74,8 +77,10 @@ public struct SystemNotification<Content: View>: View {
                 .gesture(swipeGesture, if: config.isSwipeToDismissEnabled)
                 #endif
                 .padding(style.padding)
+                .reportHeight()
                 .onChange(of: isActive, perform: handlePresentation)
         }
+        .onPreferenceChange(HeightPreferenceKey.self) { contentHeight = $0 }
     }
 }
 
@@ -92,8 +97,8 @@ private extension SystemNotification {
     var verticalOffset: CGFloat {
         if isActive { return 0 }
         switch edge {
-        case .top: return -250
-        case .bottom: return 250
+        case .top: return -250 - contentHeight
+        case .bottom: return 250 + contentHeight
         }
     }
     
@@ -297,4 +302,32 @@ private extension SystemNotification {
     }
     
     return MyView()
+}
+
+private extension View {
+    func reportHeight() -> some View {
+        modifier(HeightPreferenceReporter())
+    }
+}
+/// Read the height of the notification content and report its height up through the PreferenceKey system to a
+/// parent view.
+private struct HeightPreferenceReporter: ViewModifier {
+    func body(content: Content) -> some View {
+        content.background(
+            GeometryReader { geometry in
+                Color.clear.preference(
+                    key: HeightPreferenceKey.self,
+                    value: geometry.size.height
+                )
+            }
+        )
+    }
+}
+
+private struct HeightPreferenceKey: PreferenceKey {
+    internal static let defaultValue: CGFloat = 0
+
+    internal static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue())
+    }
 }

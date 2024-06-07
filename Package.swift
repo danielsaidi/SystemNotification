@@ -21,7 +21,9 @@ let package = Package(
     targets: [
         .target(
             name: "SystemNotification",
-            dependencies: []
+            swiftSettings: [
+                .enableExperimentalFeature("StrictConcurrency")
+            ]
         ),
         .testTarget(
             name: "SystemNotificationTests",

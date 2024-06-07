@@ -56,17 +56,15 @@ public struct SystemNotificationConfiguration {
 public extension SystemNotificationConfiguration {
     
     /// The standard system notification configuration.
-    ///
-    /// You can set this style to change the global default.
-    static var standard = Self()
+    static var standard: Self { .init() }
     
     /// A standard toast configuration.
-    ///
-    /// You can set this style to change the global default.
-    static var standardToast = Self(
-        animation: .bouncy,
-        edge: .bottom
-    )
+    static var standardToast: Self {
+        .init(
+            animation: .bouncy,
+            edge: .bottom
+        )
+    }
 }
 
 public extension View {
@@ -97,7 +95,7 @@ private extension SystemNotificationConfiguration {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: SystemNotificationConfiguration = .standard
+        static var defaultValue: SystemNotificationConfiguration { .init() }
     }
 }
 

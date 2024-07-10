@@ -99,9 +99,7 @@ public struct SystemNotificationStyle {
 public extension SystemNotificationStyle {
 
     /// The standard system notification style.
-    ///
-    /// You can set this style to change the global default.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -132,7 +130,7 @@ private extension SystemNotificationStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: SystemNotificationStyle = .standard
+        static var defaultValue: SystemNotificationStyle { .standard }
     }
 }
 

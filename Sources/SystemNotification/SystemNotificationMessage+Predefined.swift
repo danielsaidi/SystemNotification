@@ -119,6 +119,7 @@ private struct SilentModeBell: View {
     }
 }
 
+@MainActor
 private extension SilentModeBell {
 
     func animate() {
@@ -130,7 +131,9 @@ private extension SilentModeBell {
     }
 
     func perform(after: Double, action: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: action)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            action()
+        }
     }
 
     var animationDamping: Double {

@@ -70,6 +70,15 @@ public class SystemNotificationContext: ObservableObject {
     ) {
         present(message, afterDelay: delay)
     }
+	
+	public func presentStickyMessage<IconType: View>(
+		_ message: SystemNotificationMessage<IconType>,
+		afterDelay delay: TimeInterval = 0
+	) {
+		self.perform(after: delay) {
+			self.presentAfterDismiss(message)
+		}
+	}
 }
 
 private extension SystemNotificationContext {

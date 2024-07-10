@@ -36,7 +36,7 @@ public extension SystemNotificationUIKitOverlay {
     func addAsOverlay(to view: UIView) {
         let overlay = UIHostingController(rootView: self)
         view.addSubview(overlay.view)
-		// Prevent the UIHostingController from grabbing all touch events
+		// Prevent the UIHostingController from grabbing all touch events going to the UIKit view
 		overlay.view.isUserInteractionEnabled = false
 		
         overlay.view.backgroundColor = .clear

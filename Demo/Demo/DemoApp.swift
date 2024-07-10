@@ -20,8 +20,9 @@ struct DemoApp: App {
     var body: some Scene {
         WindowGroup {
             content
-                .systemNotification(context)    // Context-based notifications are versatile
-                .systemNotificationStyle(style)
+                .systemNotification(context)    // Context-based notifications are flexible
+                .systemNotificationStyle(style) // This is how to set a global style
+                .tint(.orange)
         }
     }
 }
@@ -45,10 +46,8 @@ private extension DemoApp {
 
     var contentView: some View {
         #if os(iOS)
-        TabView {
-            NavigationStack {
-                ContentView(style: $style)
-            }
+        NavigationStack {
+            ContentView(style: $style)
         }
         #else
         ContentView()
@@ -62,7 +61,7 @@ private extension View {
         self.tabItem {
             Label(
                 "Tab \(index)",
-                systemImage: "0\(index).square")
+                systemImage: "0\(index).circle")
         }
     }
 }

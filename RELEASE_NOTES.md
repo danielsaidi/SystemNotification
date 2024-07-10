@@ -6,6 +6,12 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.1.1
+
+This version adds support for strict concurrency.
+
+
+
 ## 1.1
 
 This version adds predefined system notification messages and styles and makes it easier to present a message.

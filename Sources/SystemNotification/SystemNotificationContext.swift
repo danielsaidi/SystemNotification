@@ -74,16 +74,6 @@ public extension SystemNotificationContext {
     ) {
         present(message, afterDelay: delay)
     }
-	
-	public func presentStickyMessage<IconType: View>(
-		_ message: SystemNotificationMessage<IconType>,
-		afterDelay delay: TimeInterval = 0
-	) {
-		self.perform(after: delay) {
-			self.presentAfterDismiss(message)
-		}
-	}
-}
 
 @MainActor
 private extension SystemNotificationContext {

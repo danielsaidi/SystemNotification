@@ -37,7 +37,7 @@ public extension SystemNotificationContext {
     func dismiss() {
         dismiss {}
     }
-        
+    
     /// Dismiss the current notification, if any.
     func dismiss(
         completion: @escaping Action
@@ -74,6 +74,7 @@ public extension SystemNotificationContext {
     ) {
         present(message, afterDelay: delay)
     }
+}
 
 @MainActor
 private extension SystemNotificationContext {

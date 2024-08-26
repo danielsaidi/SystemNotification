@@ -30,9 +30,7 @@ public struct SystemNotificationAppKitOverlay: View {
 
 public extension SystemNotificationAppKitOverlay {
     
-    /**
-     Add the overlay view to a certain AppKit view.
-     */
+    /// Add the overlay view to a certain AppKit view.
     func addAsOverlay(to view: NSView) {
         let overlay = NSHostingController(rootView: self)
         overlay.view.wantsLayer = true

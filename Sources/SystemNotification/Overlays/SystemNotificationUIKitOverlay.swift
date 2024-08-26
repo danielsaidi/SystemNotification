@@ -30,9 +30,7 @@ public struct SystemNotificationUIKitOverlay: View {
 
 public extension SystemNotificationUIKitOverlay {
     
-    /**
-     Add the overlay view to a certain UIKit view.
-     */
+    /// Add the overlay view to a certain UIKit view.
     func addAsOverlay(to view: UIView) {
         let overlay = UIHostingController(rootView: self)
         view.addSubview(overlay.view)

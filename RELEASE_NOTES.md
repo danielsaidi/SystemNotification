@@ -6,6 +6,14 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.1.2
+
+Thanks to @martindufort there's now an AppKit-specific overlay.
+
+### ✨ `SystemNotificationAppKitOverlay` is a new AppKit-specific overlay view. 
+
+
+
 ## 1.1.1
 
 This version adds support for strict concurrency.

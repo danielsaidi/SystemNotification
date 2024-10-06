@@ -6,6 +6,12 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.2
+
+This version renames the `master` branch to `main` and updates to Swift 6.
+
+
+
 ## 1.1.2
 
 Thanks to @martindufort there's now an AppKit-specific overlay.

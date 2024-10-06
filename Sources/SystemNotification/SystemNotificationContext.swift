@@ -21,18 +21,17 @@ public class SystemNotificationContext: ObservableObject {
     
     @Published
     public var isActive = false
-    
-    
-    public var isActiveBinding: Binding<Bool> {
-        .init(get: { self.isActive },
-              set: { self.isActive = $0 }
-        )
-    }
 }
 
 @MainActor
 public extension SystemNotificationContext {
-    
+
+    var isActiveBinding: Binding<Bool> {
+        .init(get: { self.isActive },
+              set: { self.isActive = $0 }
+        )
+    }
+
     /// Dismiss the current notification, if any.
     func dismiss() {
         dismiss {}

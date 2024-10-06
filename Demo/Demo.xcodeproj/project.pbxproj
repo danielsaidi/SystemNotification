@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A954CAF7297553B8008C1E41 /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A954CAF6297553B8008C1E41 /* SystemNotification */; };
+		A9578C232CB2BE04008F777C /* SystemNotification in Frameworks */ = {isa = PBXBuildFile; productRef = A9578C222CB2BE04008F777C /* SystemNotification */; };
 		A95F1E562975412D00383605 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F1E552975412D00383605 /* DemoApp.swift */; };
 		A95F1E582975412D00383605 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95F1E572975412D00383605 /* ContentView.swift */; };
 		A95F1E5A2975412E00383605 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95F1E592975412E00383605 /* Assets.xcassets */; };
@@ -17,7 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A954CAF52975533E008C1E41 /* systemnotification */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = systemnotification; path = ..; sourceTree = "<group>"; };
 		A95F1E522975412D00383605 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95F1E552975412D00383605 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A95F1E572975412D00383605 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9578C232CB2BE04008F777C /* SystemNotification in Frameworks */,
 				A954CAF7297553B8008C1E41 /* SystemNotification in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,7 +44,6 @@
 		A95F1E492975412D00383605 = {
 			isa = PBXGroup;
 			children = (
-				A95F1E64297549C400383605 /* Packages */,
 				A95F1E542975412D00383605 /* Demo */,
 				A95F1E532975412D00383605 /* Products */,
 				A95F1E7229754BDB00383605 /* Frameworks */,
@@ -76,14 +76,6 @@
 				A95F1E5D2975412E00383605 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		A95F1E64297549C400383605 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				A954CAF52975533E008C1E41 /* systemnotification */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		A95F1E6C29754B1200383605 /* Resources */ = {
@@ -129,6 +121,7 @@
 			name = Demo;
 			packageProductDependencies = (
 				A954CAF6297553B8008C1E41 /* SystemNotification */,
+				A9578C222CB2BE04008F777C /* SystemNotification */,
 			);
 			productName = Demo;
 			productReference = A95F1E522975412D00383605 /* Demo.app */;
@@ -159,6 +152,7 @@
 			);
 			mainGroup = A95F1E492975412D00383605;
 			packageReferences = (
+				A9578C212CB2BE04008F777C /* XCLocalSwiftPackageReference "../../systemnotification" */,
 			);
 			productRefGroup = A95F1E532975412D00383605 /* Products */;
 			projectDirPath = "";
@@ -424,8 +418,19 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		A9578C212CB2BE04008F777C /* XCLocalSwiftPackageReference "../../systemnotification" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../systemnotification;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		A954CAF6297553B8008C1E41 /* SystemNotification */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SystemNotification;
+		};
+		A9578C222CB2BE04008F777C /* SystemNotification */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SystemNotification;
 		};

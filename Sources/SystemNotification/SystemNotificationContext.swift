@@ -11,31 +11,34 @@ import SwiftUI
 /// This context can be used to present system notifications
 /// in a more flexible way.
 public class SystemNotificationContext: ObservableObject {
-
+    
     public init() {}
-
+    
     public typealias Action = () -> Void
-
+    
     @Published
     public var content = AnyView(EmptyView())
-
+    
     @Published
     public var isActive = false
+}
 
+@MainActor
+public extension SystemNotificationContext {
 
-    public var isActiveBinding: Binding<Bool> {
+    var isActiveBinding: Binding<Bool> {
         .init(get: { self.isActive },
               set: { self.isActive = $0 }
         )
     }
-    
+
     /// Dismiss the current notification, if any.
-    public func dismiss() {
+    func dismiss() {
         dismiss {}
     }
-        
+    
     /// Dismiss the current notification, if any.
-    public func dismiss(
+    func dismiss(
         completion: @escaping Action
     ) {
         guard isActive else { return completion() }
@@ -44,7 +47,7 @@ public class SystemNotificationContext: ObservableObject {
     }
     
     /// Present a system notification.
-    public func present<Content: View>(
+    func present<Content: View>(
         _ content: Content,
         afterDelay delay: TimeInterval = 0
     ) {
@@ -56,7 +59,7 @@ public class SystemNotificationContext: ObservableObject {
     }
     
     /// Present a system notification.
-    public func present<Content: View>(
+    func present<Content: View>(
         afterDelay delay: TimeInterval = 0,
         @ViewBuilder content: @escaping () -> Content
     ) {
@@ -64,7 +67,7 @@ public class SystemNotificationContext: ObservableObject {
     }
     
     /// Present a system notification message.
-    public func presentMessage<IconType: View>(
+    func presentMessage<IconType: View>(
         _ message: SystemNotificationMessage<IconType>,
         afterDelay delay: TimeInterval = 0
     ) {
@@ -72,6 +75,7 @@ public class SystemNotificationContext: ObservableObject {
     }
 }
 
+@MainActor
 private extension SystemNotificationContext {
     
     func perform(
@@ -79,7 +83,9 @@ private extension SystemNotificationContext {
         after seconds: TimeInterval
     ) {
         guard seconds > 0 else { return action() }
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: action)
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            action()
+        }
     }
     
     func perform(after seconds: TimeInterval, action: @escaping Action) {

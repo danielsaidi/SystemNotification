@@ -6,6 +6,28 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.2
+
+This version renames the `master` branch to `main` and updates to Swift 6.
+
+
+
+## 1.1.2
+
+Thanks to @martindufort there's now an AppKit-specific overlay.
+
+### ✨ New features
+
+`SystemNotificationAppKitOverlay` is a new AppKit-specific overlay view. This version renames the `master` branch to `main` and updates to Swift 6.
+
+
+
+## 1.1.1
+
+This version adds support for strict concurrency.
+
+
+
 ## 1.1
 
 This version adds predefined system notification messages and styles and makes it easier to present a message.

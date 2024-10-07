@@ -109,15 +109,18 @@ private extension SystemNotification {
     var style: SystemNotificationStyle {
         initStyle ?? envStyle
     }
+}
+
+@MainActor
+private extension SystemNotification {
     
     func handlePresentation(_ isPresented: Bool) {
         guard isPresented else { return }
         currentId = UUID()
         let id = currentId
         DispatchQueue.main.asyncAfter(deadline: .now() + config.duration) {
-            if id == currentId {
-                isActive = false
-            }
+            guard id == currentId else { return }
+            isActive = false
         }
     }
 }

@@ -6,6 +6,12 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.2.1
+
+This patch lets you provide a custom bundle to `SystemNotificatonMessage`.
+
+
+
 ## 1.2
 
 This version renames the `master` branch to `main` and updates to Swift 6.

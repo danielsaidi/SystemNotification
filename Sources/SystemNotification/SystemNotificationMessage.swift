@@ -21,10 +21,9 @@ import SwiftUI
 /// extension SystemNotificationMessage where IconView == Image {
 ///
 ///     static func silentMode(on: Bool) -> Self {
-///
+///         ...
 ///     }
 /// }
-///
 /// ```
 public struct SystemNotificationMessage<IconView: View>: View {
     
@@ -34,17 +33,20 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - icon: The leading icon view.
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
-    ///   - style: An optional, explicit style to apply.
+    ///   - style: An optional, explicit style to apply..
+    ///   - bundle: The bundle of the localized texts, by default `.main`.
     public init(
         icon: IconView,
         title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
-        style: SystemNotificationMessageStyle? = nil
+        style: SystemNotificationMessageStyle? = nil,
+        bundle: Bundle? = nil
     ) {
         self.icon = icon
         self.title = title
         self.text = text
         self.initStyle = style
+        self.bundle = bundle
     }
 
     /// Create a system notification message view.
@@ -54,16 +56,19 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
     ///   - style: An optional, explicit style to apply.
+    ///   - bundle: The bundle of the localized texts, by default `.main`.
     public init(
         icon: Image,
         title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
-        style: SystemNotificationMessageStyle? = nil
+        style: SystemNotificationMessageStyle? = nil,
+        bundle: Bundle? = nil
     ) where IconView == Image {
         self.icon = icon
         self.title = title
         self.text = text
         self.initStyle = style
+        self.bundle = bundle
     }
 
     /// Create a system notification message view.
@@ -72,21 +77,25 @@ public struct SystemNotificationMessage<IconView: View>: View {
     ///   - title: The bold title text, by default `nil`.
     ///   - text: The plain message text.
     ///   - style: An optional, explicit style to apply.
+    ///   - bundle: The bundle of the localized texts, by default `.main`.
     public init(
         title: LocalizedStringKey? = nil,
         text: LocalizedStringKey,
-        style: SystemNotificationMessageStyle? = nil
+        style: SystemNotificationMessageStyle? = nil,
+        bundle: Bundle? = nil
     ) where IconView == EmptyView {
         self.icon = EmptyView()
         self.title = title
         self.text = text
         self.initStyle = style
+        self.bundle = bundle
     }
     
     let icon: IconView
     let title: LocalizedStringKey?
     let text: LocalizedStringKey
     let initStyle: SystemNotificationMessageStyle?
+    let bundle: Bundle?
     
     @Environment(\.systemNotificationMessageStyle)
     private var environmentStyle
@@ -122,11 +131,11 @@ private extension SystemNotificationMessage {
     var textContent: some View {
         VStack(spacing: style.titleTextSpacing) {
             if let title = title {
-                Text(title)
+                Text(title, bundle: bundle ?? nil)
                     .font(style.titleFont)
                     .foregroundStyle(foregroundColor(for: style.titleColor))
             }
-            Text(text)
+            Text(text, bundle: bundle ?? nil)
                 .font(style.textFont)
                 .foregroundStyle(foregroundColor(for: style.textColor))
         }

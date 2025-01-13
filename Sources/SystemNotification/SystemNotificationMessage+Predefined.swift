@@ -39,39 +39,45 @@ public extension SystemNotificationMessage where IconView == Image {
     static func error(
         icon: Image = .init(systemName: "exclamationmark.triangle"),
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        bundle: Bundle? = nil
     ) -> Self {
         .init(
             icon: icon,
             title: title,
             text: text,
-            style: .error
+            style: .error,
+            bundle: bundle
         )
     }
     
     static func success(
         icon: Image = .init(systemName: "checkmark"),
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        bundle: Bundle? = nil
     ) -> Self {
         .init(
             icon: icon,
             title: title,
             text: text,
-            style: .success
+            style: .success,
+            bundle: bundle
         )
     }
     
     static func warning(
         icon: Image = .init(systemName: "exclamationmark.triangle"),
         title: LocalizedStringKey? = nil,
-        text: LocalizedStringKey
+        text: LocalizedStringKey,
+        bundle: Bundle? = nil
     ) -> Self {
         .init(
             icon: icon,
             title: title,
             text: text,
-            style: .warning
+            style: .warning,
+            bundle: bundle
         )
     }
 }

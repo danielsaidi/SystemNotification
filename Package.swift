@@ -17,7 +17,6 @@ let package = Package(
             targets: ["SystemNotification"]
         )
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "SystemNotification"

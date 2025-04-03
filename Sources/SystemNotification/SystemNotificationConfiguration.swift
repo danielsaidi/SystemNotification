@@ -29,7 +29,7 @@ public struct SystemNotificationConfiguration {
     ///   - edge: The edge from which to present the notification, by default `.top`.
     ///   - isSwipeToDismissEnabled: Whether or not a user can swipe to dismiss a notification, by default `true`.
     public init(
-        animation: Animation = .easeOut,
+        animation: Animation = .bouncy,
         duration: TimeInterval = 3,
         edge: SystemNotificationEdge = .top,
         isSwipeToDismissEnabled: Bool = true

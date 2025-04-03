@@ -271,6 +271,7 @@ private extension SystemNotification {
                 }
             }
             .systemNotification(notification)
+            .systemNotificationConfiguration(.init(animation: .bouncy))
         }
     }
     

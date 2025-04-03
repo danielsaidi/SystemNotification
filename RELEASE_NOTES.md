@@ -6,6 +6,12 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.3
+
+This version changes the default animation to `.bouncy`.
+
+
+
 ## 1.2.1
 
 This patch lets you provide a custom bundle to `SystemNotificatonMessage`.

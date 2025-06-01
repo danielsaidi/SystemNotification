@@ -7,14 +7,15 @@
     <img src="https://img.shields.io/badge/swift-6.0-orange.svg" alt="Swift 6.0" />
     <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <a href="https://danielsaidi.github.io/SystemNotification"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
-    <img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" />
+    <a href="https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" /></a>
+    <a href="https://github.com/sponsors/danielsaidi"><img src="https://img.shields.io/badge/sponsor-GitHub-red.svg" alt="Sponsor my work" /></a>
 </p>
 
 
 
 # SystemNotification
 
-SystemNotification is a SwiftUI SDK that lets you mimic the native iOS system notification that are presented when you toggle silent mode, connect your AirPods, etc. 
+SystemNotification is a SwiftUI library that lets you mimic the native iOS system notification that is presented when you toggle silent mode, connect your AirPods, etc. 
 
 <p align="center">
     <img src="Resources/Demo.gif" width=400 />
@@ -31,6 +32,11 @@ SystemNotification can be installed with the Swift Package Manager:
 ```
 https://github.com/danielsaidi/SystemNotification.git
 ```
+
+
+## Support My Work
+
+You can [become a sponsor][Sponsors] to help me dedicate more time on my various [open-source tools][OpenSource]. Every contribution, no matter the size, makes a real difference in keeping these tools free and actively developed.
 
 
 
@@ -111,14 +117,6 @@ The online [documentation][Documentation] has more information, articles, code e
 ## Demo Application
 
 The `Demo` folder has an app that lets you explore the library.
-
-
-
-## Support my work 
-
-You can [sponsor me][Sponsors] on GitHub Sponsors or [reach out][Email] for paid support, to help support my [open-source projects][OpenSource].
-
-Your support makes it possible for me to put more work into these projects and make them the best they can be.
 
 
 

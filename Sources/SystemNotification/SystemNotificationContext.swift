@@ -78,23 +78,18 @@ public extension SystemNotificationContext {
 @MainActor
 private extension SystemNotificationContext {
     
-    func perform(
-        _ action: @escaping Action,
-        after seconds: TimeInterval
-    ) {
+    func perform(after seconds: TimeInterval, action: @escaping Action) {
         guard seconds > 0 else { return action() }
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
             action()
         }
     }
     
-    func perform(after seconds: TimeInterval, action: @escaping Action) {
-        perform(action, after: seconds)
-    }
-    
     func presentAfterDismiss<Content: View>(_ content: Content) {
         self.content = AnyView(content)
-        perform(setActive, after: 0.1)
+        perform(after: 0.1) {
+            self.setActive()
+        }
     }
     
     func setActive() {

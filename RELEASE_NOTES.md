@@ -6,6 +6,12 @@ Until then, breaking changes can happen in any version, and deprecated features 
 
 
 
+## 1.3.1
+
+This version fixed a Xcode 26 build error.
+
+
+
 ## 1.3
 
 This version changes the default animation to `.bouncy`.

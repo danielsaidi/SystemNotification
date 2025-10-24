@@ -8,17 +8,16 @@
 
 import SwiftUI
 
-/// This type can configure a ``SystemNotification``.
+/// This type can be used to configure a ``SystemNotification``.
 ///
-/// See <doc:Getting-Started> for more information on how to
-/// style and configure system notifications.
+/// See <doc:Getting-Started> for information on how to style and configure
+/// a system notification.
 ///
-/// You can apply a custom value with the corresponding view
-/// modifier. The ``standard`` value is used by default when
-/// you don't apply a custom value.
+/// Use ``SwiftUICore/View/systemNotificationConfiguration(_:)``
+/// to apply a custom system notification configuration.
 ///
-/// You can use the ``standardToast`` configuration when you
-/// want to present the notification as a bottom toast.
+/// The ``standard`` value is used by default if you don't apply a custom value.
+/// You can use ``standardToast`` to present notifications as a bottom toast.
 public struct SystemNotificationConfiguration {
 
     /// Create a custom system notification configuration.

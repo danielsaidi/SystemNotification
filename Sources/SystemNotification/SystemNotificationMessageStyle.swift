@@ -8,17 +8,15 @@
 
 import SwiftUI
 
-/// This style can style a ``SystemNotificationMessage``.
+/// This style can be used to style a ``SystemNotificationMessage``.
 ///
-/// You can either set an overall foreground color, which is
-/// then applied to all components, or use individual colors.
+/// See <doc:Getting-Started> for information on how to style and configure
+/// a system notification.
 ///
-/// See <doc:Getting-Started> for more information on how to
-/// style and configure system notifications.
+/// Use ``SwiftUICore/View/systemNotificationMessageStyle(_:)``
+/// to apply a custom system notification message style.
 ///
-/// You can apply a custom value with the corresponding view
-/// modifier. The ``standard`` value is used by default when
-/// you don't apply a custom value.
+/// The ``standard`` style is used by default if you don't apply a custom value.
 public struct SystemNotificationMessageStyle {
 
     /// Create a custom system notification message style.

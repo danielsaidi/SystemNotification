@@ -8,8 +8,7 @@
 
 import SwiftUI
 
-/// This enum defines edges from which a system notification
-/// can be presented.
+/// This enum defines edges from which a system notification can be presented.
 public enum SystemNotificationEdge {
     
     case top, bottom

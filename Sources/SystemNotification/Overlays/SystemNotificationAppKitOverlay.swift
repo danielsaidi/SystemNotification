@@ -1,5 +1,5 @@
 //
-//  SystemNotification.swift
+//  SystemNotificationAppKitOverlay.swift
 //  SystemNotification
 //
 //  Created by Daniel Saidi on 2022-01-20.
@@ -9,8 +9,9 @@
 #if os(macOS)
 import SwiftUI
 
-/// This view can be used to create an overlay that can then
-/// be added to any AppKit view, using `addAsOverlay(to:)`.
+/// This view can be used to add an overlay to any AppKit view.
+///
+/// You can apply this view with the ``addAsOverlay(to:)`` function.
 public struct SystemNotificationAppKitOverlay: View {
     
     public init(context: SystemNotificationContext) {

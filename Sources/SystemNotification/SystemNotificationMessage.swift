@@ -8,14 +8,13 @@
 
 import SwiftUI
 
-/// This view mimics the message view that is shown within a
-/// native iOS system notification.
+/// This view mimics the view that is shown within a native iOS system notification.
 ///
-/// You can provide a custom icon view, title, and text, and
-/// e.g. animate the icon when it's presented.
+/// You can provide a custom icon, title, and text, and e.g. animate the icon when
+/// it's presented.
 ///
-/// You can easily create custom messages, by extending this
-/// type with static message builders, for instance:
+/// You can easily create custom messages, by extending this type with message
+/// builders, for instance:
 ///
 /// ```swift
 /// extension SystemNotificationMessage where IconView == Image {

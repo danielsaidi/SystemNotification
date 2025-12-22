@@ -17,7 +17,7 @@ This article describes how to get started with SystemNotification.
 
 ## Overview
 
-After adding SystemNotification to your project, you can add a system notification to any view just as you add a `sheet`, `alert` and `fullScreenModal`, with a simple view modifier.
+After adding SystemNotification to your project, you can add a system notification to any view just as you add a `sheet`, `alert` and `fullScreenCover`, with a simple view modifier.
 
 To add a system notification to a view, just use the ``SwiftUI/View/systemNotification(_:)`` view modifier with a state binding or a ``SystemNotificationContext`` instance.
 

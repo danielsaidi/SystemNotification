@@ -41,7 +41,7 @@ Thanks to @martindufort there's now an AppKit-specific overlay.
 
 ### ✨ New features
 
-`SystemNotificationAppKitOverlay` is a new AppKit-specific overlay view. This version renames the `master` branch to `main` and updates to Swift 6.
+`SystemNotificationAppKitOverlay` is a new AppKit-specific overlay view.
 
 
 

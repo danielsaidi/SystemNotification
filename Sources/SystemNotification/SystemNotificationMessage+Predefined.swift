@@ -3,7 +3,7 @@
 //  SystemNotification
 //
 //  Created by Daniel Saidi on 2024-04-24.
-//  Copyright © 2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2024-2026 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI

@@ -35,7 +35,7 @@ https://github.com/danielsaidi/SystemNotification.git
 
 ## Getting started
 
-With SystemNotification, you can add a system notification to any view just as you add a `sheet`, `alert` and `fullScreenModal`, by applying a `systemNotification` view modifier (preferably to the application root view).
+With SystemNotification, you can add a system notification to any view just as you add a `sheet`, `alert` and `fullScreenCover`, by applying a `systemNotification` view modifier (preferably to the application root view).
 
 State-based notifications take a boolean state binding and a view builder:
 

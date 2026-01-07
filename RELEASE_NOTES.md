@@ -25,7 +25,7 @@ This version fixed a Xcode 26 build error and changes the default animation to `
 
 ## 1.2.1
 
-This patch lets you provide a custom bundle to `SystemNotificatonMessage`.
+This patch lets you provide a custom bundle to `SystemNotificationMessage`.
 
 
 

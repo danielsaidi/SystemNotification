@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/v/release/danielsaidi/SystemNotification?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-6.1-orange.svg" alt="Swift 6.1" />
     <a href="https://danielsaidi.github.io/SystemNotification"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
-    <a href="https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" /></a>
+    <a href="https://github.com/danielsaidi/SystemNotification/blob/main/LICENSE"><img src="https://img.shields.io/github/license/danielsaidi/SystemNotification" alt="MIT License" /></a>
 </p>
 
 
@@ -148,4 +148,4 @@ SystemNotification is available under the MIT license. See the [LICENSE][License
 
 [Documentation]: https://danielsaidi.github.io/SystemNotification
 [Getting-Started]: https://danielsaidi.github.io/SystemNotification/documentation/systemnotification/getting-started
-[License]: https://github.com/danielsaidi/SystemNotification/blob/master/LICENSE
+[License]: https://github.com/danielsaidi/SystemNotification/blob/main/LICENSE

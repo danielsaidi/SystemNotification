@@ -30,6 +30,7 @@ public struct SystemNotificationMessageStyle {
     ///   - padding: The padding to add to the content.
     ///   - textColor: The color to apply to the text.
     ///   - textFont: The font to apply to the text.
+    ///   - textAlignment: The multiline text alignment to apply to the text content.
     ///   - titleColor: The color to apply to the title.
     ///   - titleFont: The font to apply to the title.
     ///   - titleTextSpacing: The spacing to apply between the title and the text.
@@ -42,6 +43,7 @@ public struct SystemNotificationMessageStyle {
         padding: CGSize = .init(width: 15, height: 7),
         textColor: Color = .secondary,
         textFont: Font = Font.footnote.bold(),
+        textAlignment: TextAlignment = .center,
         titleColor: Color = .primary,
         titleFont: Font = Font.footnote.bold(),
         titleTextSpacing: CGFloat = 2
@@ -54,6 +56,7 @@ public struct SystemNotificationMessageStyle {
         self.padding = padding
         self.textColor = textColor
         self.textFont = textFont
+        self.textAlignment = textAlignment
         self.titleColor = titleColor
         self.titleFont = titleFont
         self.titleTextSpacing = titleTextSpacing
@@ -82,6 +85,9 @@ public struct SystemNotificationMessageStyle {
     
     /// The font to apply to the text.
     public var textFont: Font
+    
+    /// The multiline text alignment to apply to the text content.
+    public var textAlignment: TextAlignment
     
     /// The color to apply to the title.
     public var titleColor: Color
@@ -122,5 +128,17 @@ public extension EnvironmentValues {
     var systemNotificationMessageStyle: SystemNotificationMessageStyle {
         get { self [SystemNotificationMessageStyle.Key.self] }
         set { self [SystemNotificationMessageStyle.Key.self] = newValue }
+    }
+}
+
+extension TextAlignment {
+
+    /// Map ``TextAlignment`` to ``HorizontalAlignment``.
+    var horizontal: HorizontalAlignment {
+        switch self {
+        case .leading: return .leading
+        case .center: return .center
+        case .trailing: return .trailing
+        }
     }
 }

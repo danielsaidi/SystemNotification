@@ -128,7 +128,7 @@ private extension SystemNotificationMessage {
 private extension SystemNotificationMessage {
 
     var textContent: some View {
-        VStack(spacing: style.titleTextSpacing) {
+        VStack(alignment: style.textAlignment.horizontal, spacing: style.titleTextSpacing) {
             if let title = title {
                 Text(title, bundle: bundle ?? nil)
                     .font(style.titleFont)
@@ -138,7 +138,7 @@ private extension SystemNotificationMessage {
                 .font(style.textFont)
                 .foregroundStyle(foregroundColor(for: style.textColor))
         }
-        .multilineTextAlignment(.center)
+        .multilineTextAlignment(style.textAlignment)
     }
     
     @ViewBuilder

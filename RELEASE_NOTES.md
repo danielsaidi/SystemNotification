@@ -11,6 +11,12 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 1.4.1
+
+Thanks to [https://github.com/SuperY](SuperY), `SystemNotificationMessageStyle` now supports customizing the text alignment.
+
+
+
 ## 1.4
 
 This version bumps the package to Swift 6.1 and the demo app to iOS 26.

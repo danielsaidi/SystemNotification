@@ -10,19 +10,19 @@ let package = Package(
     .executable(
       name: "l10n-gen",
       targets: ["StringCatalogKeyBuilder"]
-    ),
+    )
   ],
   dependencies: [
     .package(
       url: "https://github.com/apple/swift-argument-parser.git",
       .upToNextMajor(from: "1.5.0")
-    ),
+    )
   ],
   targets: [
     .executableTarget(
       name: "StringCatalogKeyBuilder",
       dependencies: [
-        .product(name: "ArgumentParser", package: "swift-argument-parser"),
+        .product(name: "ArgumentParser", package: "swift-argument-parser")
       ]
     )
   ]

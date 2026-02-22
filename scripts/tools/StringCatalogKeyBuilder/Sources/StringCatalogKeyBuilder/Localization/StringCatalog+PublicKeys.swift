@@ -111,9 +111,10 @@ private extension StringCatalog {
                 if dict[key] == nil {
                     dict[key] = [String: Any]()
                 }
-                var nested = dict[key] as! [String: Any]
-                insert(into: &nested, path: Array(path.dropFirst()), value: value)
-                dict[key] = nested
+                if var nested = dict[key] as? [String: Any] {
+                    insert(into: &nested, path: Array(path.dropFirst()), value: value)
+                    dict[key] = nested
+                }
             }
         }
 

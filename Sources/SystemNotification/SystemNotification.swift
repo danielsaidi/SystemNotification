@@ -8,16 +8,18 @@
 
 import SwiftUI
 
-/// This view mimics the native pre iOS 26 system notification that is shown when
-/// toggling silent mode on and off.
+/// This view mimics a native pre iOS 26 system notification
+/// that is shown when toggling silent mode on and off.
 ///
-/// This view renders a notification shape that contains the provided content view.
-/// You can use a custom view, or use the ``SystemNotificationMessage``
-/// view for convenience.
+/// This view renders a notification shape that contains the
+/// provided content view. You can use a custom view, or use
+/// the ``SystemNotificationMessage`` view.
 ///
-/// You can use the ``SwiftUI/View/systemNotificationStyle(_:)``
-/// and ``SwiftUI/View/systemNotificationConfiguration(_:)``
-/// view modifiers to style and configure a system notification.
+/// The view can be styled and customized with the following
+/// view modifiers:
+///
+/// - ``SwiftUI/View/systemNotificationStyle(_:)``
+/// - ``SwiftUI/View/systemNotificationConfiguration(_:)``
 public struct SystemNotification<Content: View>: View {
     
     /// Create a system notification view.

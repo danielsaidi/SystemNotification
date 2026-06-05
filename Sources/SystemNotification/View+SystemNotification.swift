@@ -12,10 +12,8 @@ public extension View {
     
     /// Attach a ``SystemNotification`` to the view.
     ///
-    /// State-based notifications make it easy to use a single binding to control a
-    /// specific notification.
-    ///
-    /// After applying the modifier, you use the binding to present any `content`.
+    /// State-based notifications use a single binding value
+    /// to control a specific notification.
     func systemNotification<Content: View>(
         isActive: Binding<Bool>,
         content: @escaping () -> Content
@@ -31,11 +29,11 @@ public extension View {
     
     /// Attach a system notification context to the view.
     ///
-    /// Context-based notifications make it easy to handle many notifications with
-    /// a single context.
+    /// Context-based notifications can use a single context
+    /// to handle many different notifications.
     ///
-    /// After applying the modifier, you can use the context to present any views.
-    /// It will also pass the context into the environment, as an environment object.
+    /// After applying the modifier, you can use the context
+    /// to present a notification.
     func systemNotification(
         _ context: SystemNotificationContext
     ) -> some View {

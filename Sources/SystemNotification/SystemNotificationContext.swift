@@ -8,7 +8,8 @@
 
 import SwiftUI
 
-/// This context can be used to present system notifications in a more flexible way.
+/// This context can be used to present system notifications
+/// in a more flexible way.
 public class SystemNotificationContext: ObservableObject {
     
     public init() {}

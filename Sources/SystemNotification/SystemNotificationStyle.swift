@@ -10,13 +10,8 @@ import SwiftUI
 
 /// This style can be used to style a ``SystemNotification``.
 ///
-/// See <doc:Getting-Started> for information on how to style and configure
-/// a system notification.
-///
-/// Use ``SwiftUICore/View/systemNotificationStyle(_:)`` to use
-/// a custom system notification style.
-///
-/// The ``standard`` style is used by default if you don't apply a custom value.
+/// Use the ``SwiftUICore/View/systemNotificationStyle(_:)``
+/// view modifier to apply a custom style.
 public struct SystemNotificationStyle {
 
     /// Create a custom system notification style.

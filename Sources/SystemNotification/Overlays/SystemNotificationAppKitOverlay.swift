@@ -9,9 +9,9 @@
 #if os(macOS)
 import SwiftUI
 
-/// This view can be used to add an overlay to any AppKit view.
+/// This view can be used to add overlays to any AppKit view.
 ///
-/// You can apply this view with the ``addAsOverlay(to:)`` function.
+/// You can apply it with the ``addAsOverlay(to:)`` function.
 public struct SystemNotificationAppKitOverlay: View {
     
     public init(context: SystemNotificationContext) {

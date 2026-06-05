@@ -51,16 +51,16 @@ struct PackageOptions: ParsableArguments {
 /// These options are used when using the `--from` and `--to` arguments.
 struct PathOptions: ParsableArguments {
     @Option(name: .long, help: "A command-relative path to a source string catalog.")
-    var fromPath: String?
+    var from: String?
 
     @Option(name: .long, help: "A command-relative path to a target output file.")
-    var toPath: String?
+    var to: String?
 
     func tryExecute(
         withRootNamespace root: String
     ) throws -> Bool {
-        guard let fromPath, let toPath else { return false }
-        try generateCode(from: fromPath, to: toPath, withRootNamespace: root)
+        guard let from, let to else { return false }
+        try generateCode(from: from, to: to, withRootNamespace: root)
         return true
     }
 }
